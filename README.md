@@ -77,6 +77,7 @@ Things you may want to cover:
 
 * As a  registered user, I am able to create my own recipes.  
 
-* As a registered user, when I go to add a new item to my storage, when filling in the name, other items of the same name will pop up underneath the textarea, allowing me to be consistent and select an item of the same name if it already exists in my storage.  
-This app can also give me a recommended “shopping list” for my current needs ( through the use of the set min and max amount of a specific item )
+* As a registered user, when I go to add a new item to my storage, when filling in the name, other items of the same name will pop up underneath the textarea, allowing me to be consistent and select an item of the same name if it already exists in my storage.   
+
+* This app can also give me a recommended “shopping list” for my current needs ( through the use of the set min and max amount of a specific item )
 
