@@ -21,7 +21,7 @@ Things you may want to cover:
 
 * Deployment instructions
 
-## User Stories  
+# User Stories  
 
 * As a unregistered user, I can see a list of most popular recipes  
 
