@@ -1,4 +1,5 @@
 class MainController < ApplicationController
+    
     def home
         render component: 'App', prerender: false,
                 props: { 
@@ -9,4 +10,5 @@ class MainController < ApplicationController
                             #ass: asset_host 
                         }
     end
+    
 end
