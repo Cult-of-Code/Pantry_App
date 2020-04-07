@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 
 import { myTest, cool } from './logical/master'
+import { PuppyRecipes } from './logical/fetchers'
 
 
 class App extends React.Component {
@@ -32,7 +33,16 @@ class App extends React.Component {
   
   
   componentDidMount(){
+    
     this.getRecipePuppy()
+    
+    /*
+    let results = PuppyRecipes()
+    this.setState({ 
+      recipePuppy: results.results, 
+      error: results.error
+    }) 
+    */
   }
   
   
