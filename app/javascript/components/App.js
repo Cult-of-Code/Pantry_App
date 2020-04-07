@@ -1,11 +1,29 @@
+
+
+//------------------------------------------
+//          Nessessary Imports
+//------------------------------------------
 import React from "react"
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 
+//------------------------------------------
+//              Components
+//------------------------------------------
 import { myTest, cool } from './logical/master'
 import { PuppyRecipes } from './logical/fetchers'
 
 
+//------------------------------------------
+//                Pages
+//------------------------------------------
+import RecipieList from './components/RecipieList'
+import AddItemToPantry from './components/AddItemToPantry'
+
+
+//------------------------------------------
+//                 App
+//------------------------------------------
 class App extends React.Component {
   constructor(){
     super()
@@ -43,6 +61,7 @@ class App extends React.Component {
       error: results.error
     }) 
     */
+    
   }
   
   
@@ -83,8 +102,11 @@ class App extends React.Component {
       sign_out_route
     } = this.props
 
+
+
     return (
       <React.Fragment>
+      
         {logged_in &&
           <div>
             <a href={sign_out_route}>Sign Out</a>
@@ -95,9 +117,26 @@ class App extends React.Component {
             <a href={sign_in_route}>Sign In</a>
           </div>
         }
+      
+      
+      
+      <Router>
+        <Switch>
+          
+          <Route path="/temp_list" render={ (props) => <RecipieList {...props}
+                                  puppy={ this.state.recipePuppy }
+          />}/>
+          <Route path="/temp_form"><AddItemToPantry/></Route>
+          
+          <Route path="/about">About</Route>
+          <Route> Home Page </Route>
+          
+        </Switch>
+      </Router>
       </React.Fragment>
     );
   }
 }
 
 export default App
+//
