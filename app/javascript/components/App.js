@@ -2,6 +2,9 @@ import React from "react"
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 
+import { myTest, cool } from './logical/master'
+
+
 class App extends React.Component {
   constructor(){
     super()
@@ -13,17 +16,29 @@ class App extends React.Component {
       error: null
     }
     
+    
+    
+    
+    //        "tests"
+    // Logic from the Master file
+    
+    console.log(  myTest()  )
+    console.log(  cool()  )
+    
+    
+    
+    
   }
   
   
   componentDidMount(){
-    this.getDUDES()
+    this.getRecipePuppy()
   }
   
   
   
   // Test ONIONS
-  getDUDES = () => {
+  getRecipePuppy = () => {
     
     //https://medium.com/@dtkatz/3-ways-to-fix-the-cors-error-and-how-access-control-allow-origin-works-d97d55946d9
     //http://www.recipepuppy.com/about/api/
