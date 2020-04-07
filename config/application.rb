@@ -31,5 +31,6 @@ module PantryApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.hosts << "48f5f1653b9d4eb4bfd5e77896cc3cc6.vfs.cloud9.us-east-2.amazonaws.com"
   end
 end
