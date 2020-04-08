@@ -6,6 +6,8 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
+import PageRouter from './PageRouter'
+
 
 //------------------------------------------
 //              Components
@@ -148,6 +150,8 @@ export default class App extends React.Component {
       <Router>
         <Switch>
           
+          {/*   Temporary Testing Pages   */}
+          {/*-----------------------------*/}
           <Route path="/temp_list" 
                   render={ (props) => <RecipieList {...props}
                   
@@ -160,18 +164,36 @@ export default class App extends React.Component {
           <Route path="/temp_form" render={ (props) => <AddItemToPantry {...props} 
                   submitForm= {this.handleSubmit}
           />}/>
+          {/*-----------------------------*/}
+          
+          
+          
+          
+          {/*   User Dashboard    */}
+          <Route path="/user" exact render={ (props) => <PageRouter {...props}/>}/>
+          
+          {/*   User Pages    */}
+          <Route path="/user/:page" render={ (props) => <PageRouter {...props}/>}/>
           
           
           
           
           
           
-          {/*   Recipe Posts    */}
+          
+          {/*   Recipes Available (List)    */}
           <Route path="/recipes" render={ (props) => <Home {...props} 
                   
           />}/>
           
           
+          
+          
+          
+          {/*   Containers Dashboard    */}
+          <Route path="/containers" render={ (props) => <Home {...props} 
+                  
+          />}/>
           
           {/*   Container Create   */}
           <Route path="/container/create" render={ (props) => <Home {...props} 
@@ -188,10 +210,7 @@ export default class App extends React.Component {
                   
           />}/>
           
-          {/*   Containers Dashboard    */}
-          <Route path="/containers" render={ (props) => <Home {...props} 
-                  
-          />}/>
+          
           
           
           
