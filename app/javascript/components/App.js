@@ -20,15 +20,17 @@ import { getRecipePuppy, getTheMealDB } from './logical/fetchers'
 import RecipieList from './pages/RecipieList'
 import AddItemToPantry from './pages/AddItemToPantry'
 
+import Home from './pages/Home'
+
 
 //------------------------------------------
 //                 App
 //------------------------------------------
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(){
     super()
     
-    this.accessCORS = 'https://cors-anywhere.herokuapp.com/'
+    //this.accessCORS = 'https://cors-anywhere.herokuapp.com/'
     
     this.state = {
       recipePuppy: {},
@@ -40,10 +42,10 @@ class App extends React.Component {
     
     //        "tests"
     // Logic from the Master file
-    
+    /*
     console.log(  myTest()  )
     console.log(  cool()  )
-    
+    */
     
     
     
@@ -75,14 +77,20 @@ class App extends React.Component {
     
     const {
       logged_in,
+      current_user,
       sign_in_route,
       sign_out_route
     } = this.props
 
-
+  /*
+    console.log("current_user")
+    console.log(current_user)
+  */
 
     return (
       <React.Fragment>
+      
+        
       
         {logged_in &&
           <div>
@@ -108,10 +116,50 @@ class App extends React.Component {
                               theMealDB: this.state.theMealDB
                   } }
           />}/>
-          <Route path="/temp_form"><AddItemToPantry/></Route>
           
-          <Route path="/about">About</Route>
-          <Route> Home Page </Route>
+          <Route path="/temp_form" render={ (props) => <AddItemToPantry {...props} 
+                  
+          />}/>
+          
+          
+          
+          
+          
+          
+          {/*   Recipe Posts    */}
+          <Route path="/recipes" render={ (props) => <Home {...props} 
+                  
+          />}/>
+          
+          
+          
+          {/*   Container Create   */}
+          <Route path="/container/create" render={ (props) => <Home {...props} 
+                  
+          />}/>
+          
+          {/*   Container Edit Specific   */}
+          <Route path="/container/:storage_name/edit" render={ (props) => <Home {...props} 
+                  
+          />}/>
+          
+          {/*   Container Specific Dashboard    */}
+          <Route path="/container/:storage_name" render={ (props) => <Home {...props} 
+                  
+          />}/>
+          
+          {/*   Containers Dashboard    */}
+          <Route path="/containers" render={ (props) => <Home {...props} 
+                  
+          />}/>
+          
+          
+          
+          {/*   Home Page    */}
+          <Route render={ (props) => 
+              <Home {...props} 
+                  
+          />}/>
           
         </Switch>
       </Router>
@@ -119,6 +167,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App
-//

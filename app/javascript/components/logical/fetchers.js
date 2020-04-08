@@ -68,7 +68,7 @@ const getRecipePuppy = function(){
 
 /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
 
-//                      getRecipePuppy
+//                      getTheMealDB
 
 /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*//*
 
