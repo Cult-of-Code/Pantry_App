@@ -4245,7 +4245,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@^4.0.0, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.5, lodash@~4.17.12:
+lodash@^4.0.0, lodash@^4.13.0, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.5, lodash@~4.17.12:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -6467,6 +6467,13 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
+
+ruby@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/ruby/-/ruby-0.6.1.tgz#b3fee5787e4f9c0d5814d6166a5b5dbcfb24ba35"
+  integrity sha1-s/7leH5PnA1YFNYWaltdvPskujU=
+  dependencies:
+    lodash "^4.13.0"
 
 run-queue@^1.0.0, run-queue@^1.0.3:
   version "1.0.3"
