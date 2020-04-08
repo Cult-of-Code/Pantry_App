@@ -35,33 +35,72 @@ const   accessCORS  =   'https://cors-anywhere.herokuapp.com/'
 
 *///    `    `    `    `    `    `    `    `    `    `    `    `
 
+
 const getRecipePuppy = function(){
     
     
     let output = { 
-        
         results:  undefined,
-        error:    null
-        
+        error:    'no error'
     }
     
     
-    fetch(`${accessCORS}http://www.recipepuppy.com/api/`, 
+    return fetch(`${accessCORS}http://www.recipepuppy.com/api/`, 
       { 
         headers: { 'Content-Type': 'application/json' }
       })
     .then((response)=>{
-      //console.table(response)
         if(response.status === 200)
         { return(response.json()) }
     })
     .then((resultsJSON)=>{
-      //console.log(resultsArray)
-        //this.setState({ recipePuppy: resultsJSON }) 
         output.results = resultsJSON
+        return output
     })
-    .catch((error) => output.error = error )//this.setState({error}))
-  }
+    .catch((error) => output.error = error )
+    
+}
+  
+
+
+
+
+
+/* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+
+//                      getRecipePuppy
+
+/* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*//*
+
+    https://www.themealdb.com/api.php
+
+*///    `    `    `    `    `    `    `    `    `    `    `    `
+
+
+function getTheMealDB(){
+    
+    
+    let output = { 
+        results:  undefined,
+        error:    'no error'
+    }
+    
+    
+    return fetch(`${accessCORS}https://www.themealdb.com/api/json/v1/1/random.php`, 
+      { 
+        headers: { 'Content-Type': 'application/json' }
+      })
+    .then((response)=>{
+        if(response.status === 200)
+        { return(response.json()) }
+    })
+    .then((resultsJSON)=>{
+        output.results = resultsJSON
+        return output
+    })
+    .catch((error) => output.error = error )
+    
+}
   
 
 
@@ -88,11 +127,12 @@ const getRecipePuppy = function(){
 
 
 
+
 //=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@//
 /*  +    +    +    +    +    +    +    +    +    +    +    +  */
 
-export { 
-            getRecipePuppy as PuppyRecipes
+export {
+            getRecipePuppy,
+            getTheMealDB
 }
-
 
