@@ -1,8 +1,8 @@
 # About
 
-> Our application called Pantry app is an app for listing items that you have stored and getting you recipes that can be made with the items in your pantry.  
-> User will be able to create their own recipes to share with others
-> Even if your aren't a user you will still be able to see what recipes there are.
+> Our application called Pantry app is an app for listing items that you have stored and getting you recipes that can be made with the items in your pantry.    
+> Users will be able to create their own recipes to share with others  
+> Even if your aren't a user you will still be able to see what recipes there are.   
 
 # Setup
 
