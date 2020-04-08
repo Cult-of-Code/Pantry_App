@@ -15,6 +15,7 @@
     "react-router-dom": "^5.1.2",
     "react_ujs": "^2.6.1",
     "reactstrap": "^8.4.1",
+    "ruby": "^0.6.1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",

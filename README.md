@@ -1,25 +1,25 @@
-# README
+# About
+
+> Our application called Pantry app is an app for listing items that you have stored and getting you recipes that can be made with the items in your pantry.  
+> User will be able to create their own recipes to share with others
+> Even if your aren't a user you will still be able to see what recipes there are.
+
+# Setup
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+* Run on Ruby version 2.6.3 using React on Rails
 
-* Ruby version
+* Setup System  
+     git pull => bundle install => yarn install => rails db:create => rails db:migrate => rails server
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
+* How to run the test suites
+    For frontend run yarn jest   
+    For backend run respect
 
 * Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+    API form Recipe Puppy  
 
 # User Stories  
 
@@ -80,4 +80,3 @@ Things you may want to cover:
 * As a registered user, when I go to add a new item to my storage, when filling in the name, other items of the same name will pop up underneath the textarea, allowing me to be consistent and select an item of the same name if it already exists in my storage.   
 
 * This app can also give me a recommended “shopping list” for my current needs ( through the use of the set min and max amount of a specific item )
-
