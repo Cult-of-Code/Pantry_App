@@ -34,7 +34,8 @@ export default class App extends React.Component {
     
     this.state = {
       recipePuppy: {},
-      theMealDB: {}
+      theMealDB: {},
+      usersPantryItems: []
     }
     
     
@@ -61,10 +62,48 @@ export default class App extends React.Component {
     getTheMealDB().then( (received) => {
       this.setState({ theMealDB: received.results }) 
     })
-
+    
+    this.getItemsFromUserPantry()
   }
 
-  
+    getItemsFromUserPantry = () => {
+      const   accessCORS  =   'https://cors-anywhere.herokuapp.com/'
+      fetch(`${accessCORS}https://www.themealdb.com/api/json/v1/1/random.php`, 
+      { 
+        headers: { 'Content-Type': 'application/json' }
+      })
+    .then((response)=>{
+        if(response.status === 200)
+        { return(response.json()) }
+    })
+    .then((resultsJSON)=>{
+        
+        this.setState({usersPantryItems: resultsJSON})
+    })
+    
+    }
+
+
+
+
+  addPantryItemToUser = (newPantryItem) => {
+        return fetch("http://34.220.204.52:8080/profiles", {
+            // converting an object to a string
+            body: JSON.stringify(newPantryItem),
+            // specify the info being sent in JSON and the info returning should be JSON
+            headers: {
+                "Content-Type": "application/json"
+            },
+            // HTTP verb so the correct endpoint is invoked on the server
+            method: "POST"
+        })
+        .then((response) => {
+            // if the response is good call the getCats method
+            if(response.ok){
+                return this.get()
+            }
+        })
+    }
   
   
   
@@ -73,6 +112,7 @@ export default class App extends React.Component {
     
     //console.log(this.state.recipePuppy)
     //console.log(this.state.theMealDB)
+    console.log(this.state.usersPantryItems)
     
     
     const {
@@ -118,7 +158,7 @@ export default class App extends React.Component {
           />}/>
           
           <Route path="/temp_form" render={ (props) => <AddItemToPantry {...props} 
-                  
+                  submitForm= {this.handleSubmit}
           />}/>
           
           

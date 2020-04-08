@@ -12,8 +12,11 @@ class AddItemToPantry extends Component{
             name: '',
             quantity: '',
             units: '',
+            storage_bin: 'the stash behind the television set',
             when_bought: '',
-            exp_date: ''
+            exp_date: '',
+            min_item: '',
+            max_item: ''
           }
         }
     }
@@ -25,7 +28,8 @@ handleChange = (event) => {
 
       handleSubmit = (event) => {
         event.preventDefault()
-        this.props.handleSubmit(this.state.form)
+        console.log(this.state.form)
+        this.props.submitForm(this.state.form)
         this.setState({ success: true })
       }
 
@@ -73,7 +77,7 @@ handleChange = (event) => {
                 <Label htmlFor="min_item" id="min_item">Minimum Amount</Label>
                     <Input
                         type="text"
-                        name="exp_date"
+                        name="min_item"
                         onChange={ this.handleChange }
                         value={ this.state.form.min_item }
                     />
