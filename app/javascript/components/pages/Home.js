@@ -43,7 +43,7 @@ export default class Home extends React.Component {
       sign_out_route
     } = this.props
 
-    console.log(this.props)
+    //console.log(this.props)
 
     return (
       <React.Fragment>
