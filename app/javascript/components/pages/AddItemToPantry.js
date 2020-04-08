@@ -12,8 +12,11 @@ class AddItemToPantry extends Component{
             name: '',
             quantity: '',
             units: '',
+            storage_bin: 'the stash behind the television set',
             when_bought: '',
-            exp_date: ''
+            exp_date: '',
+            min_item: '',
+            max_item: ''
           }
         }
     }
@@ -26,7 +29,7 @@ handleChange = (event) => {
       handleSubmit = (event) => {
         event.preventDefault()
         console.log(this.state.form)
-        this.props.handleSubmit(this.state.form)
+        this.props.submitForm(this.state.form)
         this.setState({ success: true })
       }
 
