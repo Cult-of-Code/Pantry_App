@@ -11,14 +11,14 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 //              Components
 //------------------------------------------
 import { myTest, cool } from './logical/master'
-import { PuppyRecipes } from './logical/fetchers'
+import { getRecipePuppy, getTheMealDB } from './logical/fetchers'
 
 
 //------------------------------------------
 //                Pages
 //------------------------------------------
-import RecipieList from './components/RecipieList'
-import AddItemToPantry from './components/AddItemToPantry'
+import RecipieList from './pages/RecipieList'
+import AddItemToPantry from './pages/AddItemToPantry'
 
 
 //------------------------------------------
@@ -32,7 +32,7 @@ class App extends React.Component {
     
     this.state = {
       recipePuppy: {},
-      error: null
+      theMealDB: {}
     }
     
     
@@ -51,43 +51,17 @@ class App extends React.Component {
   
   
   componentDidMount(){
-    
-    this.getRecipePuppy()
-    
-    /*
-    let results = PuppyRecipes()
-    this.setState({ 
-      recipePuppy: results.results, 
-      error: results.error
-    }) 
-    */
-    
-  }
-  
-  
-  
-  // Test ONIONS
-  getRecipePuppy = () => {
-    
-    //https://medium.com/@dtkatz/3-ways-to-fix-the-cors-error-and-how-access-control-allow-origin-works-d97d55946d9
-    //http://www.recipepuppy.com/about/api/
-    fetch(`${this.accessCORS}http://www.recipepuppy.com/api/`, 
-      { 
-        headers: { 'Content-Type': 'application/json' }
-      })
-    .then((response)=>{
-      //console.table(response)
-        if(response.status === 200)
-        { return(response.json()) }
+
+    getRecipePuppy().then( (received) => {
+      this.setState({ recipePuppy: received.results }) 
     })
-    .then((resultsArray)=>{
-      console.log(resultsArray)
-        this.setState({ recipePuppy: resultsArray }) 
-    })
-    .catch((error) => this.setState({error}))
-  }
   
-  /* = * = * = * = * = * = * = * = * = * = * = * = * = * = * = */
+    getTheMealDB().then( (received) => {
+      this.setState({ theMealDB: received.results }) 
+    })
+
+  }
+
   
   
   
@@ -95,8 +69,11 @@ class App extends React.Component {
   render () {
     
     
-    console.table(this.state.recipePuppy.results)
-     const {
+    //console.log(this.state.recipePuppy)
+    //console.log(this.state.theMealDB)
+    
+    
+    const {
       logged_in,
       sign_in_route,
       sign_out_route
@@ -123,8 +100,13 @@ class App extends React.Component {
       <Router>
         <Switch>
           
-          <Route path="/temp_list" render={ (props) => <RecipieList {...props}
-                                  puppy={ this.state.recipePuppy }
+          <Route path="/temp_list" 
+                  render={ (props) => <RecipieList {...props}
+                  
+                  recipes={ { 
+                              recipePuppy: this.state.recipePuppy, 
+                              theMealDB: this.state.theMealDB
+                  } }
           />}/>
           <Route path="/temp_form"><AddItemToPantry/></Route>
           
