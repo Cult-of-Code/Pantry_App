@@ -23,7 +23,7 @@ import RecipieList from './pages/RecipieList'
 import AddItemToPantry from './pages/AddItemToPantry'
 
 import Home from './pages/Home'
-
+import Frame from './pages/Frame'
 
 //------------------------------------------
 //                 App
@@ -145,7 +145,7 @@ export default class App extends React.Component {
           </div>
         }
       
-      
+        <Frame/>
       
       <Router>
         <Switch>
