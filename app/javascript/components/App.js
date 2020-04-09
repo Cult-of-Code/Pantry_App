@@ -13,7 +13,7 @@ import PageRouter from './PageRouter'
 //              Components
 //------------------------------------------
 import { myTest, cool } from './logical/master'
-import { getRecipePuppy, getTheMealDB } from './logical/fetchers'
+import { getRecipePuppy, getTheMealDB, addPantryItemToUser } from './logical/fetchers'
 
 
 //------------------------------------------
@@ -65,12 +65,21 @@ export default class App extends React.Component {
       this.setState({ theMealDB: received.results }) 
     })
     
+    addPantryItemToUser().then( (received) => {
+      this.setState({ usersPantryItems: received.results})
+    })
+    
     this.getItemsFromUserPantry()
+    addPantryItemToUser()
   }
+  
+  
+  
+  
 
     getItemsFromUserPantry = () => {
       const   accessCORS  =   'https://cors-anywhere.herokuapp.com/'
-      fetch(`${accessCORS}https://www.themealdb.com/api/json/v1/1/random.php`, 
+      fetch(`${accessCORS}https://48f5f1653b9d4eb4bfd5e77896cc3cc6.vfs.cloud9.us-east-2.amazonaws.com/pantry_items`, 
       { 
         headers: { 'Content-Type': 'application/json' }
       })
@@ -83,28 +92,6 @@ export default class App extends React.Component {
         this.setState({usersPantryItems: resultsJSON})
     })
     
-    }
-
-
-
-
-  addPantryItemToUser = (newPantryItem) => {
-        return fetch("http://34.220.204.52:8080/profiles", {
-            // converting an object to a string
-            body: JSON.stringify(newPantryItem),
-            // specify the info being sent in JSON and the info returning should be JSON
-            headers: {
-                "Content-Type": "application/json"
-            },
-            // HTTP verb so the correct endpoint is invoked on the server
-            method: "POST"
-        })
-        .then((response) => {
-            // if the response is good call the getCats method
-            if(response.ok){
-                return this.get()
-            }
-        })
     }
   
   
@@ -170,7 +157,7 @@ export default class App extends React.Component {
           
           
           {/*   User Dashboard    */}
-          <Route path="/user" exact render={ (props) => <PageRouter {...props}/>}/>
+          <Route path="/user" exact render={ (props) => <PageRouter {...props} dude={4}/>}/>
           
           {/*   User Pages    */}
           <Route path="/user/:page" render={ (props) => <PageRouter {...props}/>}/>
