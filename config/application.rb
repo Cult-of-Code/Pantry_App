@@ -39,5 +39,7 @@ module PantryApp
     config.hosts << "369d7c08c6744cd4b13e4ae8a3e758ef.vfs.cloud9.us-west-2.amazonaws.com"
       # Julia
     config.hosts << "02999a75bf4f43fe94742e697c9a06ae.vfs.cloud9.us-west-2.amazonaws.com"
+      # Connor
+    config.hosts << "7742f0fa2a534226b6a53e03ed2dc239.vfs.cloud9.us-east-2.amazonaws.com"
   end
 end
