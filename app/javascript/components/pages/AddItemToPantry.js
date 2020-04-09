@@ -20,18 +20,27 @@ class AddItemToPantry extends Component{
           }
         }
     }
-handleChange = (event) => {
+    
+    
+    
+    handleChange = (event) => {
         let { form } = this.state
         form[event.target.name] = event.target.value
         this.setState({ form: form })
-      }
+    }
 
-      handleSubmit = (event) => {
+
+
+
+    handleSubmit = (event) => {
         event.preventDefault()
         console.log(this.state.form)
         this.props.submitForm(this.state.form)
         this.setState({ success: true })
-      }
+    }
+
+
+
 
 
  render(){
