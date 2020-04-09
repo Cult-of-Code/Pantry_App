@@ -117,7 +117,6 @@ function getTheMealDB(){
 
 *///    `    `    `    `    `    `    `    `    `    `    `    `
 
-//function >>
 
 function addPantryItemToUser(newItem) {
     
