@@ -72,31 +72,7 @@ export default class App extends React.Component {
     this.getItemsFromUserPantry()
     addPantryItemToUser()
   }
-  
-  
-  
-  
 
-    getItemsFromUserPantry = () => {
-      const   accessCORS  =   ''//'https://cors-anywhere.herokuapp.com/'
-      fetch(`${accessCORS}https://369d7c08c6744cd4b13e4ae8a3e758ef.vfs.cloud9.us-west-2.amazonaws.com/pantry_items`, 
-      { 
-        headers: { 'Content-Type': 'application/json' },
-        mode: 'no-cors'
-      })
-    .then((response)=>{
-        if(response.status === 200)
-        { return(response.json()) }
-    })
-    .then((resultsJSON)=>{
-        
-        this.setState({usersPantryItems: resultsJSON})
-    })
-    
-    }
-  
-  
-  
   render () {
     
     
