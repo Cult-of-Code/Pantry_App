@@ -109,17 +109,37 @@ function getTheMealDB(){
 
 /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
 
-//                      Another One
+//                      addPantryItemToUser
 
 /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*//*
 
-    comments
+    http://34.220.204.52:8080/profiles
 
 *///    `    `    `    `    `    `    `    `    `    `    `    `
 
 //function >>
 
-
+function addPantryItemToUser(newItem) {
+    
+    let output = { 
+        results:  undefined,
+        error:    'no error'
+    }
+    
+    return fetch(`${accessCORS}http://34.220.204.52:8080/profiles`, 
+    {
+        body: JSON.stringify(newItem),
+        headers: { 'Content-Type': 'application/json' },
+        
+        method: "POST"
+    })
+      
+    .then((response)=>{
+        if(response.ok)
+        { return getItemsFromUserPantry() }
+    })
+    .catch((error) => output.error = error )
+}
 
 
 
@@ -133,6 +153,7 @@ function getTheMealDB(){
 
 export {
             getRecipePuppy,
-            getTheMealDB
+            getTheMealDB,
+            addPantryItemToUser
 }
 
