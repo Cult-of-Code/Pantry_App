@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import {BrowserRouter as Link} from "react-router-dom";
 import { Redirect} from "react-router-dom"
 
 
@@ -89,10 +90,10 @@ handleChange = (event) => {
                         value={ this.state.form.max_item }
                     />
             </FormGroup>
-            <Button name="submit" id="submit" onClick={ this.handleSubmit }>
+            <Link to="/"><Button name="submit" id="submit" onClick={ this.handleSubmit }>
               Add New Item to Pantry
             </Button>
-            { this.state.success && <Redirect to="/"/> }
+            { this.state.success && <Redirect to="/"/> }</Link>
               <Button id="home" href= "/" >Home</Button>
         </Form>
       </React.Fragment>
