@@ -148,8 +148,9 @@ export default class App extends React.Component {
                   } }
           />}/>
           
-          <Route path="/temp_form" render={ (props) => <AddItemToPantry handleSubmit={ this.addPantryItemToUser} /> }
-          />
+          <Route path="/temp_form" render={ (props) => <AddItemToPantry {...props} 
+                  submitForm= {this.handleSubmit}
+          />}/>
           {/*-----------------------------*/}
           
           
