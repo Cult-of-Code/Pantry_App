@@ -170,7 +170,7 @@ export default class App extends React.Component {
           
           
           {/*   User Dashboard    */}
-          <Route path="/user" exact render={ (props) => <PageRouter {...props}/>}/>
+          <Route path="/user" exact render={ (props) => <PageRouter {...props} dude={4}/>}/>
           
           {/*   User Pages    */}
           <Route path="/user/:page" render={ (props) => <PageRouter {...props}/>}/>
