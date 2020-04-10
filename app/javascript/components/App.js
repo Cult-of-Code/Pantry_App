@@ -69,8 +69,6 @@ export default class App extends React.Component {
       this.setState({ usersPantryItems: received.results})
     })
     
-    this.getItemsFromUserPantry()
-    addPantryItemToUser()
   }
 
   render () {
