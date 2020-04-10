@@ -35,7 +35,7 @@ class AddItemToPantry extends Component{
     handleSubmit = (event) => {
         event.preventDefault()
         console.log(this.state.form)
-        this.props.submitForm(this.state.form)
+        this.props.submitForm(this.state.form, this.props.current_user.id)
         this.setState({ success: true })
     }
 
