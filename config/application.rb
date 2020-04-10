@@ -41,5 +41,8 @@ module PantryApp
     config.hosts << "02999a75bf4f43fe94742e697c9a06ae.vfs.cloud9.us-west-2.amazonaws.com"
       # Connor
     config.hosts << "7742f0fa2a534226b6a53e03ed2dc239.vfs.cloud9.us-east-2.amazonaws.com"
+    
+      # Stipud sErvr
+    config.hosts << "pantry-application.herokuapp.com"
   end
 end
