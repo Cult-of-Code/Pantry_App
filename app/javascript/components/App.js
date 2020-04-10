@@ -138,7 +138,8 @@ export default class App extends React.Component {
           <Route path="/user/:page" render={ (props) => <PageRouter {...props}/>}/>
           
           
-          
+          {/* Pantry_item   */}
+          <Route exact path="/pantry_items/new" render={ (props) => <AddItemToPantry handleSubmit={ this.addPantryItemToUser } /> }/>
           
           
           
