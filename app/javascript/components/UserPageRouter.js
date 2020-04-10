@@ -74,8 +74,8 @@ return(
             <Switch>
             
                 {/*   Create    */}
-                <Route path={`${match.url}/create`} render={ (props) => <AddItemToPantry {...props} 
-                    submitForm={ props.handleSubmit } current_user={ props.current_user }
+                <Route path={`${match.url}/create`} render={ (props) => <TestRoute {...props} 
+                    
                 />}/>
                 
                 {/*   Edit    */}

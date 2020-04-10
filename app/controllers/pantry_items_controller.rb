@@ -14,6 +14,8 @@ class PantryItemsController < ApplicationController
         PantryItem.destroy(params[:id])
     end
     
+    def new
+    end
     def create
          pantryItem = PantryItem.create(pantryItem_params)
         if pantryItem.valid?
