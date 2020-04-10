@@ -24,6 +24,7 @@ import AddItemToPantry from './pages/AddItemToPantry'
 
 import Home from './pages/Home'
 import Frame from './pages/Frame'
+import ViewItemsInPantry from './pages/ViewItemsInPantry'
 
 //------------------------------------------
 //                 App
@@ -163,8 +164,8 @@ export default class App extends React.Component {
           {/*   User Pages    */}
           <Route path="/user/:page" render={ (props) => <PageRouter {...props}/>}/>
           
-          
-          
+          {/*   User Pantry    */}
+          <Route path="/pantry" render={ (props) => <ViewItemsInPantry {...props}/>}/>
           
           
           
