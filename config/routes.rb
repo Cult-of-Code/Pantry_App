@@ -4,6 +4,13 @@ Rails.application.routes.draw do
   resources :user_recipes
   resources :pantry_items
   devise_for :users
+  
+  
+  # Custom Routes
+  get '/user_packages' => 'main#user_packages_all'
+  get '/user_package/:id' => 'main#user_package_one'
+  
+  
   get '*path', to: 'main#home', constraints: ->(request){ request.format.html? }
   root to: 'main#home'
 end
