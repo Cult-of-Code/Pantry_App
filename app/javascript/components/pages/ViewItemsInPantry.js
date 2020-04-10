@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardTitle, CardText, Col, Row, Container } from 'reactstrap';
-import { Redirect } from "react-router-dom"
+import { Link } from "react-router-dom"
 import pantry_item from '../Data/mockData'
 
 
@@ -37,7 +37,7 @@ class ViewItemsInPantry extends Component {
                                                 <Col xs="3" sm="12" md={{ size: 2 }} style={{padding: '2px'}}>
                                                     <Container  >
                                                         <Card body key={ index }>
-                                                            <CardTitle>{ pantry_item.name }</CardTitle>
+                                                            <Link to = { `/pantry/${pantry_item.id}` }><CardTitle>{ pantry_item.name }</CardTitle> </Link>
                                                             <CardText>{ pantry_item.quantity } { pantry_item.units }</CardText>
                                                         </Card>
                                                     </Container>

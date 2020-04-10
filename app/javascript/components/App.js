@@ -25,6 +25,7 @@ import AddItemToPantry from './pages/AddItemToPantry'
 import Home from './pages/Home'
 import Frame from './pages/Frame'
 import ViewItemsInPantry from './pages/ViewItemsInPantry'
+import ViewOneItem from './pages/ViewOneItem'
 
 //------------------------------------------
 //                 App
@@ -144,14 +145,14 @@ export default class App extends React.Component {
           <Route exact path="/pantry_items/new" render={ (props) => <AddItemToPantry handleSubmit={ this.addPantryItemToUser } /> }/>
 
          
-            
-            
-            
-
-          {/*   User Pantry    */}
-          <Route path="/pantry" render={ (props) => <ViewItemsInPantry {...props}/>}/>
-
+          {/*   User Pantry All Items   */}
+          <Route exact path="/pantry" render={ (props) => <ViewItemsInPantry {...props}/>}/>
           
+          
+          {/*   User Pantry One Item   */}
+          <Route exact path="/pantry/:id" render={ (props) => <ViewOneItem {...props}/>}/>
+
+        
           
           
           

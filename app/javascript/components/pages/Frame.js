@@ -30,7 +30,7 @@ class Frame extends Component{
             Welcome (insert user name)! Lets get cooking!
             <Nav vertical>
                 <NavItem>
-                  <NavLink href="#">Your Pantry</NavLink>
+                  <NavLink href="/pantry">Your Pantry</NavLink>
                 </NavItem>
                 <NavbarText>
                  About to Expire
