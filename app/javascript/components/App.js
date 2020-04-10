@@ -67,10 +67,6 @@ export default class App extends React.Component {
       this.setState({ theMealDB: received.results }) 
     })
     
-    addPantryItemToUser().then( (received) => {
-      this.setState({ usersPantryItems: received.results})
-    })
-    
   }
 
   render () {
@@ -137,12 +133,12 @@ export default class App extends React.Component {
           <Route path="/user" exact render={ (props) => <PageRouter {...props} dude={4}/>}/>
           
           {/*   User Pages    */}
-          <Route path="/user/:page" render={ (props) => <PageRouter {...props}/>}/>
+          <Route path="/user/:page" render={ (props) => <PageRouter {...props} 
+                    handleSubmit={ addPantryItemToUser } current_user={ current_user }
+          />}/>
           
 
-          
-          {/* Pantry_item   */}
-          <Route exact path="/pantry_items/new" render={ (props) => <AddItemToPantry handleSubmit={ this.addPantryItemToUser } /> }/>
+
 
          
           {/*   User Pantry All Items   */}
