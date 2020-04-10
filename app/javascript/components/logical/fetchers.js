@@ -101,6 +101,41 @@ function getTheMealDB(){
     .catch((error) => output.error = error )
     
 }
+
+
+/* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+
+//                      getItemsFromUserPantry
+
+/* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*//*
+
+    https://369d7c08c6744cd4b13e4ae8a3e758ef.vfs.cloud9.us-west-2.amazonaws.com/pantry_items
+
+*///    `    `    `    `    `    `    `    `    `    `    `    `
+
+
+function getItemsFromUserPantry() {
+    
+    let output = { 
+        results:  undefined,
+        error:    'no error'
+    }
+
+  return fetch(`${accessCORS}https://369d7c08c6744cd4b13e4ae8a3e758ef.vfs.cloud9.us-west-2.amazonaws.com/pantry_items`, 
+  { 
+    headers: { 'Content-Type': 'application/json' },
+    mode: 'no-cors'
+  })
+.then((response)=>{
+    if(response.status === 200)
+    { return(response.json()) }
+})
+.then((resultsJSON)=>{
+    
+    this.setState({usersPantryItems: resultsJSON})
+})
+
+}
   
 
 
@@ -125,7 +160,7 @@ function addPantryItemToUser(newItem) {
         error:    'no error'
     }
     
-    return fetch(`${accessCORS}http://34.220.204.52:8080/profiles`, 
+    return fetch(`${accessCORS}https://48f5f1653b9d4eb4bfd5e77896cc3cc6.vfs.cloud9.us-east-2.amazonaws.com/users`, 
     {
         body: JSON.stringify(newItem),
         headers: { 'Content-Type': 'application/json' },
@@ -153,6 +188,7 @@ function addPantryItemToUser(newItem) {
 export {
             getRecipePuppy,
             getTheMealDB,
+            getItemsFromUserPantry,
             addPantryItemToUser
 }
 
