@@ -160,17 +160,20 @@ function addPantryItemToUser(newItem, user_id) {
         error:    'no error'
     }
     
-    return fetch(`${accessCORS}https://48f5f1653b9d4eb4bfd5e77896cc3cc6.vfs.cloud9.us-east-2.amazonaws.com/pantry_items/`, 
-    {
+    return fetch(`https://48f5f1653b9d4eb4bfd5e77896cc3cc6.vfs.cloud9.us-east-2.amazonaws.com/pantry_items`, 
+    { 
         body: JSON.stringify(newItem, user_id),
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json'},
+        mode: 'no-cors',
         
         method: "POST"
+        
     })
-      
+     
     .then((response)=>{
+        console.log(response)
         if(response.ok)
-        { return getItemsFromUserPantry() }
+        { return this.getItemsFromUserPantry() }
     })
     .catch((error) => output.error = error )
 }
