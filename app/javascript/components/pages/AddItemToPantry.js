@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { Redirect} from "react-router-dom"
+import { Redirect} from "react-router-dom";
+import {addPantryItemToUser} from "../logical/fetchers"
 
 
 class AddItemToPantry extends Component{
@@ -35,7 +36,7 @@ class AddItemToPantry extends Component{
     handleSubmit = (event) => {
         event.preventDefault()
         console.log(this.state.form)
-        this.props.submitForm(this.state.form)
+        addPantryItemToUser(this.state.form, this.props.current_user.id)
         this.setState({ success: true })
     }
 

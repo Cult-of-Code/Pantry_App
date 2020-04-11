@@ -13,7 +13,7 @@ import PageRouter from './PageRouter'
 //              Components
 //------------------------------------------
 import { myTest, cool } from './logical/master'
-import { getRecipePuppy, getTheMealDB, addPantryItemToUser } from './logical/fetchers'
+import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPantry } from './logical/fetchers'
 
 
 //------------------------------------------
@@ -66,11 +66,8 @@ export default class App extends React.Component {
       this.setState({ theMealDB: received.results }) 
     })
     
-    addPantryItemToUser().then( (received) => {
-      this.setState({ usersPantryItems: received.results})
-    })
-    
   }
+
 
   render () {
     
@@ -87,10 +84,10 @@ export default class App extends React.Component {
       sign_out_route
     } = this.props
 
-  /*
-    console.log("current_user")
-    console.log(current_user)
-  */
+  
+    // console.log("current_user")
+    // console.log(current_user)
+  
 
     return (
       <React.Fragment>
@@ -125,7 +122,7 @@ export default class App extends React.Component {
           />}/>
           
           <Route path="/temp_form" render={ (props) => <AddItemToPantry {...props} 
-                  submitForm= {this.handleSubmit}
+                  submitForm= {this.handleSubmit} current_user={ current_user }
           />}/>
           {/*-----------------------------*/}
           
@@ -136,12 +133,12 @@ export default class App extends React.Component {
           <Route path="/user" exact render={ (props) => <PageRouter {...props} dude={4}/>}/>
           
           {/*   User Pages    */}
-          <Route path="/user/:page" render={ (props) => <PageRouter {...props}/>}/>
+          <Route path="/user/:page" render={ (props) => <PageRouter {...props} 
+                    handleSubmit={ addPantryItemToUser } current_user={ current_user }
+          />}/>
           
 
-          
-          {/* Pantry_item   */}
-          <Route exact path="/pantry_items/new" render={ (props) => <AddItemToPantry handleSubmit={ this.addPantryItemToUser } /> }/>
+
 
          
             
