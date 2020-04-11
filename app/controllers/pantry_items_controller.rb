@@ -32,7 +32,7 @@ class PantryItemsController < ApplicationController
     private
     
         def pantryItem_params
-            params.require(:pantryItem).permit(:name, :quantity, :units, :storage_bin, :when_bought, :exp_date, :min_item, :max_item)
+            params.require(:pantryItem).permit(:user_id, :name, :quantity, :units, :storage_bin, :when_bought, :exp_date, :min_item, :max_item)
         end
 
     

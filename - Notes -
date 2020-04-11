@@ -1,0 +1,81 @@
+
+
+---------------------------------
+
+     Destroy All Entries
+
+---------------------------------
+"
+User.all.each do |s| s.destroy end
+PantryItem.all.each do |s| s.destroy end
+UserRecipe.all.each do |s| s.destroy end
+Ingredient.all.each do |s| s.destroy end
+Instruction.all.each do |s| s.destroy end
+
+
+"
+
+
+^ will destroy entries
+---------------------------------
+---------------------------------
+X       Do  Not  Use            X
+X                               X
+X   person = User.first         X
+X   person.username = "Penis"   X
+X   person.save                 X
+X
+X       Does Not Work           X
+---------------------------------
+
+
+
+
+            4.3. Adding Records
+----------------------------------------------------------------------------------
+https://www.xyzpub.com/en/ruby-on-rails/3.2/activerecord_datensaetze_hinzufuegen.html
+----------------------------------------------------------------------------------
+
+---------------------------------
+        WORKS WONDERS
+---------------------------------
+====================================================================================================
+User.create!({:email => "guy@gmail.com", :password => "111111", :password_confirmation => "111111" })
+====================================================================================================
+
+
+
+
+            4.7. Editing a Record
+
+----------------------------------------------------------------------------------
+https://www.xyzpub.com/en/ruby-on-rails/3.2/activerecord_datensatz_veraendern.html
+----------------------------------------------------------------------------------
+
+---------------------------------
+        WORKS WONDERS
+---------------------------------
+========================================================
+User.first.update_attributes(:username => 'Another Test')
+========================================================
+
+
+
+
+
+
+
+ ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~
+ 
+                            N o t e s
+ 
+~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~   ~
+
+
+User.create!({:email => "guy3@gmail.com", :password => "111111", :password_confirmation => "111111" }).apartments.create!({ :price => 1004.0 })
+
+
+
+
+carl = User.create!({:email => "qwerty@gmail.com", :password => "111111", :password_confirmation => "111111" })
+carl.apartments.create!({ :price => rand(100) })
