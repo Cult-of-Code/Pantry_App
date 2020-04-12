@@ -58,12 +58,20 @@ export default class App extends React.Component {
   
   componentDidMount(){
 
-    getRecipePuppy().then( (received) => {
+    getRecipePuppy()
+    .then( (received) => {
       this.setState({ recipePuppy: received.results }) 
     })
   
-    getTheMealDB().then( (received) => {
+    getTheMealDB()
+    .then( (received) => {
       this.setState({ theMealDB: received.results }) 
+    })
+    
+    // TEST USER
+    getItemsFromUserPantry( 1630 )
+    .then( (received) => {
+      this.setState({ usersPantryItems: received.results }) 
     })
     
   }
