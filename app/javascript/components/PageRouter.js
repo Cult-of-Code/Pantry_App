@@ -137,7 +137,9 @@ return(
     </Switch>
     }
     {!props.logged_in &&
-    <Redirect push to="/users/sign_up"/>
+    
+     <Redirect push to="/users/sign_up" />
+
     }
     </React.Fragment>
 
