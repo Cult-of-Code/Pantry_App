@@ -17,7 +17,7 @@ class Frame extends Component{
                       <NavLink href="/users/sign_up">Create an Account</NavLink>
                     </NavItem>
                     <NavItem>
-                      <NavLink href="">Get Recipes</NavLink>
+                      <NavLink href="/user">Get Recipes</NavLink>
                     </NavItem>
                 </Nav>
         </Navbar>

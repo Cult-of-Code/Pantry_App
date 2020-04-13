@@ -4,7 +4,7 @@
 //          Nessessary Imports
 //------------------------------------------
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 
 //------------------------------------------
@@ -41,7 +41,6 @@ export default function(props){
                     "posts":       params.page === 'posts',
                     "post":        params.page === 'post'
                 }
-    
     
 return(
     
@@ -138,9 +137,7 @@ return(
     </Switch>
     }
     {!props.logged_in &&
-    <div>
-    you are not logged in
-    </div>
+    <Redirect push to="/users/sign_up"/>
     }
     </React.Fragment>
 

@@ -26,6 +26,7 @@ import Home from './pages/Home'
 import UserFrame from './pages/UserFrame'
 import Frame from './pages/Frame'
 import ViewItemsInPantry from './pages/ViewItemsInPantry'
+import ViewOneItem from './pages/ViewOneItem'
 
 //------------------------------------------
 //                 App
@@ -92,7 +93,14 @@ export default class App extends React.Component {
       sign_in_route,
       sign_out_route
     } = this.props
-
+    
+    var user_id = 0
+    
+    if (current_user !== null){
+      user_id = current_user.id
+    } else {
+      user_id = 0
+    }
   
     // console.log("current_user")
     // console.log(current_user)
@@ -106,7 +114,7 @@ export default class App extends React.Component {
         {logged_in &&
           <div>
             <a href={sign_out_route}>Sign Out</a>
-            <UserFrame/>
+            <UserFrame current_user= {user_id}/>
           </div>
         }
         {!logged_in &&
@@ -115,8 +123,8 @@ export default class App extends React.Component {
             <Frame/>
           </div>
         }
-      
-        
+     
+     
       
       <Router>
         <Switch>
@@ -141,24 +149,31 @@ export default class App extends React.Component {
           
           
           {/*   User Dashboard    */}
-          <Route path="/user" exact render={ (props) => <PageRouter {...props} dude={4}/>}/>
+          <Route path="/user" exact render={ (props) => <PageRouter {...props}
+                    dude={4} logged_in={ logged_in }
+          />}/>
           
           {/*   User Pages    */}
           <Route path="/user/:page" render={ (props) => <PageRouter {...props} 
-                    handleSubmit={ addPantryItemToUser } current_user={ current_user }
+                    handleSubmit={ addPantryItemToUser } 
+                    current_user={ current_user }
+                    logged_in={ logged_in }
           />}/>
-          
-
 
 
          
-            
-            
-            
+          {/*   User Pantry All Items   */}
+          <Route exact path= {`/${user_id}/pantry`} render={ (props) => <ViewItemsInPantry {...props} 
+          user_id = {user_id}
+          />}/>
 
-          {/*   User Pantry    */}
-          <Route path="/pantry" render={ (props) => <ViewItemsInPantry {...props}/>}/>
+          
+          
+          {/*   User Pantry One Item   */}
+          <Route exact path="/pantry/:id" render={ (props) => <ViewOneItem {...props}/>}/>
 
+        
+          
           
           
           
@@ -168,34 +183,12 @@ export default class App extends React.Component {
                   
           />}/>
           
+  
           
-          
-          
-          
-          {/*   Containers Dashboard    */}
-          <Route path="/containers" render={ (props) => <Home {...props} 
-                  
-          />}/>
-          
-          {/*   Container Create   */}
-          <Route path="/container/create" render={ (props) => <Home {...props} 
-                  
-          />}/>
-          
-          {/*   Container Edit Specific   */}
-          <Route path="/container/:storage_name/edit" render={ (props) => <Home {...props} 
-                  
-          />}/>
-          
-          {/*   Container Specific Dashboard    */}
-          <Route path="/container/:storage_name" render={ (props) => <Home {...props} 
-                  
-          />}/>
-          
-          
-          
-          
-          
+    
+         
+         
+         
           {/*   Home Page    */}
           <Route render={ (props) => 
               <Home {...props} 
