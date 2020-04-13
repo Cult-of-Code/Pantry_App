@@ -69,7 +69,7 @@ export default class App extends React.Component {
     })
     
     // TEST USER
-    getItemsFromUserPantry( 1630 )
+    getItemsFromUserPantry( 6 )
     .then( (received) => {
       this.setState({ usersPantryItems: received.results }) 
     })
