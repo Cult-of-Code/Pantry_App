@@ -23,7 +23,7 @@ class ViewItemsInPantry extends Component {
                 { this.state.items.map((pantry_item, index) => {
                     if (storage_bin.includes(pantry_item.storage_bin)){
                         
-                    } else {
+                    } else if (pantry_item.user_id === this.props.user_id){
                     storage_bin.push(pantry_item.storage_bin)
                     single_bin = pantry_item.storage_bin
                     return(
@@ -32,7 +32,7 @@ class ViewItemsInPantry extends Component {
                                 <CardTitle>{pantry_item.storage_bin}</CardTitle>
                                 <Row>
                                     { this.state.items.map((pantry_item, index) => {
-                                        if (pantry_item.storage_bin === single_bin) {
+                                        if (pantry_item.storage_bin === single_bin && pantry_item.user_id === this.props.user_id) {
                                             return(
                                                 <Col xs="3" sm="12" md={{ size: 2 }} style={{padding: '2px'}}>
                                                     <Container  >

@@ -8,10 +8,7 @@ class ViewOneItem extends Component {
     constructor(props){
         super(props)
         this.state = {
-          items: pantry_item,
-          whenBought: false,
-          expDate: false,
-          minItem: false,
+          items: pantry_item
         }
     }
     

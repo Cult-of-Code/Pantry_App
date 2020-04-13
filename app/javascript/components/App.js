@@ -92,7 +92,14 @@ export default class App extends React.Component {
       sign_in_route,
       sign_out_route
     } = this.props
-
+    
+    var user_id = 0
+    
+    if (current_user !== null){
+      user_id = current_user.id
+    } else {
+      user_id = 0
+    }
   
     // console.log("current_user")
     // console.log(current_user)
@@ -114,7 +121,7 @@ export default class App extends React.Component {
           </div>
         }
       
-        <Frame/>
+        <Frame current_user= {user_id}/>
       
       <Router>
         <Switch>
@@ -151,7 +158,9 @@ export default class App extends React.Component {
 
          
           {/*   User Pantry All Items   */}
-          <Route exact path="/pantry" render={ (props) => <ViewItemsInPantry {...props}/>}/>
+          <Route exact path= {`/${user_id}/pantry`} render={ (props) => <ViewItemsInPantry {...props} 
+          user_id = {user_id}
+          />}/>
           
           
           {/*   User Pantry One Item   */}
