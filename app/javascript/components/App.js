@@ -13,7 +13,7 @@ import PageRouter from './PageRouter'
 //              Components
 //------------------------------------------
 import { myTest, cool } from './logical/master'
-import { getRecipePuppy, getTheMealDB, addPantryItemToUser } from './logical/fetchers'
+import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPantry } from './logical/fetchers'
 
 
 //------------------------------------------
@@ -59,15 +59,24 @@ export default class App extends React.Component {
   
   componentDidMount(){
 
-    getRecipePuppy().then( (received) => {
+    getRecipePuppy()
+    .then( (received) => {
       this.setState({ recipePuppy: received.results }) 
     })
   
-    getTheMealDB().then( (received) => {
+    getTheMealDB()
+    .then( (received) => {
       this.setState({ theMealDB: received.results }) 
     })
     
+    // TEST USER
+    getItemsFromUserPantry( 6 )
+    .then( (received) => {
+      this.setState({ usersPantryItems: received.results }) 
+    })
+    
   }
+
 
   render () {
     
@@ -84,10 +93,10 @@ export default class App extends React.Component {
       sign_out_route
     } = this.props
 
-  /*
-    console.log("current_user")
-    console.log(current_user)
-  */
+  
+    // console.log("current_user")
+    // console.log(current_user)
+  
 
     return (
       <React.Fragment>
@@ -122,7 +131,7 @@ export default class App extends React.Component {
           />}/>
           
           <Route path="/temp_form" render={ (props) => <AddItemToPantry {...props} 
-                  submitForm= {this.handleSubmit}
+                  submitForm= {this.handleSubmit} current_user={ current_user }
           />}/>
           {/*-----------------------------*/}
           

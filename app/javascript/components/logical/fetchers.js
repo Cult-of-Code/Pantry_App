@@ -8,6 +8,7 @@
 
     //  access-control-allow-origin  :  CORS
 const   accessCORS  =   'https://cors-anywhere.herokuapp.com/'
+const   localhost   =   'https://pantry-application.herokuapp.com/'
 
 
 
@@ -103,9 +104,13 @@ function getTheMealDB(){
 }
 
 
+
+
+
+
 /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
 
-//                      getItemsFromUserPantry
+//                getItemsFromUserPantry
 
 /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*//*
 
@@ -114,26 +119,29 @@ function getTheMealDB(){
 *///    `    `    `    `    `    `    `    `    `    `    `    `
 
 
-function getItemsFromUserPantry() {
+function getItemsFromUserPantry( user_id ) {
+    
     
     let output = { 
         results:  undefined,
         error:    'no error'
     }
-
-  return fetch(`${accessCORS}https://369d7c08c6744cd4b13e4ae8a3e758ef.vfs.cloud9.us-west-2.amazonaws.com/pantry_items`, 
-  { 
-    headers: { 'Content-Type': 'application/json' },
-    mode: 'no-cors'
-  })
-.then((response)=>{
-    if(response.status === 200)
-    { return(response.json()) }
-})
-.then((resultsJSON)=>{
     
-    this.setState({usersPantryItems: resultsJSON})
-})
+    
+    return fetch(`${localhost}pantry_items/${user_id}`, 
+      { 
+        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors'
+      })
+    .then((response)=>{
+        if(response.status === 200)
+        { return(response.json()) }
+    })
+    .then((resultsJSON)=>{
+        output.results = resultsJSON
+        return output
+    })
+    .catch((error) => output.error = error )
 
 }
   
@@ -153,26 +161,29 @@ function getItemsFromUserPantry() {
 *///    `    `    `    `    `    `    `    `    `    `    `    `
 
 
-function addPantryItemToUser(newItem, user_id) {
+function addPantryItemToUser( newItem, user_id ) {
     
     let output = { 
         results:  undefined,
         error:    'no error'
     }
     
-    return fetch(`${accessCORS}https://48f5f1653b9d4eb4bfd5e77896cc3cc6.vfs.cloud9.us-east-2.amazonaws.com/pantry_items/`, 
-    {
-        body: JSON.stringify(newItem, user_id),
-        headers: { 'Content-Type': 'application/json' },
+    return fetch(`${localhost}pantry_items/${user_id}`, 
+    { 
+        body: JSON.stringify(newItem),
+        headers: { 'Content-Type': 'application/json'},
+        mode: 'no-cors',
         
         method: "POST"
+        
     })
-      
     .then((response)=>{
+        console.log(response)
         if(response.ok)
         { return getItemsFromUserPantry() }
     })
     .catch((error) => output.error = error )
+    
 }
 
 
