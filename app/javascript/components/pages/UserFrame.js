@@ -6,7 +6,7 @@ import { Navbar, NavbarBrand, Nav, NavItem, NavLink, NavbarText, Toast, ToastBod
 //------------------------------------------
 //                 App
 //------------------------------------------
-class Frame extends Component{ 
+class UserFrame extends Component{ 
   render () {
     return (
       <React.Fragment>
@@ -14,28 +14,29 @@ class Frame extends Component{
             <NavbarBrand href="/">Pantry App</NavbarBrand>
                 <Nav className="ml-auto" navbar>
                     <NavItem>
-                      <NavLink href="/users/sign_up">Create an Account</NavLink>
+                      <NavLink href="">Get Recipes</NavLink>
                     </NavItem>
                     <NavItem>
-                      <NavLink href="">Get Recipes</NavLink>
+                      <NavLink href="">My Recipes</NavLink>
                     </NavItem>
                 </Nav>
         </Navbar>
            <div className="p-3 my-2 rounded bg-docs-transparent-grid">
         <Toast>
           <ToastHeader>
-             Create an account to:
+            User Name 
           </ToastHeader>
           <ToastBody>
+            Welcome (insert user name)! Lets get cooking!
             <Nav vertical>
+                <NavItem>
+                  <NavLink href="#">Add Item to Pantry</NavLink>
+                </NavItem>
                 <NavbarText>
-                 Get recipies based off what you have in your pantry
+                 About to Expire
                 </NavbarText>
                 <NavbarText>
-                 Track items about to Expire
-                </NavbarText>
-                <NavbarText>
-                 See groceries you are running Low On
+                 Running Low On
                 </NavbarText>
             </Nav>
           </ToastBody>
@@ -46,4 +47,4 @@ class Frame extends Component{
     )
   }
 }
-export default Frame
+export default UserFrame
