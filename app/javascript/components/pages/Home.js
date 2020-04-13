@@ -49,16 +49,6 @@ export default class Home extends React.Component {
       <React.Fragment>
       
         <h1>Hello Home Page</h1>
-        {logged_in &&
-          <div>
-            <a href={sign_out_route}>Sign Out</a>
-          </div>
-        }
-        {!logged_in &&
-          <div>
-            <a href={sign_in_route}>Sign In</a>
-          </div>
-        }
       
       
       </React.Fragment>
