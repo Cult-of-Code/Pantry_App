@@ -8,7 +8,7 @@
 
     //  access-control-allow-origin  :  CORS
 const   accessCORS  =   'https://cors-anywhere.herokuapp.com/'
-const   localhost   =   'https://pantry-application.herokuapp.com/'
+const   localhost   =   'https://48f5f1653b9d4eb4bfd5e77896cc3cc6.vfs.cloud9.us-east-2.amazonaws.com/' //'https://pantry-application.herokuapp.com/'
 
 
 
@@ -188,6 +188,95 @@ function addPantryItemToUser( newItem, user_id ) {
 
 
 
+/* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+
+//                  deletePantryItemFromUser
+
+/* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*//*
+
+
+
+*///
+
+
+// handleDelete = (itemId) => {
+//     fetch(`${localhost}pantry_items/${user_id}`, { method: 'delete' }).
+//       then((response) => {
+//         alert('Item deleted successfully')
+//         this.getItemsFromUserPantry();
+//       });
+//   }
+
+
+
+
+function deletePantryItemFromUser( deleteItem, user_id ) {
+    
+    let output = { 
+        results:  undefined,
+        error:    'no error'
+    }
+    
+    return fetch(`${localhost}pantry_items/${user_id}`, 
+    { 
+        body: JSON.stringify(deleteItem),
+        headers: { 'Content-Type': 'application/json'},
+        mode: 'no-cors',
+        
+        method: "DELETE"
+        
+    })
+    .then((response)=>{
+        console.log(response)
+        if(response.ok)
+        { return getItemsFromUserPantry() }
+    })
+    .catch((error) => output.error = error )
+    
+}
+
+
+
+
+
+
+
+/* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+
+//                  updatePantryItemToUser
+
+/* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*//*
+
+
+
+*///
+
+
+
+function updatePantryItemToUser( updatedItem, user_id ) {
+    
+    let output = { 
+        results:  undefined,
+        error:    'no error'
+    }
+    
+    return fetch(`${localhost}pantry_items/${user_id}`, 
+    { 
+        body: JSON.stringify(updatedItem),
+        headers: { 'Content-Type': 'application/json'},
+        mode: 'no-cors',
+        
+        method: "PUT"
+        
+    })
+    .then((response)=>{
+        console.log(response)
+        if(response.ok)
+        { return getItemsFromUserPantry() }
+    })
+    .catch((error) => output.error = error )
+    
+}
 
 
 
@@ -200,6 +289,8 @@ export {
             getRecipePuppy,
             getTheMealDB,
             getItemsFromUserPantry,
-            addPantryItemToUser
+            addPantryItemToUser,
+            deletePantryItemFromUser,
+            updatePantryItemToUser
 }
 
