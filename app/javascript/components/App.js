@@ -155,8 +155,6 @@ export default class App extends React.Component {
           <Route path="/user/:page" render={ (props) => <PageRouter {...props} 
                     handleSubmit={ addPantryItemToUser } current_user={ current_user }
           />}/>
-          
-
 
 
          
@@ -164,6 +162,7 @@ export default class App extends React.Component {
           <Route exact path= {`/${user_id}/pantry`} render={ (props) => <ViewItemsInPantry {...props} 
           user_id = {user_id}
           />}/>
+
           
           
           {/*   User Pantry One Item   */}
@@ -173,39 +172,19 @@ export default class App extends React.Component {
           
           
           
+          
+          
           {/*   Recipes Available (List)    */}
           <Route path="/recipes" render={ (props) => <Home {...props} 
                   
           />}/>
           
+  
           
-          
-          
-          
-          {/*   Containers Dashboard    */}
-          <Route path="/containers" render={ (props) => <Home {...props} 
-                  
-          />}/>
-          
-          {/*   Container Create   */}
-          <Route path="/container/create" render={ (props) => <Home {...props} 
-                  
-          />}/>
-          
-          {/*   Container Edit Specific   */}
-          <Route path="/container/:storage_name/edit" render={ (props) => <Home {...props} 
-                  
-          />}/>
-          
-          {/*   Container Specific Dashboard    */}
-          <Route path="/container/:storage_name" render={ (props) => <Home {...props} 
-                  
-          />}/>
-          
-          
-          
-          
-          
+    
+         
+         
+         
           {/*   Home Page    */}
           <Route render={ (props) => 
               <Home {...props} 
