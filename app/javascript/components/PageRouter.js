@@ -29,7 +29,7 @@ export default function(props){
     const { params } = match
     
     console.log(match)
-    
+   
     let pages = {
                     "test":        params.page === 'test',
                     "dude":        params.page === 'dude',
@@ -44,6 +44,9 @@ export default function(props){
     
     
 return(
+    
+   <React.Fragment>
+    {props.logged_in &&
     <Switch>
     
         {/*-----------------------------*/}
@@ -133,6 +136,15 @@ return(
         <Route>User Dashboard - Container list</Route>
         
     </Switch>
+    }
+    {!props.logged_in &&
+    <div>
+    you are not logged in
+    </div>
+    }
+    </React.Fragment>
+
+   
 )
 }
 
