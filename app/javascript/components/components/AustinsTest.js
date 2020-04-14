@@ -1,9 +1,11 @@
-import React, {Component} from 'react';
-import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPantry } from '../logical/fetchers';
+import React, { Component } from 'react'
+//import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPantry } from '../logical/fetchers'
 
 
-class AustinsTest extends Component {
-    
+export default class AustinsTest extends Component {
+    render(){
+        return(
+            <h1>Austin</h1>
+        )
+    }
 } 
-
-export default AustinsTest

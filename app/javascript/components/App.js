@@ -10,6 +10,15 @@ import PageRouter from './PageRouter'
 
 
 //------------------------------------------
+//            TEST COMPONENTS
+//------------------------------------------
+import ShakersTest from './components/ShakersTest'
+import AustinsTest from './components/AustinsTest'
+import JuliasTest from './components/JuliasTest'
+import ConnorsTest from './components/ConnorsTest'
+
+
+//------------------------------------------
 //              Components
 //------------------------------------------
 import { myTest, cool } from './logical/master'
@@ -21,7 +30,6 @@ import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPant
 //------------------------------------------
 import RecipieList from './pages/RecipieList'
 import AddItemToPantry from './pages/AddItemToPantry'
-import ShakersTest from './components/ShakersTest'
 
 import Home from './pages/Home'
 import UserFrame from './pages/UserFrame'
