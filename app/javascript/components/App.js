@@ -150,11 +150,15 @@ export default class App extends React.Component {
           
           
           {/*   User Dashboard    */}
-          <Route path="/user" exact render={ (props) => <PageRouter {...props} dude={4}/>}/>
+          <Route path="/user" exact render={ (props) => <PageRouter {...props}
+                    dude={4} logged_in={ logged_in }
+          />}/>
           
           {/*   User Pages    */}
           <Route path="/user/:page" render={ (props) => <PageRouter {...props} 
-                    handleSubmit={ addPantryItemToUser } current_user={ current_user }
+                    handleSubmit={ addPantryItemToUser } 
+                    current_user={ current_user }
+                    logged_in={ logged_in }
           />}/>
 
           
