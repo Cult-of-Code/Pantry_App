@@ -21,6 +21,7 @@ import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPant
 //------------------------------------------
 import RecipieList from './pages/RecipieList'
 import AddItemToPantry from './pages/AddItemToPantry'
+import ShakersTest from './components/ShakersTest'
 
 import Home from './pages/Home'
 import UserFrame from './pages/UserFrame'
@@ -147,7 +148,15 @@ export default class App extends React.Component {
           <Route path="/user/:page" render={ (props) => <PageRouter {...props} 
                     handleSubmit={ addPantryItemToUser } current_user={ current_user }
           />}/>
-
+          
+          
+          
+          
+          {/* Individual Test Routes */}
+          <Route path="/shaker" exact render={ (props) => <ShakersTest {...props} />} />
+          <Route path="/austin" exact render={ (props) => <AustinsTest {...props} />} />
+          <Route path="/julia" exact render={ (props) => <JuliasTest {...props} />} />
+          <Route path="/connor" exact render={ (props) => <ConnorsTest {...props} />} />
           
           
           
