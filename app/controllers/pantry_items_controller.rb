@@ -1,4 +1,5 @@
 class PantryItemsController < ApplicationController
+    
     def index
         pantryItems = PantryItem.all
         render json: pantryItems
@@ -16,6 +17,7 @@ class PantryItemsController < ApplicationController
     
     def new
     end
+    
     def create
          pantryItem = PantryItem.create(pantryItem_params)
         if pantryItem.valid?
@@ -31,11 +33,13 @@ class PantryItemsController < ApplicationController
         render json: pantryItem
     end
     
+    
+    
     private
     
-        def pantryItem_params
-            params.require(:pantryItem).permit(:user_id, :name, :quantity, :units, :storage_bin, :when_bought, :exp_date, :min_item, :max_item)
-        end
+    def pantryItem_params
+        params.require(:pantryItem).permit(:user_id, :name, :quantity, :units, :storage_bin, :when_bought, :exp_date, :min_item, :max_item)
+    end
 
     
 end

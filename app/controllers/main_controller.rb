@@ -17,7 +17,7 @@ class MainController < ApplicationController
     # All User Packages
     def user_packages_all
         
-        everyone = User.all.select(:id)  #, :username, :picture_location
+        everyone = User.all.select(:id, :username)  #, :picture_location
         packages = []
         
         everyone.each do |u|
@@ -42,7 +42,7 @@ class MainController < ApplicationController
     # One User Package
     def user_package_one
         
-        person = User.where(id: params[:id]).select(:id)[0]  #, :username, :picture_location
+        person = User.where(id: params[:id]).select(:id, :username)[0]  #, :picture_location
         recipes = UserRecipe.where(user_id: person.id)
         
         render json: Hash[
@@ -58,4 +58,18 @@ class MainController < ApplicationController
     end
     
     # - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - --
+    
+    
+    # - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - --
+    
+    def user_pantry_items
+        
+        person = User.where(id: params[:id]).select(:id, :username)[0]
+        
+        render json: person.attributes.merge({
+            pantry_items: PantryItem.where(user_id: person.id)
+        })
+        
+    end
+    
 end

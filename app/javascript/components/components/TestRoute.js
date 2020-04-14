@@ -4,6 +4,8 @@
 //          Nessessary Imports
 //------------------------------------------
 import React from 'react'
+import PantryAPI from '../helpers/PantryAPI'
+const { test, getAllRecipes } = PantryAPI
 
 
 //::::::::::::::::::::::::::::::::::::::::::
@@ -26,6 +28,13 @@ export default function(props){
         </div>)
         keyNum++
     }
+    
+    /* - - - - - - - - - */
+    console.log('')
+    //console.log(test)
+    getAllRecipes().then(a=>console.log(a))
+    console.log('')
+    /* - - - - - - - - - */
     
     return(
         <div style={{ display:'flex', flexDirection: 'column', alignItems: 'center', margin: '3em', paddingTop: '2em'}}>
