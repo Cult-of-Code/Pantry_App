@@ -27,6 +27,7 @@ import Home from './pages/Home'
 import UserFrame from './pages/UserFrame'
 import Frame from './pages/Frame'
 import ViewItemsInPantry from './pages/ViewItemsInPantry'
+import ViewOneItem from './pages/ViewOneItem'
 
 //------------------------------------------
 //                 App
@@ -93,7 +94,14 @@ export default class App extends React.Component {
       sign_in_route,
       sign_out_route
     } = this.props
-
+    
+    var user_id = 0
+    
+    if (current_user !== null){
+      user_id = current_user.id
+    } else {
+      user_id = 0
+    }
   
     // console.log("current_user")
     // console.log(current_user)
@@ -107,7 +115,7 @@ export default class App extends React.Component {
         {logged_in &&
           <div>
             <a href={sign_out_route}>Sign Out</a>
-            <UserFrame/>
+            <UserFrame current_user= {user_id}/>
           </div>
         }
         {!logged_in &&
@@ -116,8 +124,8 @@ export default class App extends React.Component {
             <Frame/>
           </div>
         }
-      
-        
+     
+     
       
       <Router>
         <Switch>
@@ -148,6 +156,7 @@ export default class App extends React.Component {
           <Route path="/user/:page" render={ (props) => <PageRouter {...props} 
                     handleSubmit={ addPantryItemToUser } current_user={ current_user }
           />}/>
+
           
           
           
@@ -157,7 +166,11 @@ export default class App extends React.Component {
           <Route path="/austin" exact render={ (props) => <AustinsTest {...props} />} />
           <Route path="/julia" exact render={ (props) => <JuliasTest {...props} />} />
           <Route path="/connor" exact render={ (props) => <ConnorsTest {...props} />} />
-          
+
+
+
+         
+        
           
           
           
