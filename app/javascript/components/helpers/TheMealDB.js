@@ -74,114 +74,175 @@ const   localhost   =   'https://48f5f1653b9d4eb4bfd5e77896cc3cc6.vfs.cloud9.us-
 
 *///    `    `    `    `    `    `    `    `    `    `    `    `
 
-
-export default function searchTheMealDB({ searchBy = "", searchTerm = "" }){
+export default class TheMealDB {
     
-    let output = { 
-        results:  undefined,
-        error:    'no error'
-    }
-    
-    // ~  - ~  - ~  - ~  - ~  - ~  - ~  - ~  -
-    
-    let input = "random.php"
-    switch(searchBy){
+    static search = function({ searchBy = "", searchTerm = "" }){
         
-        case 'id':
-        case 0:
-            input = `lookup.php?i=${searchTerm}`
-            break;
+        let output = { 
+            results:  undefined,
+            error:    'no error'
+        }
+        
+        // ~  - ~  - ~  - ~  - ~  - ~  - ~  - ~  -
+        
+        let input = "random.php"
+        switch(searchBy){
             
-        case 'ingredient':
-        case 1:
-            input = `filter.php?i=${searchTerm}`
-            break;
-            
-        case 'name':
-        case 2:
-            input = `search.php?s=${searchTerm}`
-            break;
-            
-        case 'first letter':
-        case 3:
-            input = `search.php?f=${searchTerm}`
-            break;
-            
-        case 'category':
-        case 4:
-            input = `filter.php?c=${searchTerm}`
-            break;
-            
-        case 'area':
-        case 5:
-            input = `filter.php?a=${searchTerm}`
-            break;
-            
-        case 'list':
-        case 5:
-            switch(searchTerm){
+            case 'id':
+            case 0:
+                input = `lookup.php?i=${searchTerm}`
+                break;
                 
-                case 'categories':
-                case 0:
-                    input = "list.php?c=list"
-                    break;
+            case 'ingredient':
+            case 1:
+                input = `filter.php?i=${searchTerm}`
+                break;
+                
+            case 'name':
+            case 2:
+                input = `search.php?s=${searchTerm}`
+                break;
+                
+            case 'first letter':
+            case 3:
+                input = `search.php?f=${searchTerm}`
+                break;
+                
+            case 'category':
+            case 4:
+                input = `filter.php?c=${searchTerm}`
+                break;
+                
+            case 'area':
+            case 5:
+                input = `filter.php?a=${searchTerm}`
+                break;
+                
+            case 'list':
+            case 5:
+                switch(searchTerm){
                     
-                case 'ingredients':
-                case 1:
-                    input = "list.php?i=list"
-                    break;
-                    
-                case 'area':
-                case 2:
-                    input = "list.php?a=list"
-                    break;
-                    
-                default:
-                    input = "categories.php"  // categories + details
-            }
-            break;
-            
-        default:
-            output.error = "invalid search"
+                    case 'categories':
+                    case 0:
+                        input = "list.php?c=list"
+                        break;
+                        
+                    case 'ingredients':
+                    case 1:
+                        input = "list.php?i=list"
+                        break;
+                        
+                    case 'area':
+                    case 2:
+                        input = "list.php?a=list"
+                        break;
+                        
+                    default:
+                        input = "categories.php"  // categories + details
+                }
+                break;
+                
+            default:
+                output.error = "invalid search"
+        }
+        
+        
+        /*  +    +    +    +    +    +    +    +    +    +    +    +  */
+        
+        return ( { input, output } )
     }
     
     
-    // - * - - - * - - - * - - - * - - - * - - - * - - - * - - - * - -
+    
+    
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    
+    static searchByIngredients = function( ingredients ){
+        
+        ingredients = TheMealDB._splitIngredients( ingredients )
+        let queries = ingredients.map( si => TheMealDB._fetchDB( 
+            TheMealDB.search({ searchBy:"ingredient", searchTerm:si }) 
+        ))
+        
+        /*  +    +    +    +    +    +    +    +    +    +    +    +  */
+        return Promise.all( queries ).then( (answers) => { 
+            return [].concat(...answers.map(v=>v.results.meals)) // get an array of all answers
+        
+        // Get full meal details
+        }).then( (list) => {
+            console.log(list)
+            
+            
+            let detailedListlist = list
+            return detailedListlist
+            
+        // Narrow down list
+        }).then( (detailedList) => {
+            
+            
+            let narrowedList = detailedList
+            return narrowedList
+        })
+    }
     
     
     
-    return fetch(`${accessCORS}https://www.themealdb.com/api/json/v1/1/${input}`, 
-      { 
-        headers: { 'Content-Type': 'application/json' }
-      })
-    .then((response)=>{
-        if(response.status === 200)
-        { return(response.json()) }
-    })
-    .then((resultsJSON)=>{
-        output.results = resultsJSON
-        return output
-    })
-    .catch((error) => output.error = error )
     
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    
+    static getMealByID = function( id ){
+        return TheMealDB._fetchDB( 
+            TheMealDB.search({ searchBy:"id", searchTerm:id }) 
+        ).then( meal => meal.meals[0].idMeal) // TODO finish
+    }
+    
+    
+    
+    
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    
+    static _splitIngredients = function( list_i = [] ){
+        if (typeof list_i === 'string'){
+            // TODO : convert to array of strings
+        }
+        else if (Array.isArray(list_i)){ return list_i }
+        else { return [""] }
+    }
+    
+    
+    
+    
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    
+    static _narrowSearchedList = function({ ingredients, narrowedList }){
+        
+    }
+    
+    
+    
+    
+    //=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@//
+    /*  +    +    +    +    +    +    +    +    +    +    +    +  */
+    
+    static _fetchDB = function({ input, output }){
+        return fetch(`${accessCORS}https://www.themealdb.com/api/json/v1/1/${input}`, 
+          { 
+            headers: { 'Content-Type': 'application/json' }
+          })
+        .then((response)=>{
+            if(response.status === 200)
+            { return(response.json()) }
+        })
+        .then((resultsJSON)=>{
+            output.results = resultsJSON
+            return output
+        })
+        .catch((error) => output.error = error )
+    }
+    
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@//
-/*  +    +    +    +    +    +    +    +    +    +    +    +  */
-
-// exports
-
