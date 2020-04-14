@@ -210,7 +210,7 @@ function addPantryItemToUser( newItem, user_id ) {
 
 
 
-function deletePantryItemFromUser( deleteItem, user_id ) {
+function deletePantryItemFromUser( user_id ) {
     
     let output = { 
         results:  undefined,
@@ -219,17 +219,15 @@ function deletePantryItemFromUser( deleteItem, user_id ) {
     
     return fetch(`${localhost}pantry_items/${user_id}`, 
     { 
-        body: JSON.stringify(deleteItem),
-        headers: { 'Content-Type': 'application/json'},
-        mode: 'no-cors',
         
-        method: "DELETE"
+        
+        method: "delete"
         
     })
     .then((response)=>{
         console.log(response)
         if(response.ok)
-        { return getItemsFromUserPantry() }
+        { return response } //getItemsFromUserPantry(1)
     })
     .catch((error) => output.error = error )
     
