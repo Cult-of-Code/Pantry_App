@@ -79,3 +79,7 @@ User.create!({:email => "guy3@gmail.com", :password => "111111", :password_confi
 
 carl = User.create!({:email => "qwerty@gmail.com", :password => "111111", :password_confirmation => "111111" })
 carl.apartments.create!({ :price => rand(100) })
+
+
+
+//"https://pantry-application.herokuapp.com"
