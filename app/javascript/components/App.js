@@ -158,10 +158,13 @@ export default class App extends React.Component {
           
           
           {/*   User Dashboard    */}
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> aec77cad579465e87568ca950a813246a05be810
           <Route path="/user" exact render={ (props) => <UserPageRouter {...props}
                     dude={4} logged_in={ logged_in }
           />}/>
@@ -172,21 +175,23 @@ export default class App extends React.Component {
                     current_user={ current_user }
                     logged_in={ logged_in }
           />}/>
+
           
+          
+          
+          
+          {/* Individual Test Routes */}
+          <Route path="/shaker" exact render={ (props) => <ShakersTest {...props} />} />
+          <Route path="/austin" exact render={ (props) => <AustinsTest {...props} />} />
+          <Route path="/julia" exact render={ (props) => <JuliasTest {...props} />} />
+          <Route path="/connor" exact render={ (props) => <ConnorsTest {...props} />} />
 
           
 
          
-          {/*   User Pantry All Items   */}
-          <Route path= {`/${user_id}/pantry`} render={ (props) => <ViewItemsInPantry {...props} 
-          user_id = {user_id}
-          />}/>
-          
-          
-          {/*   User Pantry One Item   */}
-          <Route path="/pantry/:id" render={ (props) => <ViewOneItem {...props}/>}/>
-
         
+          
+          
           
           
           
@@ -195,34 +200,12 @@ export default class App extends React.Component {
                   
           />}/>
           
+  
           
-          
-          
-          
-          {/*   Containers Dashboard    */}
-          <Route path="/containers" render={ (props) => <Home {...props} 
-                  
-          />}/>
-          
-          {/*   Container Create   */}
-          <Route path="/container/create" render={ (props) => <Home {...props} 
-                  
-          />}/>
-          
-          {/*   Container Edit Specific   */}
-          <Route path="/container/:storage_name/edit" render={ (props) => <Home {...props} 
-                  
-          />}/>
-          
-          {/*   Container Specific Dashboard    */}
-          <Route path="/container/:storage_name" render={ (props) => <Home {...props} 
-                  
-          />}/>
-          
-          
-          
-          
-          
+    
+         
+         
+         
           {/*   Home Page    */}
           <Route render={ (props) => 
               <Home {...props} 
