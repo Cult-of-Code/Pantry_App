@@ -72,4 +72,24 @@ class MainController < ApplicationController
         
     end
     
+    # - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - --
+    
+    
+    # - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - --
+    
+    def user_recipes
+        
+        person = User.where(id: params[:id]).select(:id, :username)[0]
+        recipes = UserRecipe.where(user_id: person.id)
+        
+        render json: person.attributes.merge!({ 
+            recipes: recipes.map{ |el|
+                el.attributes.merge!({
+                    ingredients: Ingredient.where(user_recipe_id: recipes.ids),
+                    instructions: Instruction.where(user_recipe_id: recipes.ids)
+                })}
+            })
+        
+    end
+    
 end

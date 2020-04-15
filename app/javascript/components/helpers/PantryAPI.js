@@ -63,10 +63,53 @@ const   localhost   =   'https://369d7c08c6744cd4b13e4ae8a3e758ef.vfs.cloud9.us-
 
 export default class Pantry{
     
+    
+    static retrieve = function({ pack = "", id = -1 }){
+        
+        let output = { 
+            results:  undefined,
+            error:    'no error'
+        }
+        
+        // ~  - ~  - ~  - ~  - ~  - ~  - ~  - ~  -
+        
+        let input = ""
+        switch(pack){
+            
+            case 'full':
+            case 0:
+                input = `user_package/${id}`
+                break;
+            
+            case 'items':
+            case 1:
+                input = `user_pantry_items/${id}`
+                break;
+                
+            case 'posts':
+            case 2:
+                input = `user_user_recipes/${id}`
+                break;
+                
+            default:
+                output.error = "invalid search"
+        }
+        
+        
+        /*  +    +    +    +    +    +    +    +    +    +    +    +  */
+        
+        return Pantry._fetchDB({ input, output })
+    }
+    
+    
+    
+    
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    
     static format = function( recipes_promise ){
         
         return recipes_promise.then( recipes => {
-            
             if (Array.isArray(recipes) && recipes.length )
             {
                 
@@ -79,7 +122,6 @@ export default class Pantry{
                 {  }
                 
             }
-            
             return []
         })
     }
@@ -119,4 +161,26 @@ export default class Pantry{
             })
           })
         }
+    
+    
+    
+    
+    //=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@=@//
+    /*  +    +    +    +    +    +    +    +    +    +    +    +  */
+    
+    static _fetchDB = function({ input, output }){
+        return fetch(`${localhost + input}`, 
+          { 
+            headers: { 'Content-Type': 'application/json' }
+          })
+        .then((response)=>{
+            if(response.status === 200)
+            { return(response.json()) }
+        })
+        .then((resultsJSON)=>{
+            output.results = resultsJSON
+            return output
+        })
+        .catch((error) => output.error = error )
+    }
 }

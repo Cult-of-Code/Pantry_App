@@ -25,8 +25,15 @@ export default class AustinsTest extends Component {
     
     componentDidMount(){
         
+        /*
         //Pantry.format( TheMealDB.searchByIngredients(["Chicken","Basil"]) )
         Pantry.format( TheMealDB.searchByIngredients("Chicken, Basil") )
+        .then( receivedList => {
+          this.setState({ searchResults: receivedList }) 
+        })
+        */
+        
+        Pantry.retrieve({ pack: 'items', id: 53 })
         .then( receivedList => {
           this.setState({ searchResults: receivedList }) 
         })
