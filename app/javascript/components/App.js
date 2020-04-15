@@ -158,13 +158,7 @@ export default class App extends React.Component {
           
           
           {/*   User Dashboard    */}
-<<<<<<< HEAD
 
-
-
-
-=======
->>>>>>> aec77cad579465e87568ca950a813246a05be810
           <Route path="/user" exact render={ (props) => <UserPageRouter {...props}
                     dude={4} logged_in={ logged_in }
           />}/>
