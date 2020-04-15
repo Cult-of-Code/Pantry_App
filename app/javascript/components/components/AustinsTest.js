@@ -1,9 +1,21 @@
+
+
+//------------------------------------------
+//          Nessessary Imports
+//------------------------------------------
 import React, { Component } from 'react'
 //import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPantry } from '../logical/fetchers'
 
-
+//------------------------------------------
+//                Helpers
+//------------------------------------------
 import TheMealDB from '../helpers/TheMealDB'
+import Pantry from '../helpers/PantryAPI'
 
+
+//------------------------------------------
+//                 Class
+//------------------------------------------
 export default class AustinsTest extends Component {
     
     constructor(){
@@ -12,15 +24,20 @@ export default class AustinsTest extends Component {
     }
     
     componentDidMount(){
-
-        TheMealDB.searchByIngredients(["Chicken","Basil"])
+        
+        //Pantry.format( TheMealDB.searchByIngredients(["Chicken","Basil"]) )
+        Pantry.format( TheMealDB.searchByIngredients("Chicken, Basil") )
         .then( receivedList => {
           this.setState({ searchResults: receivedList }) 
         })
+        
+        
     }
     
     render(){
+
         console.log(this.state.searchResults)
+        
         return(
             <h1>Austin</h1>
         )
