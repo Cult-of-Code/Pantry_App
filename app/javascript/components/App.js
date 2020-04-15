@@ -21,7 +21,6 @@ import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPant
 //------------------------------------------
 import RecipieList from './pages/RecipieList'
 import AddItemToPantry from './pages/AddItemToPantry'
-import ShakersTest from './components/ShakersTest'
 
 import Home from './pages/Home'
 import UserFrame from './pages/UserFrame'
@@ -150,33 +149,27 @@ export default class App extends React.Component {
           
           
           {/*   User Dashboard    */}
-          <Route path="/user" exact render={ (props) => <PageRouter {...props}
-                    dude={4} logged_in={ logged_in }
-          />}/>
+          <Route path="/user" exact render={ (props) => <PageRouter {...props} dude={4}/>}/>
           
           {/*   User Pages    */}
           <Route path="/user/:page" render={ (props) => <PageRouter {...props} 
-                    handleSubmit={ addPantryItemToUser } 
-                    current_user={ current_user }
-                    logged_in={ logged_in }
+                    handleSubmit={ addPantryItemToUser } current_user={ current_user }
           />}/>
-
           
-          
-          
-          
-          {/* Individual Test Routes */}
-          <Route path="/shaker" exact render={ (props) => <ShakersTest {...props} />} />
-          <Route path="/austin" exact render={ (props) => <AustinsTest {...props} />} />
-          <Route path="/julia" exact render={ (props) => <JuliasTest {...props} />} />
-          <Route path="/connor" exact render={ (props) => <ConnorsTest {...props} />} />
 
 
 
          
+          {/*   User Pantry All Items   */}
+          <Route path= {`/${user_id}/pantry`} render={ (props) => <ViewItemsInPantry {...props} 
+          user_id = {user_id}
+          />}/>
+          
+          
+          {/*   User Pantry One Item   */}
+          <Route path="/pantry/:id" render={ (props) => <ViewOneItem {...props}/>}/>
+
         
-          
-          
           
           
           
@@ -185,12 +178,34 @@ export default class App extends React.Component {
                   
           />}/>
           
-  
           
-    
-         
-         
-         
+          
+          
+          
+          {/*   Containers Dashboard    */}
+          <Route path="/containers" render={ (props) => <Home {...props} 
+                  
+          />}/>
+          
+          {/*   Container Create   */}
+          <Route path="/container/create" render={ (props) => <Home {...props} 
+                  
+          />}/>
+          
+          {/*   Container Edit Specific   */}
+          <Route path="/container/:storage_name/edit" render={ (props) => <Home {...props} 
+                  
+          />}/>
+          
+          {/*   Container Specific Dashboard    */}
+          <Route path="/container/:storage_name" render={ (props) => <Home {...props} 
+                  
+          />}/>
+          
+          
+          
+          
+          
           {/*   Home Page    */}
           <Route render={ (props) => 
               <Home {...props} 
