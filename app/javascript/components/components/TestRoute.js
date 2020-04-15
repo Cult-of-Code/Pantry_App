@@ -5,7 +5,7 @@
 //------------------------------------------
 import React from 'react'
 import PantryAPI from '../helpers/PantryAPI'
-const { test, getAllRecipes } = PantryAPI
+//const { test, getAllRecipes } = PantryAPI
 
 
 //::::::::::::::::::::::::::::::::::::::::::
@@ -30,10 +30,10 @@ export default function(props){
     }
     
     /* - - - - - - - - - */
-    console.log('')
+    //console.log('')
     //console.log(test)
-    getAllRecipes().then(a=>console.log(a))
-    console.log('')
+    //getAllRecipes().then(a=>console.log(a))
+    //console.log('')
     /* - - - - - - - - - */
     
     return(

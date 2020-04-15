@@ -6,7 +6,7 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
-import PageRouter from './PageRouter'
+import UserPageRouter from './UserPageRouter'
 
 
 //------------------------------------------
@@ -158,12 +158,12 @@ export default class App extends React.Component {
           
           
           {/*   User Dashboard    */}
-          <Route path="/user" exact render={ (props) => <PageRouter {...props}
+          <Route path="/user" exact render={ (props) => <UserPageRouter {...props}
                     dude={4} logged_in={ logged_in }
           />}/>
           
           {/*   User Pages    */}
-          <Route path="/user/:page" render={ (props) => <PageRouter {...props} 
+          <Route path="/user/:page" render={ (props) => <UserPageRouter {...props} 
                     handleSubmit={ addPantryItemToUser } 
                     current_user={ current_user }
                     logged_in={ logged_in }
