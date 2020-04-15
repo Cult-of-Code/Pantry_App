@@ -76,6 +76,7 @@ const   localhost   =   'https://48f5f1653b9d4eb4bfd5e77896cc3cc6.vfs.cloud9.us-
 
 export default class TheMealDB {
     
+    
     static search = function({ searchBy = "", searchTerm = "" }){
         
         let output = { 
