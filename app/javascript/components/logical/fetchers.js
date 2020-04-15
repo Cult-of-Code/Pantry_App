@@ -253,26 +253,28 @@ function deletePantryItemFromUser( user_id ) {
 
 
 
-function updatePantryItemToUser( updatedItem, user_id ) {
+function updatePantryItemToUser( updatedInfo, user_id ) {
     
     let output = { 
         results:  undefined,
         error:    'no error'
     }
     
+    console.log(updatedInfo)
+    
     return fetch(`${localhost}pantry_items/${user_id}`, 
     { 
-        body: JSON.stringify(updatedItem),
+        body: JSON.stringify(updatedInfo),
         headers: { 'Content-Type': 'application/json'},
-        mode: 'no-cors',
         
-        method: "PUT"
+        
+        method: "put"
         
     })
     .then((response)=>{
         console.log(response)
         if(response.ok)
-        { return getItemsFromUserPantry() }
+        { return response }  //getItemsFromUserPantry
     })
     .catch((error) => output.error = error )
     
