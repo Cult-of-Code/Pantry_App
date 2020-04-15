@@ -158,13 +158,10 @@ export default class App extends React.Component {
           
           
           {/*   User Dashboard    */}
-<<<<<<< HEAD
-          <Route path="/user" exact render={ (props) => <PageRouter {...props} dude={4}/>}/>
-          
-          {/*   User Pages    */}
-          <Route path="/user/:page" render={ (props) => <PageRouter {...props} 
-                    handleSubmit={ addPantryItemToUser } current_user={ current_user }
-=======
+
+
+
+
           <Route path="/user" exact render={ (props) => <UserPageRouter {...props}
                     dude={4} logged_in={ logged_in }
           />}/>
@@ -174,7 +171,6 @@ export default class App extends React.Component {
                     handleSubmit={ addPantryItemToUser } 
                     current_user={ current_user }
                     logged_in={ logged_in }
->>>>>>> 80ebc466333e3265d55c4e307a3d8c5843444dd1
           />}/>
           
 
