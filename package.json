@@ -25,5 +25,5 @@
     "react-test-renderer": "^16.13.1",
     "webpack-dev-server": "^3.10.3"
   },
-  "proxy": "https://pantry-application.herokuapp.com"
+  "proxy": "https://pantry-application.herokuapp.com"          
 }

@@ -47,6 +47,7 @@ class ShakersTest extends Component {
             
         getItemsFromUserPantry(4)
         .then( (received) => {
+            console.log(received)
         this.setState({ form: received.results }) 
         })
     }

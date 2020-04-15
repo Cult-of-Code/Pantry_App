@@ -25,11 +25,12 @@ import { myTest, cool } from './logical/master'
 import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPantry } from './logical/fetchers'
 
 
+
 //------------------------------------------
 //                Pages
 //------------------------------------------
 import RecipieList from './pages/RecipieList'
-import AddItemToPantry from './pages/AddItemToPantry'
+
 
 import Home from './pages/Home'
 import UserFrame from './pages/UserFrame'

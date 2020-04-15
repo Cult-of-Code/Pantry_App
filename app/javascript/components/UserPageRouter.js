@@ -10,9 +10,10 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 //------------------------------------------
 //              Components
 //------------------------------------------
-
-
-
+import CreateNewStorage from './components/CreateNewStorage'
+import AddItemToStorage from './pages/AddItemToPantry'
+import CreateNewRecipePost from './components/CreateNewRecipePost'
+import AddRecipeToPost from './pages/AddRecipeToPost'
 //------------------------------------------
 //                Pages
 //------------------------------------------
@@ -76,12 +77,12 @@ return(
             <Switch>
             
                 {/*   Create    */}
-                <Route path={`${match.url}/create`} render={ (props) => <TestRoute {...props} 
+                <Route path={`${match.url}/create`} render={ (props) => <CreateNewStorage {...props} 
                     submitForm={ props.handleSubmit } current_user={ props.current_user }
                 />}/>
                 
                 {/*   Edit    */}
-                <Route path={`${match.url}/:storage_name/edit`} render={ (props) => <TestRoute {...props} 
+                <Route path={`${match.url}/:storage_name/edit`} render={ (props) => <AddItemToStorage {...props} 
                     
                 />}/>
                 
@@ -109,12 +110,12 @@ return(
             <Switch>
             
                 {/*   Create    */}
-                <Route path={`${match.url}/create`} render={ (props) => <TestRoute {...props} 
-                    
+                <Route path={`${match.url}/create`} render={ (props) => <CreateNewRecipePost {...props} 
+                    submitForm={ props.handleSubmit } current_user={ props.current_user }
                 />}/>
                 
                 {/*   Edit    */}
-                <Route path={`${match.url}/:post_id/edit`} render={ (props) => <TestRoute {...props} 
+                <Route path={`${match.url}/:post_id/edit`} render={ (props) => <AddRecipeToPost {...props} 
                     
                 />}/>
                 

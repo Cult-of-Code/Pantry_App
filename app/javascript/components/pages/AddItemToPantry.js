@@ -4,7 +4,7 @@ import { Redirect} from "react-router-dom";
 import {addPantryItemToUser} from "../logical/fetchers"
 
 
-class AddItemToPantry extends Component{
+export default class AddItemToStorage extends Component{
     constructor(props){
         super(props)
         this.state = {
@@ -13,7 +13,7 @@ class AddItemToPantry extends Component{
             name: '',
             quantity: '',
             units: '',
-            storage_bin: 'the stash behind the television set',
+            storage_bin: this.props.match.params.storage_name,
             when_bought: '',
             exp_date: '',
             min_item: '',
@@ -26,6 +26,7 @@ class AddItemToPantry extends Component{
     
     handleChange = (event) => {
         let { form } = this.state
+        console.log(form)
         form[event.target.name] = event.target.value
         this.setState({ form: form })
     }
@@ -109,4 +110,3 @@ class AddItemToPantry extends Component{
     )
  }
 }
-export default AddItemToPantry
