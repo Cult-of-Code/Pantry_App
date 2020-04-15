@@ -20,7 +20,7 @@ export default class AustinsTest extends Component {
     }
     
     render(){
-        console.table(this.state.searchResults)
+        console.log(this.state.searchResults)
         return(
             <h1>Austin</h1>
         )

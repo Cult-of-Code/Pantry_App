@@ -149,7 +149,7 @@ export default class TheMealDB {
         
         /*  +    +    +    +    +    +    +    +    +    +    +    +  */
         
-        return ( { input, output } )
+        return ({ input, output })
     }
     
     
@@ -166,23 +166,18 @@ export default class TheMealDB {
         ))
         
         /*  +    +    +    +    +    +    +    +    +    +    +    +  */
-        return Promise.all( queries ).then( (answers) => { 
+        return Promise.all( queries ).then( answers => { 
             return [].concat(...answers.map(v=>v.results.meals)) // get an array of all answers
         
         // Get full meal details
-        }).then( (list) => {
-            console.log(list)
+        }).then( list => {
             
-            
-            let detailedListlist = list
-            return detailedListlist
+            return Promise.all(  list.map( sm => TheMealDB.getMealByID( sm.idMeal ) ) )
+            .then( answers => { return [...answers] })  // get an array of all answers
             
         // Narrow down list
-        }).then( (detailedList) => {
-            
-            
-            let narrowedList = detailedList
-            return narrowedList
+        }).then( detailedList => {
+            return TheMealDB._narrowSearchedList( ingredients, detailedList )
         })
     }
     
@@ -195,7 +190,7 @@ export default class TheMealDB {
     static getMealByID = function( id ){
         return TheMealDB._fetchDB( 
             TheMealDB.search({ searchBy:"id", searchTerm:id }) 
-        ).then( meal => meal.meals[0].idMeal) // TODO finish
+        ).then( ({ results }) => results.meals[0])
     }
     
     
@@ -218,8 +213,30 @@ export default class TheMealDB {
     /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
     /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
     
-    static _narrowSearchedList = function({ ingredients, narrowedList }){
+    static _narrowSearchedList = function( ingredients, list ){
         
+        return list
+        
+        return list.filter( m => {
+            
+            let compiledIngredients = ""
+            for(let c = 1; c<21; c++){
+            
+                let ing = m[`strIngredient${c}`]
+                
+                if ( !!ing ) {  
+                    compiledIngredients+=" "+ing  
+                    
+                    if (ingredients.every( ingr => 
+                        compiledIngredients.toLowerCase().includes(
+                            ingr.toLowerCase().trim()) ))
+                        { return true }
+                }
+                else break
+            }
+            
+            return false
+        })
     }
     
     
