@@ -128,10 +128,12 @@ function getItemsFromUserPantry( user_id ) {
     }
     
     
-    return fetch(`${localhost}pantry_items/${user_id}`, 
+    return fetch(`https://7742f0fa2a534226b6a53e03ed2dc239.vfs.cloud9.us-east-2.amazonaws.com/user_pantry_items/${user_id}`, 
       { 
         headers: { 'Content-Type': 'application/json' },
-        mode: 'no-cors'
+        mode: 'no-cors',
+        
+        method: "GET"
       })
     .then((response)=>{
         if(response.status === 200)

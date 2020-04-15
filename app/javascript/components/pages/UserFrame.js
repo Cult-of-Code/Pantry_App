@@ -30,7 +30,7 @@ class UserFrame extends Component{
             Welcome (insert user name)! Lets get cooking!
             <Nav vertical>
                 <NavItem>
-                  <NavLink href="#">Add Item to Pantry</NavLink>
+                  <NavLink href={`/${this.props.current_user}/pantry`}>Your Pantry</NavLink>
                 </NavItem>
                 <NavbarText>
                  About to Expire
