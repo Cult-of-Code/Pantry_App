@@ -200,10 +200,9 @@ export default class TheMealDB {
     /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
     
     static _splitIngredients = function( list_i = [] ){
-        if (typeof list_i === 'string'){
-            // TODO : convert to array of strings
-        }
-        else if (Array.isArray(list_i)){ return list_i }
+        if (Array.isArray(list_i)){ return list_i.map( ingr => ingr.trim()) }
+        else if (typeof list_i === 'string')
+        { return list_i.split(',').map( ingr => ingr.trim()) }
         else { return [""] }
     }
     
