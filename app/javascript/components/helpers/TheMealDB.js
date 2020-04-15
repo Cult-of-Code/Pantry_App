@@ -215,8 +215,6 @@ export default class TheMealDB {
     
     static _narrowSearchedList = function( ingredients, list ){
         
-        return list
-        
         return list.filter( m => {
             
             let compiledIngredients = ""
