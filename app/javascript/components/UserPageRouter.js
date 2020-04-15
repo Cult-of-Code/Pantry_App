@@ -4,7 +4,7 @@
 //          Nessessary Imports
 //------------------------------------------
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 
 //------------------------------------------
@@ -28,8 +28,8 @@ export default function(props){
     const { match } = props
     const { params } = match
     
-    console.log(match)
-    
+    //console.log(match)
+   
     let pages = {
                     "test":        params.page === 'test',
                     "dude":        params.page === 'dude',
@@ -42,8 +42,10 @@ export default function(props){
                     "post":        params.page === 'post'
                 }
     
-    
 return(
+    
+   <React.Fragment>
+    {props.logged_in &&
     <Switch>
     
         {/*-----------------------------*/}
@@ -75,7 +77,7 @@ return(
             
                 {/*   Create    */}
                 <Route path={`${match.url}/create`} render={ (props) => <TestRoute {...props} 
-                    
+                    submitForm={ props.handleSubmit } current_user={ props.current_user }
                 />}/>
                 
                 {/*   Edit    */}
@@ -133,6 +135,15 @@ return(
         <Route>User Dashboard - Container list</Route>
         
     </Switch>
+    }
+    {!props.logged_in &&
+    
+     <Redirect push to="/users/sign_up" />
+
+    }
+    </React.Fragment>
+
+   
 )
 }
 
