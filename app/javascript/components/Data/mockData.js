@@ -103,9 +103,9 @@ const pantry_item = [
     },{
         id: 10,
         user_id: 2,
-        name: 'Sad',
+        name: 'Catterpie',
         quantity: .25,
-        units: "Cups",
+        units: "bottles",
         storage_bin: 'Pantry',
         when_bought: '2019-02-29 11:59:59',
         exp_date: '',
