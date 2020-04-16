@@ -31,26 +31,21 @@ export default class Slot extends Component {
             <React.Fragment>
             <Navbar color="light" light expand="md">
             <NavbarBrand href="/">Pantry App</NavbarBrand>
-            {this.props.logged_in &&
-                <Nav className="ml-auto" navbar>
+            <Nav className="ml-auto" navbar>
                     <NavItem>
                       <NavLink href="">Get Recipes</NavLink>
                     </NavItem>
+            {this.props.logged_in &&
                     <NavItem>
                       <NavLink href="">My Recipes</NavLink>
                     </NavItem>
-                </Nav>
             }
             {!this.props.logged_in &&
-                <Nav className="ml-auto" navbar>
                     <NavItem>
                       <NavLink href="/users/sign_up">Create an Account</NavLink>
                     </NavItem>
-                    <NavItem>
-                      <NavLink href="/user">Get Recipes</NavLink>
-                    </NavItem>
-                </Nav>
             }
+            </Nav>
             </Navbar>
             <div className="p-3 my-2 rounded bg-docs-transparent-grid">
             {this.props.logged_in &&

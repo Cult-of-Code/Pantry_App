@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardTitle, CardText, Col } from 'reactstrap';
+import { Card, CardTitle, CardText, Button } from 'reactstrap';
 
 
 
@@ -9,14 +9,14 @@ class ViewUserRecipes extends Component {
     render(){
       return (
         <React.Fragment>
-            { props.user_recipes.map((user_recipe, index) => {
+            { this.props.user_recipes.map((user_recipe, index) => {
                 return(
                     <Card body key={ index} >
-                        <CardTitle active tag="button" action>{ user_recipe.name }</CardTitle>
+                        <CardTitle>{ user_recipe.name }</CardTitle>
                         <CardText>
                         { user_recipe.est_time } - { user_recipe.description }
                         </CardText>
-                        
+                        <Button color="secondary" size="lg" block>See Recipe</Button>
                     </Card>
                 )
             })}
