@@ -26,16 +26,47 @@ export default class AustinsTest extends Component {
     componentDidMount(){
         
         /*
-        //Pantry.format( TheMealDB.searchByIngredients(["Chicken","Basil"]) )
-        Pantry.format( TheMealDB.searchByIngredients("Chicken, Basil") )
+        //Pantry.format( TheMealDB.searchByIngredients("Chicken, Basil") )
+        Pantry.format( TheMealDB.searchByIngredients(["Chicken","Basil"]) )
         .then( receivedList => {
           this.setState({ searchResults: receivedList }) 
         })
         */
         
-        Pantry.retrieve({ pack: 'posts', id: 104 })
+        
+        
+        /*
+        Pantry.retrieve({ pack: 'items', id: 107 })
+        .then( ({ results }) => {
+            console.log( [...results.pantry_items.map( item => item.name )] )
+          //return TheMealDB.searchByIngredients( [...results.pantry_items.map( item => item.name )] )
+          //return TheMealDB.searchByIngredients( results.pantry_items )
+          return TheMealDB.searchByIngredients( ["Chicken","Basil"] )
+        })
+        .then( ( list ) => {
+            
+          this.setState({ searchResults: list }) 
+        })
+        */
+        
+        
+        
+        /* 
+        Pantry.retrieve({ pack: 'posts', id: 107 })
         .then( ({ results }) => {
           this.setState({ searchResults: results }) 
+        })
+        */
+        
+        
+        
+        Pantry.retrieve({ pack: 'items', id: 107 })
+        .then( ({ results }) => {
+            console.log( results.pantry_items )
+            return Pantry.getAvailableRecipes( results.pantry_items )
+        })
+        .then( ({ results }) => {
+            this.setState({ searchResults: results }) 
         })
         
         
