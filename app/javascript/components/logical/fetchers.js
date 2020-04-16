@@ -290,30 +290,6 @@ function updatePantryItemToUser( updatedInfo, user_id ) {
 *///
 
 
-function updateRecipePostToUser( updatedInfo, user_id ) {
-    
-    let output = { 
-        results:  undefined,
-        error:    'no error'
-    }
-    
-    return fetch(`${localhost}user_recipes/${user_id}`, 
-    { 
-        body: JSON.stringify(updatedInfo),
-        headers: { 'Content-Type': 'application/json'},
-        mode: 'no-cors',
-        
-        method: "POST"
-        
-    })
-    .then((response)=>{
-        console.log(response)
-        if(response.ok)
-        { return response }
-    })
-    .catch((error) => output.error = error )
-    
-}
 
 
 
