@@ -33,7 +33,7 @@ export default class AustinsTest extends Component {
         })
         */
         
-        Pantry.retrieve({ pack: 'items', id: 53 })
+        Pantry.retrieve({ pack: 'posts', id: 104 })
         .then( ({ results }) => {
           this.setState({ searchResults: results }) 
         })
