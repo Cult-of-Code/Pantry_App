@@ -302,7 +302,6 @@ export {
             getItemsFromUserPantry,
             addPantryItemToUser,
             deletePantryItemFromUser,
-            updatePantryItemToUser,
-            updateRecipePostToUser
+            updatePantryItemToUser
 }
 
