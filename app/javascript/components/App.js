@@ -94,7 +94,7 @@ export default class App extends React.Component {
     
     //console.log(this.state.recipePuppy)
     //console.log(this.state.theMealDB)
-    console.log(this.state.usersPantryItems)
+    // console.log(this.state.usersPantryItems)
     
     
     const {

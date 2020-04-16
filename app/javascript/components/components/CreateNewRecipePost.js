@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { Redirect} from "react-router-dom";
-import {updateRecipePostToUser} from "../logical/fetchers"
+import {createRecipePostToUser} from "../logical/fetchers"
 
 
 export default class CreateNewRecipePost extends Component{
     constructor(props){
         super(props)
+        console.log(this.props)
         this.state = {
           success: false,
           form:{
             name: '',
             description: '',
             est_time: '',
+            user_id: this.props.current_user.id
            
           }
         }
@@ -33,8 +35,8 @@ export default class CreateNewRecipePost extends Component{
     handleSubmit = (event) => {
         event.preventDefault()
         console.log(this.state.form)
-        // updateRecipePostToUser(this.state.form, this.props.current_user.id)
-        console.log(this.props)
+        createRecipePostToUser(this.state.form)
+        
         this.setState({ success: true })
     }
 

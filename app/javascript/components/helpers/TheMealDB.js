@@ -159,27 +159,35 @@ export default class TheMealDB {
     /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
     /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
     
-    static searchByIngredients = function( ingredients ){
+    static searchByIngredients = function( ingredients, skipCheckIngr = false ){
         
-        ingredients = TheMealDB._splitIngredients( ingredients )
+        if (!skipCheckIngr){ ingredients = TheMealDB._splitIngredients( ingredients ) }
+        
         let queries = ingredients.map( si => TheMealDB._fetchDB( 
             TheMealDB.search({ searchBy:"ingredient", searchTerm:si }) 
         ))
         
+        
         /*  +    +    +    +    +    +    +    +    +    +    +    +  */
-        return Promise.all( queries ).then( answers => { 
-            return [].concat(...answers.map(v=>v.results.meals)) // get an array of all answers
+        return Promise.all( queries ).then( answers => {   // get an array of all answers
+            return [].concat(...answers.map(v=> v.results.meals ? v.results.meals : {idMeal: -1})) 
+            .filter(Boolean) // remove all 'falsy' values  :  null
         
         // Get full meal details
         }).then( list => {
             
             return Promise.all(  list.map( sm => TheMealDB.getMealByID( sm.idMeal ) ) )
-            .then( answers => { return [...answers] })  // get an array of all answers
+            //.then( answers => { return [...answers] })  // get an array of all answers
             
+        })
+        // MOVED
+        /*
         // Narrow down list
         }).then( detailedList => {
-            return TheMealDB._narrowSearchedList( ingredients, detailedList )
+            //return TheMealDB._narrowSearchedList( ingredients, detailedList )
+            return detailedList
         })
+        */
     }
     
     
@@ -201,6 +209,7 @@ export default class TheMealDB {
     /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
     
     static _splitIngredients = function( list_i = [] ){
+        
         if (Array.isArray(list_i)){ return list_i.map( ingr => ingr.trim()) }
         else if (typeof list_i === 'string')
         { return list_i.split(',').map( ingr => ingr.trim()) }
@@ -213,6 +222,7 @@ export default class TheMealDB {
     /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
     /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
     
+    // TO BE REMOVED  -  Moved to 'PantryAPI' helper
     static _narrowSearchedList = function( ingredients, list ){
         
         return list.filter( m => {
