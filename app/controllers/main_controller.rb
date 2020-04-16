@@ -50,8 +50,8 @@ class MainController < ApplicationController
             pantry_items: PantryItem.where(user_id: person.id),
             recipes: recipes.map{ |el|
                 el.attributes.merge!({
-                    ingredients: Ingredient.where(user_recipe_id: recipes.ids),
-                    instructions: Instruction.where(user_recipe_id: recipes.ids)
+                    ingredients: Ingredient.where(user_recipe_id: el.id),
+                    instructions: Instruction.where(user_recipe_id: el.id)
                 })}
             })
         ]
@@ -85,8 +85,8 @@ class MainController < ApplicationController
         render json: person.attributes.merge!({ 
             recipes: recipes.map{ |el|
                 el.attributes.merge!({
-                    ingredients: Ingredient.where(user_recipe_id: recipes.ids),
-                    instructions: Instruction.where(user_recipe_id: recipes.ids)
+                    ingredients: Ingredient.where(user_recipe_id: el.id),
+                    instructions: Instruction.where(user_recipe_id: el.id)
                 })}
             })
         
