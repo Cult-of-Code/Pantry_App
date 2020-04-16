@@ -289,14 +289,14 @@ function updatePantryItemToUser( updatedInfo, user_id ) {
 
 *///
 
-function updateRecipePostToUser( newItem, user_id ) {
+function createRecipePostToUser( newItem ) {
     
     let output = { 
         results:  undefined,
         error:    'no error'
     }
     
-    return fetch(`${localhost}user_recipes/${user_id}`, 
+    return fetch(`${localhost}user_recipes`, 
     { 
         body: JSON.stringify(newItem),
         headers: { 'Content-Type': 'application/json'},
@@ -326,6 +326,6 @@ export {
             addPantryItemToUser,
             deletePantryItemFromUser,
             updatePantryItemToUser,
-            updateRecipePostToUser
+            createRecipePostToUser
 }
 
