@@ -17,27 +17,29 @@ class ViewOneItem extends Component {
         
         const pantry_item = this.state.items.find((item) => item.id === parseInt(id))
         
-        var when_bought = null
+        var when_bought = undefined
         
-        var exp_date = null
+        var exp_date = undefined
         
-        var min_item = null
+        var min_item = undefined
         
-        var max_item = null
+        var max_item = undefined
         
-        if (pantry_item.when_bought !== '' && pantry_item.when_bought !== null){
+        console.log(this.state.items)
+        
+        if (pantry_item.when_bought !== '' && pantry_item.when_bought !== undefined){
              when_bought = <CardText>{ pantry_item.when_bought } </CardText>
         } 
         
-        if (pantry_item.exp_date !== '' && pantry_item.exp_date !== null) {
+        if (pantry_item.exp_date !== '' && pantry_item.exp_date !== undefined) {
              exp_date = <CardText>{ pantry_item.exp_date } </CardText>
         }
         
-        if (pantry_item.min_item !== '' && pantry_item.min_item !== null) {
+        if (pantry_item.min_item !== '' && pantry_item.min_item !== undefined) {
              min_item = <CardText>{ pantry_item.min_item } </CardText>
         }
         
-        if (pantry_item.max_item !== '' && pantry_item.max_item !== null) {
+        if (pantry_item.max_item !== '' && pantry_item.max_item !== undefined) {
              max_item = <CardText>{ pantry_item.max_item } </CardText>
         }
         
