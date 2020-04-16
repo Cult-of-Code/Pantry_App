@@ -42,7 +42,10 @@ const   localhost   =   'https://369d7c08c6744cd4b13e4ae8a3e758ef.vfs.cloud9.us-
 
     Format:
             {
-                title:          "",
+                name:           "",
+                description:    "",
+                est_time:        0,
+                
                 category:       "",
                 origin:         "",
                 
@@ -141,19 +144,30 @@ export default class Pantry{
             
             for(let strCount = 1; strCount<21; strCount++)
             {
-                recipe[`strIngredient${strCount}`] !== "" &&
-                ingredients.push( `${recipe['strIngredient'+strCount]} ${recipe['strMeasure'+strCount]}` )
+                let ingr = recipe['strIngredient'+strCount]
+                if ( !!ingr ) { ingredients.push( 
+                    `${recipe['strMeasure'+strCount]} of ${ingr}` 
+                    
+                    // TODO test if the 'Measure' is a word like: 'whole' or 'boiled',
+                    //  so, we don't add 'of' between the measurement and ingredient
+                )}
+                else break;
             }
             //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
             
             return(
             {
-                title:          recipe.strMeal,
+                name:           recipe.strMeal,
+                description:    recipe.strInstructions,
+                est_time:        -1,
+                
                 category:       recipe.strCategory,
                 origin:         recipe.strArea,
                 
                 ingredients:    [...ingredients],
-                instructions:   [recipe.strInstructions],
+                instructions:   [],  //recipe.strInstructions -ARRAY- .slice(1)
+                
+                                // TODO slice up instructions if they resemble an ordered list (guesswork)
                 
                 thumbnail:      recipe.strMealThumb,
                 source:         recipe.strSource,
@@ -169,7 +183,7 @@ export default class Pantry{
     /*  +    +    +    +    +    +    +    +    +    +    +    +  */
     
     static _fetchDB = function({ input, output }){
-        return fetch(`${localhost + input}`, 
+        return fetch( localhost + input , 
           { 
             headers: { 'Content-Type': 'application/json' }
           })
