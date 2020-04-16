@@ -12,8 +12,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 //------------------------------------------
 import CreateNewStorage from './components/CreateNewStorage'
 import AddItemToStorage from './pages/AddItemToPantry'
-import CreateNewRecipePost from './components/CreateNewRecipePost'
-import AddRecipeToPost from './pages/AddRecipeToPost'
+
 //------------------------------------------
 //                Pages
 //------------------------------------------
@@ -110,13 +109,13 @@ return(
             <Switch>
             
                 {/*   Create    */}
-                <Route path={`${match.url}/create`} render={ (props) => <CreateNewRecipePost {...props} 
+                <Route path={`${match.url}/create`} render={ (props) => <TestRoute {...props} 
                     submitForm={ props.handleSubmit } current_user={ props.current_user }
                 />}/>
                 
                 {/*   Edit    */}
-                <Route path={`${match.url}/:post_id/edit`} render={ (props) => <AddRecipeToPost {...props} 
-                    
+                <Route path={`${match.url}/:post_id/edit`} render={ (props) => <TestRoute {...props} 
+                   submitForm={ props.handleSubmit } current_user={ props.current_user }
                 />}/>
                 
                 {/*   View     */}
