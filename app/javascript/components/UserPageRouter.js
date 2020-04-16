@@ -12,7 +12,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 //------------------------------------------
 import CreateNewStorage from './components/CreateNewStorage'
 import AddItemToStorage from './pages/AddItemToPantry'
-
+import CreateNewRecipePost from './components/CreateNewRecipePost'
 //------------------------------------------
 //                Pages
 //------------------------------------------
@@ -28,6 +28,7 @@ export default function(props){
     const { match } = props
     const { params } = match
     
+    // console.log(this.props)
     //console.log(match)
    
     let pages = {
@@ -108,8 +109,9 @@ return(
         { pages['post']  &&
             <Switch>
             
+            
                 {/*   Create    */}
-                <Route path={`${match.url}/create`} render={ (props) => <TestRoute {...props} 
+                <Route path={`${match.url}/create`} render={ (props) => <CreateNewRecipePost {...props} 
                     submitForm={ props.handleSubmit } current_user={ props.current_user }
                 />}/>
                 
