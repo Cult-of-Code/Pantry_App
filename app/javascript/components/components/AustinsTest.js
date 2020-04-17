@@ -14,6 +14,12 @@ import Pantry from '../helpers/PantryAPI'
 
 
 //------------------------------------------
+//               Components
+//------------------------------------------
+import Notification from './user_notifications/notification'
+
+
+//------------------------------------------
 //                 Class
 //------------------------------------------
 export default class AustinsTest extends Component {
@@ -60,6 +66,9 @@ export default class AustinsTest extends Component {
         
         
         
+        ////      WORKING GREAT
+        /*
+        
         Pantry.retrieve({ pack: 'items', id: 107 })
         .then( ({ results }) => {
             console.log( results.pantry_items )
@@ -69,6 +78,20 @@ export default class AustinsTest extends Component {
             this.setState({ searchResults: results }) 
         })
         
+        */
+        
+        
+        
+        
+        
+        Pantry.retrieve({ pack: 'items', id: 107 })
+        .then( ({ results }) => {
+            this.setState({ searchResults: results }) 
+        })
+        
+        
+        
+        
         
     }
     
@@ -76,8 +99,22 @@ export default class AustinsTest extends Component {
 
         console.log(this.state.searchResults)
         
-        return(
+        console.log(Date.now())
+        
+        if (this.state.searchResults)
+        { console.log(
+            (Date.parse(this.state.searchResults.pantry_items[0].exp_date) - Date.now()) / 86400000
+        )}
+        // if less than 1 -> expires tomorrow
+        // warn 3 days before expire
+        //  ->   if less than 3, expires in 3 days
+        
+        return(<React.Fragment>
+        
             <h1>Austin</h1>
-        )
+            <Notification.expire/>
+            { this.state.searchResults && Notification.low(this.state.searchResults)}
+            
+        </React.Fragment>)
     }
 } 
