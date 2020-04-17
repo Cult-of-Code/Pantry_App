@@ -1,21 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardTitle, CardText, Col, Row, Container } from 'reactstrap';
 import { Redirect } from "react-router-dom"
+import Pantry from '../helpers/PantryAPI'
 import pantry_item from '../Data/mockData'
 
 
-class ViewOneItem extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-          items: pantry_item
-        }
-    }
+const ViewOneItem = (props) => {
     
-    render(){
-        const { id } = this.props.match.params
+        const { id } = props.match.params
         
-        const pantry_item = this.state.items.find((item) => item.id === parseInt(id))
+        var items = props.items[0]
+        
+        const pantry_item = items.find((item) => item.id === parseInt(id))
         
         var when_bought = undefined
         
@@ -25,7 +21,7 @@ class ViewOneItem extends Component {
         
         var max_item = undefined
         
-        console.log(this.state.items)
+        console.log(props.items)
         
         if (pantry_item.when_bought !== '' && pantry_item.when_bought !== undefined){
              when_bought = <CardText>{ pantry_item.when_bought } </CardText>
@@ -59,7 +55,6 @@ class ViewOneItem extends Component {
                 </Col>
             </React.Fragment>
         )
-    }
 }
 
 export default ViewOneItem
