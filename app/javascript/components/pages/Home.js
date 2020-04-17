@@ -48,9 +48,13 @@ export default class Home extends React.Component {
     return (
       <React.Fragment>
       
-        <h1>Hello Home Page</h1>
+        <h1>Welcome to THE Pantry App</h1>
+        <br/>
+        
+        <h2>We are excited to announce our new, state of the art web application, that will make it easier to track your store bought food items. Our application allows you to create a grocery list, log your food items, lets you know which food items are about to expire, get recommended recipes based on the food you currently have in storage, and more. Sign up now, it's free!
+        </h2>
       
-      
+        
       </React.Fragment>
     );
   }
