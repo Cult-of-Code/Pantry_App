@@ -71,6 +71,12 @@ return(
                   
         />}/>}
         
+        {/*   Specific User Item    */}       {/*  TODO:  Replace 'TestRoute' with 'Posts' component*/}
+        { pages['collection'] && <Route path={`${match.url}/:id`} render={ (props) => <TestRoute {...props} 
+                  
+        />}/>}
+        
+        
         
         
         
