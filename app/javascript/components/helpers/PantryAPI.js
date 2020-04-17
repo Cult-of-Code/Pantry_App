@@ -20,7 +20,7 @@ const   localhost   =   'https://369d7c08c6744cd4b13e4ae8a3e758ef.vfs.cloud9.us-
 //=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//
 
 
-//import * as Fetchers from '../logical/fetchers'
+import TheMealDB from '../helpers/TheMealDB'
 
 
 
@@ -110,6 +110,22 @@ export default class Pantry{
     /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
     /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
     
+    static getAvailableRecipes = function( ingredients ){
+        
+        ingredients = Pantry.splitIngredients( ingredients )
+        
+        return Pantry.format( TheMealDB.searchByIngredients( ingredients, true ) )
+        .then( receivedList =>{
+            return Pantry._narrowDownSearch( ingredients, receivedList )
+        })
+    }
+    
+    
+    
+    
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    
     static format = function( recipes_promise ){
         
         return recipes_promise.then( recipes => {
@@ -145,12 +161,18 @@ export default class Pantry{
             for(let strCount = 1; strCount<21; strCount++)
             {
                 let ingr = recipe['strIngredient'+strCount]
-                if ( !!ingr ) { ingredients.push( 
+                if ( !!ingr ) 
+                {
+                    ingredients.push({ name: ingr, units: recipe['strMeasure'+strCount] })
+                }
+                /*
+                { ingredients.push( 
                     `${recipe['strMeasure'+strCount]} of ${ingr}` 
                     
                     // TODO test if the 'Measure' is a word like: 'whole' or 'boiled',
                     //  so, we don't add 'of' between the measurement and ingredient
                 )}
+                */
                 else break;
             }
             //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
@@ -173,8 +195,66 @@ export default class Pantry{
                 source:         recipe.strSource,
                 video:          recipe.strYoutube
             })
-          })
+        })
+    }
+    
+    
+    
+    
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    
+    static splitIngredients = function( list_i ){
+        
+        if (Array.isArray(list_i) && list_i)
+        { 
+            if (typeof list_i[0] === 'string')
+            { return list_i.map( ingr => ingr.toLowerCase().trim())  }
+            
+            else if (typeof list_i[0] === 'object')
+            { return list_i.map( item => item.name.toLowerCase().trim() ) }
         }
+        
+        else if (typeof list_i === 'string')
+        { return list_i.split(',').map( ingr => ingr.toLowerCase().trim()) }
+        
+        
+        else { return [""] }
+    }
+    
+    
+    
+    
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+    
+    static _narrowDownSearch = function( ingredients, searchList ){
+        
+        return searchList.filter( recipe => {
+            // I want to see results were every recipe only includes ingredients from the list
+            /*
+                count the number of matches
+                if a recipe has more ingredients than the number of matches, throw out the recipe
+                
+                loop through the recipe's ingredients
+                every time I have some match, I add 1
+            */
+            
+            //          all ingredients cannot be more than what matches
+            return !(recipe.ingredients.length > recipe.ingredients.filter( ingr => {
+                return recipe.ingredients.some( ingr => 
+                    //ingr.toLowerCase().trim().includes(  )
+                    ingredients.indexOf(ingr.name.toLowerCase().trim()) < 0 ? false : true
+                    
+                    // TODO
+                    /*      Test if most of the characters in your words match well enough ( 75%? ),
+                            ( instead of strict comparison, as above )
+                    */
+                )
+            }).length)
+            
+        })
+    }
     
     
     

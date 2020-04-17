@@ -3,8 +3,9 @@ import { Form, FormGroup, Label, Input, Button, Container } from 'reactstrap';
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 class CreateNewStorage extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
+        console.log(this.props)
         this.state= {
             success: false,
            storage: '' 

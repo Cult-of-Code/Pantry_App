@@ -29,7 +29,7 @@ export default function(props){
     const { match } = props
     const { params } = match
     
-    // console.log(this.props)
+    console.log(props)
     //console.log(match)
    
     let pages = {
@@ -113,17 +113,17 @@ return(
             
             
                 {/*   Create    */}
-                <Route path={`${match.url}/create`} render={ (props) => <CreateNewRecipePost {...props} 
+                <Route path={`${match.url}/create`} render={ (p) => <CreateNewRecipePost {...p} 
                     submitForm={ props.handleSubmit } current_user={ props.current_user }
                 />}/>
                 
                 {/*   Edit    */}
-                <Route path={`${match.url}/:post_id/edit`} render={ (props) => <TestRoute {...props} 
+                <Route path={`${match.url}/:post_id/edit`} render={ (p) => <TestRoute {...p} 
                    submitForm={ props.handleSubmit } current_user={ props.current_user }
                 />}/>
                 
                 {/*   View     */}
-                <Route path={`${match.url}/:post_id`} render={ (props) => <TestRoute {...props} 
+                <Route path={`${match.url}/:post_id`} render={ (p) => <TestRoute {...p} 
                     
                 />}/>
                 

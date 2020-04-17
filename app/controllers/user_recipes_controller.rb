@@ -32,7 +32,7 @@ class UserRecipesController < ApplicationController
     private
     
         def userRecipe_params
-            params.require(:userRecipe).permit(:name, :description, :est_time)
+            params.require(:userRecipe).permit(:name, :description, :est_time, :user_id)
         end
 
     
