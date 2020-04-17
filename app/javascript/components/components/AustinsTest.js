@@ -67,7 +67,7 @@ export default class AustinsTest extends Component {
         
         
         ////      WORKING GREAT
-        /*
+        
         
         Pantry.retrieve({ pack: 'items', id: 107 })
         .then( ({ results }) => {
@@ -78,17 +78,17 @@ export default class AustinsTest extends Component {
             this.setState({ searchResults: results }) 
         })
         
-        */
         
         
         
         
         
+        /*
         Pantry.retrieve({ pack: 'items', id: 107 })
         .then( ({ results }) => {
             this.setState({ searchResults: results }) 
         })
-        
+        */
         
         
         
@@ -113,7 +113,7 @@ export default class AustinsTest extends Component {
         
             <h1>Austin</h1>
             <Notification.expire/>
-            { this.state.searchResults && Notification.low(this.state.searchResults)}
+            {/* this.state.searchResults && Notification.low(this.state.searchResults)*/}
             
         </React.Fragment>)
     }
