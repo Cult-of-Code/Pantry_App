@@ -7,6 +7,7 @@ import { Card, CardTitle, CardText, Button } from 'reactstrap';
 class ViewUserRecipes extends Component {
     
     render(){
+        if (this.props.user_recipes !== null){
       return (
         <React.Fragment>
             { this.props.user_recipes.map((user_recipe, index) => {
@@ -23,6 +24,13 @@ class ViewUserRecipes extends Component {
        
         </React.Fragment>
         )
+        } else {
+            return (
+                <React.Fragment>
+                <h1> You do not have any recipes yet!</h1>
+                </React.Fragment>
+                )
+        }
     }
 }
 
