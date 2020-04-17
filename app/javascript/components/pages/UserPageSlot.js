@@ -4,7 +4,7 @@
 //          Nessessary Imports
 //------------------------------------------
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand, Nav, NavItem, NavLink, NavbarText, Toast, ToastBody, ToastHeader } from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink, NavbarText, Toast, ToastBody, ToastHeader, Row, Col } from 'reactstrap';
 
 
 //------------------------------------------
@@ -47,7 +47,11 @@ export default class Slot extends Component {
             }
             </Nav>
             </Navbar>
+            <Row>
+            <Col>
             <div className="p-3 my-2 rounded bg-docs-transparent-grid">
+            
+            
             {this.props.logged_in &&
                 <Toast>
                   <ToastHeader>
@@ -89,10 +93,15 @@ export default class Slot extends Component {
                   </ToastBody>
                 </Toast>
             }
+            
             </div>
+            </Col>
+            <Col>
             <div className="PageSlot">
-                {this.props.components}
+            {this.props.children}
             </div>
+            </Col>
+            </Row>
             </React.Fragment>
         )
     }
