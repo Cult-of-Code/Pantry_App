@@ -90,20 +90,7 @@ export default class App extends React.Component {
       this.setState({ usersPantryItems: received.results }) 
     })
     
-    Pantry.retrieve({ pack: 'items', id: this.props.current_user.id })
-        .then( ({ results }) => {
-            this.state.pantry_items.push(results.pantry_items)
-        }).then( () => {
-            this.setState({routeToViewAllPantry: <Route path="/:user_id/pantry" exact render={ (props) => <ViewItemsInPantry {...props} 
-            user_id={ this.props.current_user.id }
-            items={ this.state.pantry_items }
-          />} />})
-            this.setState({routeToViewOnePantry: <Route path="/:user_id/pantry/:id" exact render={ (props) => <ViewOneItem {...props} 
-            user_id={ this.props.current_user.id }
-            items={ this.state.pantry_items }
-          />} />})
-        })
-    
+
   }
 
 
