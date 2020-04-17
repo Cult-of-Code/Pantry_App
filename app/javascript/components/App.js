@@ -34,8 +34,7 @@ import RecipieList from './pages/RecipieList'
 
 
 import Home from './pages/Home'
-import UserFrame from './pages/UserFrame'
-import Frame from './pages/Frame'
+import Navbar from './pages/Navbar'
 import ViewItemsInPantry from './pages/ViewItemsInPantry'
 import ViewOneItem from './pages/ViewOneItem'
 
@@ -129,13 +128,14 @@ export default class App extends React.Component {
         {logged_in &&
           <div>
             <a href={sign_out_route}>Sign Out</a>
-            <UserFrame current_user= {user_id}/>
+            <Navbar 
+              logged_in = {logged_in}/>
           </div>
         }
         {!logged_in &&
           <div>
             <a href={sign_in_route}>Sign In</a>
-            <Frame/>
+            <Navbar logged_in = {logged_in}/>
           </div>
         }
      
