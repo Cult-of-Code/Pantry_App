@@ -13,6 +13,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import CreateNewStorage from './components/CreateNewStorage'
 import AddItemToStorage from './pages/AddItemToPantry'
 import CreateNewRecipePost from './components/CreateNewRecipePost'
+import UserPageSlot from './pages/UserPageSlot'
 //------------------------------------------
 //                Pages
 //------------------------------------------
@@ -46,6 +47,7 @@ export default function(props){
 return(
     
    <React.Fragment>
+   <UserPageSlot>
     {props.logged_in &&
     <Switch>
     
@@ -143,6 +145,7 @@ return(
      <Redirect push to="/users/sign_up" />
 
     }
+    </UserPageSlot>
     </React.Fragment>
 
    
