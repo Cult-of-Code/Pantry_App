@@ -14,10 +14,10 @@ class UserFrame extends Component{
             <NavbarBrand href="/">Pantry App</NavbarBrand>
                 <Nav className="ml-auto" navbar>
                     <NavItem>
-                      <NavLink href="">Get Recipes</NavLink>
+                      <NavLink href="/recipes">Get Recipes</NavLink>
                     </NavItem>
                     <NavItem>
-                      <NavLink href="">My Recipes</NavLink>
+                      <NavLink href="/users/posts">My Recipes</NavLink>
                     </NavItem>
                 </Nav>
         </Navbar>
@@ -27,10 +27,10 @@ class UserFrame extends Component{
             User Name 
           </ToastHeader>
           <ToastBody>
-            Welcome (insert user name)! Lets get cooking!
+            Welcome! Lets get cooking!
             <Nav vertical>
                 <NavItem>
-                  <NavLink href="#">Add Item to Pantry</NavLink>
+                  <NavLink href="/user">Go to Dashboard</NavLink>
                 </NavItem>
                 <NavbarText>
                  About to Expire
