@@ -281,7 +281,7 @@ function updatePantryItemToUser( updatedInfo, user_id ) {
 
 /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
 
-//                  updateRecipePostToUser
+//                  createRecipePostToUser
 
 /* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*//*
 
@@ -290,13 +290,13 @@ function updatePantryItemToUser( updatedInfo, user_id ) {
 *///
 
 function createRecipePostToUser( newItem ) {
-    
+    console.log(newItem)
     let output = { 
         results:  undefined,
         error:    'no error'
     }
     
-    return fetch(`${localhost}user_recipes`, 
+    fetch("/user_recipes", 
     { 
         body: JSON.stringify(newItem),
         headers: { 'Content-Type': 'application/json'},
