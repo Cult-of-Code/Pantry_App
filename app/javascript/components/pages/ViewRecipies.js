@@ -2,19 +2,33 @@ import React, { Component } from 'react';
 import Pantry from '../helpers/PantryAPI'
 import TheMealDB from '../helpers/TheMealDB'
 
-
-
-
-
-
-
-
-
-    Pantry.retrieve({ pack: 'items', id: 23 })
+export default class Recipies extends Component {
+    
+    constructor(){
+        super()
+        this.state= {}
+    }
+    
+    componentDidMount(){
+        
+        Pantry.retrieve({ pack: 'items', id: 107 })
         .then( ({ results }) => {
-            console.log([...results.pantry_items.map( item => item.name)])
-/*          return TheMealDB.searchByIngredients( [...results.pantry_items.map( item => item.name)]) */
-            return TheMealDB.searchByIngredients( ['Chicken', 'Basil'])
-        }).then( ( list ) => {
-          this.setState({ searchResults: list }) 
+            console.log( results.pantry_items )
+            return Pantry.getAvailableRecipes( results.pantry_items )
         })
+        .then( ({ results }) => {
+            this.setState({ searchResults: results }) 
+        })
+        
+        
+    }
+    
+    render(){
+
+        console.log(this.state.searchResults)
+        
+        return(
+            <h1>Test</h1>
+        )
+    }
+}
