@@ -4,7 +4,7 @@
 //          Nessessary Imports
 //------------------------------------------
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand, Nav, NavItem, NavLink, NavbarText, Toast, ToastBody, ToastHeader } from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink, NavbarText, Toast, ToastBody, ToastHeader, Row, Col } from 'reactstrap';
 
 
 //------------------------------------------
@@ -33,11 +33,11 @@ export default class Slot extends Component {
             <NavbarBrand href="/">Pantry App</NavbarBrand>
             <Nav className="ml-auto" navbar>
                     <NavItem>
-                      <NavLink href="">Get Recipes</NavLink>
+                      <NavLink href="/recipes">Get Recipes</NavLink>
                     </NavItem>
             {this.props.logged_in &&
                     <NavItem>
-                      <NavLink href="">My Recipes</NavLink>
+                      <NavLink href="/users/posts">My Recipes</NavLink>
                     </NavItem>
             }
             {!this.props.logged_in &&
@@ -47,17 +47,21 @@ export default class Slot extends Component {
             }
             </Nav>
             </Navbar>
+            <Row>
+            <Col>
             <div className="p-3 my-2 rounded bg-docs-transparent-grid">
+            
+            
             {this.props.logged_in &&
                 <Toast>
                   <ToastHeader>
                     User Name 
                   </ToastHeader>
                   <ToastBody>
-                    Welcome (insert user name)! Lets get cooking!
+                    Welcome! Lets get cooking!
                     <Nav vertical>
                         <NavItem>
-                          <NavLink href="#">Add Item to Pantry</NavLink>
+                          <NavLink href="/user">Go to Dashboard</NavLink>
                         </NavItem>
                         <NavbarText>
                          About to Expire
@@ -89,10 +93,15 @@ export default class Slot extends Component {
                   </ToastBody>
                 </Toast>
             }
+            
             </div>
+            </Col>
+            <Col>
             <div className="PageSlot">
-                {this.props.components}
+            {this.props.children}
             </div>
+            </Col>
+            </Row>
             </React.Fragment>
         )
     }
