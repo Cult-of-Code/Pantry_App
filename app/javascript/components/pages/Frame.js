@@ -21,26 +21,7 @@ class Frame extends Component{
                     </NavItem>
                 </Nav>
         </Navbar>
-           <div className="p-3 my-2 rounded bg-docs-transparent-grid">
-        <Toast>
-          <ToastHeader>
-             Create an account to:
-          </ToastHeader>
-          <ToastBody>
-            <Nav vertical>
-                <NavbarText>
-                 Get recipies based off what you have in your pantry
-                </NavbarText>
-                <NavbarText>
-                 Track items about to Expire
-                </NavbarText>
-                <NavbarText>
-                 See groceries you are running Low On
-                </NavbarText>
-            </Nav>
-          </ToastBody>
-        </Toast>
-      </div>
+           
         
       </React.Fragment>
     )
