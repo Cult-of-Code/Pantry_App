@@ -6,12 +6,17 @@
 
 //=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//=//
 
+import data from './_data/themealdb_data'
+
     //  access-control-allow-origin  :  CORS
 const   accessCORS  =   'https://cors-anywhere.herokuapp.com/'
 const   localhost   =   'https://369d7c08c6744cd4b13e4ae8a3e758ef.vfs.cloud9.us-west-2.amazonaws.com/' //'https://pantry-application.herokuapp.com/'
 
 const   themealdb_key = 9973533 //process.env.REACT_APP__THE_MEAL_DB__KEY
-console.log(themealdb_key)
+//console.log(themealdb_key)
+
+
+
 
 
 
@@ -76,6 +81,11 @@ console.log(themealdb_key)
 *///    `    `    `    `    `    `    `    `    `    `    `    `
 
 export default class TheMealDB {
+    
+    
+    static test = function(){
+        console.log(data)
+    }
     
     
     static search = function({ searchBy = "", searchTerm = "" }){
@@ -163,7 +173,7 @@ export default class TheMealDB {
     static searchByIngredients = function( ingredients, skipCheckIngr = false ){
         
         if (!skipCheckIngr){ ingredients = TheMealDB._splitIngredients( ingredients ) }
-        
+        return Promise.resolve([].concat(...data.map(v=>v.meals)))
         let queries = ingredients.map( si => TheMealDB._fetchDB( 
             TheMealDB.search({ searchBy:"ingredient", searchTerm:si }) 
         ))
@@ -176,6 +186,10 @@ export default class TheMealDB {
         
         // Get full meal details
         }).then( list => {
+            
+            
+            console.log(list)
+            
             
             return Promise.all(  list.map( sm => TheMealDB.getMealByID( sm.idMeal ) ) 
             ).then( meals => meals.filter(Boolean)) // remove all 'falsy' values  :  null )
@@ -257,10 +271,10 @@ export default class TheMealDB {
     /*  +    +    +    +    +    +    +    +    +    +    +    +  */
     
     static _fetchDB = function({ input, output }){
-        return fetch(`${accessCORS}https://www.themealdb.com/api/json/v2/${themealdb_key}/${input}`, 
-          { 
+        return fetch(`${accessCORS}https://www.themealdb.com/api/json/v2/${themealdb_key}/${input}`,
+        { 
             headers: { 'Content-Type': 'application/json' }
-          })
+        })
         .then((response)=>{
             if(response.status === 200)
             { return(response.json()) }
