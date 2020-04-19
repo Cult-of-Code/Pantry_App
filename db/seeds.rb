@@ -1098,6 +1098,7 @@ end
     rand(9).times do
         
         desc = ""
+        temp_ingredients = ingredients[0..-1]
         
         (rand(10) + 4).times do
             desc += desc_array[ rand(desc_array.length()) ]
@@ -1114,12 +1115,17 @@ end
 
         # max 20 ingredients
         (rand(18) + 3).times do
+        	
+        	rand_ingred_index = rand(temp_ingredients.length())
+        	
             User.last.user_recipes.last.ingredients.create!({
                 
-                :name => ingredients[ rand(ingredients.length()) ], 
+                :name => temp_ingredients[ rand_ingred_index ], 
                 :amount => rand(15) + 1,
                 :unit => units[ rand(units.length()) ]
             })
+            
+            temp_ingredients.delete_at(rand_ingred_index)
         end
         
         # max 20 instructions
