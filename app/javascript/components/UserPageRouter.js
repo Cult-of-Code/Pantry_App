@@ -66,7 +66,7 @@ return(
         { pages['dude'] && <Route path={match.url}>Dude</Route> }
         
         {/*   Test Route 2    */}
-        { pages['test'] && <Route path={match.url} render={ (props) => shoutSomething({...props,
+        { pages['test'] && <Route path={match.url} render={ (p) => shoutSomething({...p,
                 someProp:"a value"})
         }/>}
         
@@ -76,12 +76,12 @@ return(
         
         
         {/*   All User Items    */}       {/*  TODO:  Replace 'TestRoute' with 'Posts' component*/}
-        { pages['collection'] && <Route path={match.url} render={ (props) => <TestRoute {...props} 
+        { pages['collection'] && <Route path={match.url} render={ (p) => <TestRoute {...p} 
                   
         />}/>}
         
         {/*   Specific User Item    */}       {/*  TODO:  Replace 'TestRoute' with 'Posts' component*/}
-        { pages['collection'] && <Route path={`${match.url}/:id`} render={ (props) => <TestRoute {...props} 
+        { pages['collection'] && <Route path={`${match.url}/:id`} render={ (p) => <TestRoute {...p} 
                   
         />}/>}
         
@@ -94,17 +94,17 @@ return(
             <Switch>
             
                 {/*   Create    */}
-                <Route path={`${match.url}/create`} render={ (props) => <CreateNewStorage {...props} 
+                <Route path={`${match.url}/create`} render={ (p) => <CreateNewStorage {...p} 
                     submitForm={ props.handleSubmit } current_user={ props.current_user }
                 />}/>
                 
                 {/*   Edit    */}
-                <Route path={`${match.url}/:storage_name/edit`} render={ (props) => <AddItemToStorage {...props} 
+                <Route path={`${match.url}/:storage_name/edit`} render={ (p) => <AddItemToStorage {...p} 
                     submitForm={ props.handleSubmit } current_user={ props.current_user }
                 />}/>
                 
                 {/*   View     */}
-                <Route path={`${match.url}/:storage_name`} render={ (props) => <TestRoute {...props} 
+                <Route path={`${match.url}/:storage_name`} render={ (p) => <TestRoute {...p} 
                     
                 />}/>
                 
@@ -151,7 +151,7 @@ return(
         
         
         {/*   Recipes Available (List)    */}
-        { pages['recipes']  && <Route path={match.url} render={ (props) => <ViewRecipes {...props} 
+        { pages['recipes']  && <Route path={match.url} render={ (p) => <ViewRecipes {...p} 
                   current_user={ props.current_user }
         />}/>}
         

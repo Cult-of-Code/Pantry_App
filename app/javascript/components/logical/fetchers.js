@@ -128,7 +128,7 @@ function getItemsFromUserPantry( user_id ) {
     }
     
     
-    return fetch(`${localhost}pantry_items/${user_id}`, 
+    return fetch("/pantry_items", 
       { 
         headers: { 'Content-Type': 'application/json' },
         mode: 'no-cors'

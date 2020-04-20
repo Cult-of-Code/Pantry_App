@@ -85,7 +85,7 @@ export default class App extends React.Component {
       this.setState({ theMealDB: received.results }) 
     })
     
-    /*
+    
     // TEST USER
     getItemsFromUserPantry( )
     .then( (received) => {
@@ -93,23 +93,7 @@ export default class App extends React.Component {
     })
 
     
-    Pantry.retrieve({ pack: 'items', id: this.props.current_user.id })
-        .then( ({ results }) => {
-            this.state.pantry_items.push(results.pantry_items)
-        }).then( () => {
-            this.setState({routeToViewAllPantry: <Route path="/:user_id/pantry" exact render={ (props) => <ViewItemsInPantry {...props} 
-            user_id={ this.props.current_user.id }
-            items={ this.state.pantry_items }
-          />} />})
-            this.setState({routeToViewOnePantry: <Route path="/:user_id/pantry/:id" exact render={ (props) => <ViewOneItem {...props} 
-            user_id={ this.props.current_user.id }
-            items={ this.state.pantry_items }
-          />} />})
-        })
-    
-
-
->>>>>>> ba9a5a576eabaad022fd6cd82b8bc694a767cf9e
+  
   }
 
 
@@ -131,7 +115,7 @@ export default class App extends React.Component {
     //console.log(user_info)
     
     var user_id = 0
-
+ 
     if (current_user !== null){
       user_id = current_user.id
     } else {
@@ -143,23 +127,23 @@ export default class App extends React.Component {
     // console.log(current_user)
   
   
-    /*
     
-        {logged_in &&
-          <div>
-            <a href={sign_out_route}>Sign Out</a>
-            <Navbar 
-              logged_in = {logged_in}/>
-          </div>
-        }
-        {!logged_in &&
-          <div>
-            <a href={sign_in_route}>Sign In</a>
-            <Navbar logged_in = {logged_in}/>
-          </div>
-        }
     
-    */
+        // {logged_in &&
+        //   <div>
+        //     <a href={sign_out_route}>Sign Out</a>
+        //     <Navbar 
+        //       logged_in = {logged_in}/>
+        //   </div>
+        // }
+        // {!logged_in &&
+        //   <div>
+        //     <a href={sign_in_route}>Sign In</a>
+        //     <Navbar logged_in = {logged_in}/>
+        //   </div>
+        // }
+    
+    
   
   
 
