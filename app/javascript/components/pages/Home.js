@@ -46,7 +46,7 @@ export default class Home extends React.Component {
     //console.log(this.props)
 
     return (
-      <React.Fragment>
+      <div className="home">
       
         <h1>Welcome to THE Pantry App</h1>
         <br/>
@@ -55,7 +55,7 @@ export default class Home extends React.Component {
         </h2>
       
         
-      </React.Fragment>
+      </div>
     );
   }
 }
