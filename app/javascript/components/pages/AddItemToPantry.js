@@ -17,7 +17,9 @@ export default class AddItemToStorage extends Component{
             when_bought: '',
             exp_date: '',
             min_item: '',
-            max_item: ''
+            max_item: '',
+            user_id: ''
+            
           }
         }
     }
@@ -37,7 +39,7 @@ export default class AddItemToStorage extends Component{
     handleSubmit = (event) => {
         event.preventDefault()
         console.log(this.state.form)
-        addPantryItemToUser(this.state.form, this.props.current_user.id)
+        addPantryItemToUser(this.state.form)
         this.setState({ success: true })
     }
 

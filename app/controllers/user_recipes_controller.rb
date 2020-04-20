@@ -14,7 +14,7 @@ class UserRecipesController < ApplicationController
         UserRecipe.destroy(params[:id])
     end
     
-    def create
+    def create 
          userRecipe = UserRecipe.create(userRecipe_params)
         if userRecipe.valid?
         render json: userRecipe

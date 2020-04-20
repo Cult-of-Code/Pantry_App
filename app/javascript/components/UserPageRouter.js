@@ -100,7 +100,7 @@ return(
                 
                 {/*   Edit    */}
                 <Route path={`${match.url}/:storage_name/edit`} render={ (props) => <AddItemToStorage {...props} 
-                    
+                    submitForm={ props.handleSubmit } current_user={ props.current_user }
                 />}/>
                 
                 {/*   View     */}
