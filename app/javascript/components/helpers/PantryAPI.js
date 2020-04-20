@@ -7,7 +7,7 @@
 
 
 //const   accessCORS  =   'https://cors-anywhere.herokuapp.com/'
-const   localhost   =   'https://7742f0fa2a534226b6a53e03ed2dc239.vfs.cloud9.us-east-2.amazonaws.com/'//'https://pantry-application.herokuapp.com/'
+const   localhost   =   'https://pantry-application.herokuapp.com/'
 
 
 
