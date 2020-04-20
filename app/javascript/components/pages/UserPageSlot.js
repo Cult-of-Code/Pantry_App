@@ -47,7 +47,7 @@ export default class Slot extends Component {
     
     
     routeChange() {
-        let path = `/user`;
+        let path = `/user/collection`;
         this.props.history.push(path);
     }
     

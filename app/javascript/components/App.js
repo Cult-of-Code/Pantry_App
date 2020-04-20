@@ -51,7 +51,9 @@ export default class App extends React.Component {
     this.state = {
       recipePuppy: {},
       theMealDB: {},
-      usersPantryItems: []
+      usersPantryItems: [],
+      pantry_items: [],
+      user_recipes:[],
 
     }
     
