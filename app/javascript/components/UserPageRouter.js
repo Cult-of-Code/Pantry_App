@@ -15,7 +15,7 @@ import CreateNewStorage from './components/CreateNewStorage'
 import AddItemToStorage from './pages/AddItemToPantry'
 import CreateNewRecipePost from './components/CreateNewRecipePost'
 import UserPageSlot from './pages/UserPageSlot'
-
+import ViewUserRecipes from './pages/ViewUserRecipes'
 import ViewRecipes from './pages/ViewRecipes'
 
 
@@ -117,8 +117,8 @@ return(
         
         
         {/*   Posts   */}
-        { pages['posts'] && <Route path={match.url} render={ (props) => <TestRoute {...props} 
-                  
+        { pages['posts'] && <Route path={match.url} render={ (p) => <ViewUserRecipes {...p} 
+                user_recipes = {props.user_recipes}  
         />}/>}
         
         

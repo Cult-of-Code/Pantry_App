@@ -55,6 +55,7 @@ export default class App extends React.Component {
       theMealDB: {},
       usersPantryItems: [],
       pantry_items: [],
+      user_recipes:[],
       routeToViewAllPantry: null,
       routeToViewOnePantry: null
     }
@@ -184,6 +185,7 @@ export default class App extends React.Component {
                     handleSubmit={ addPantryItemToUser } 
                     current_user={ current_user }
                     logged_in={ logged_in }
+                    user_recipes = {this.state.user_recipes}
           />}/>
 
           
