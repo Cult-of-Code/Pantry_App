@@ -1,29 +1,33 @@
 
 
-//------------------------------------------
-//          Nessessary Imports
-//------------------------------------------
+//::::::::::::::::::::::::::::::::::::::::::
+//             React Imports
+//::::::::::::::::::::::::::::::::::::::::::
 import React, { Component } from 'react'
 //import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPantry } from '../logical/fetchers'
 
 
-//------------------------------------------
+
+//::::::::::::::::::::::::::::::::::::::::::
 //                Helpers
-//------------------------------------------
+//::::::::::::::::::::::::::::::::::::::::::
 import TheMealDB from '../helpers/TheMealDB'
 import Pantry from '../helpers/PantryAPI'
 
 
-//------------------------------------------
+
+//::::::::::::::::::::::::::::::::::::::::::
 //               Components
-//------------------------------------------
+//::::::::::::::::::::::::::::::::::::::::::
 import Notification from './user_notifications/notification'
 import RecipeSearchResultsDisplay from './recipe_search'
 
 
-//------------------------------------------
+
+//::::::::::::::::::::::::::::::::::::::::::
+
 //                 Class
-//------------------------------------------
+//__________________________________________
 export default class AustinsTest extends Component {
     
     constructor(){
