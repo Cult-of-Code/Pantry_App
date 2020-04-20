@@ -296,12 +296,12 @@ export default class Pantry{
                         // TODO : allow for spelling mistakes ^
                         
                     
-                    partEqual ? 
-                    console.log( "\n |~~~ "+ recipeIngr.match +" ~~~|"+
-                        "\n < " + lettersMatched + " > "+ "< " + longestLength + " > ") : false
+                    // partEqual ? 
+                    // console.log( "\n |~~~ "+ recipeIngr.match +" ~~~|"+
+                    //     "\n < " + lettersMatched + " > "+ "< " + longestLength + " > ") : false
                     
-                    partEqual ? 
-                    console.log(" < " + searchIngr + " >< " + sterilizedIngr + " > \n") : false
+                    // partEqual ? 
+                    // console.log(" < " + searchIngr + " >< " + sterilizedIngr + " > \n") : false
                     
                     
                     return partEqual
@@ -314,8 +314,8 @@ export default class Pantry{
             recipe.match = recipe.ingredients.reduce(
                 (total, ingr) => total + ingr.match, 0) / recipe.ingredients.length
             
-            console.log( " === "+ingredients.length+" ==="+
-                "\n < " + recipe.ingredients.length + " >< " + matchingIngredients + " > "  )
+            // console.log( " === "+ingredients.length+" ==="+
+            //     "\n < " + recipe.ingredients.length + " >< " + matchingIngredients + " > "  )
                 
             
             

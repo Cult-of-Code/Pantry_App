@@ -25,6 +25,8 @@ import ConnorsTest from './components/ConnorsTest'
 import { myTest, cool } from './logical/master'
 import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPantry } from './logical/fetchers'
 
+import PageSlot from './components/PageSlot'
+
 
 
 //------------------------------------------
@@ -32,11 +34,14 @@ import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPant
 //------------------------------------------
 import RecipieList from './pages/RecipieList'
 
-
 import Home from './pages/Home'
-import Navbar from './pages/Navbar'
+//import UserFrame from './pages/UserFrame'
+//import Frame from './pages/Frame'
 import ViewItemsInPantry from './pages/ViewItemsInPantry'
 import ViewOneItem from './pages/ViewOneItem'
+
+import ViewRecipes from './pages/ViewRecipes'
+
 
 //------------------------------------------
 //                 App
@@ -44,8 +49,6 @@ import ViewOneItem from './pages/ViewOneItem'
 export default class App extends React.Component {
   constructor(){
     super()
-    
-    //this.accessCORS = 'https://cors-anywhere.herokuapp.com/'
     
     this.state = {
       recipePuppy: {},
@@ -83,12 +86,13 @@ export default class App extends React.Component {
       this.setState({ theMealDB: received.results }) 
     })
     
+    /*
     // TEST USER
     getItemsFromUserPantry( 6 )
     .then( (received) => {
       this.setState({ usersPantryItems: received.results }) 
     })
-    
+    */
 
   }
 
@@ -107,6 +111,9 @@ export default class App extends React.Component {
       sign_out_route
     } = this.props
     
+    //const user_info = { ...this.props }
+    //console.log(user_info)
+    
     var user_id = 0
 
     if (current_user !== null){
@@ -119,12 +126,9 @@ export default class App extends React.Component {
     // console.log("current_user")
     // console.log(current_user)
   
-
-    return (
-      <React.Fragment>
-      
-        
-      
+  
+    /*
+    
         {logged_in &&
           <div>
             <a href={sign_out_route}>Sign Out</a>
@@ -138,8 +142,15 @@ export default class App extends React.Component {
             <Navbar logged_in = {logged_in}/>
           </div>
         }
-     
-     
+    
+    */
+  
+  
+
+    return (
+      <React.Fragment>
+      
+      <PageSlot { ...this.props } >
       
       <Router>
         <Switch>
@@ -186,29 +197,16 @@ export default class App extends React.Component {
           <Route path="/julia" exact render={ (props) => <JuliasTest {...props} />} />
           <Route path="/connor" exact render={ (props) => <ConnorsTest {...props} 
           current_user={ current_user }/>} />
-          
-          {this.state.routeToViewAllPantry}
-          {this.state.routeToViewOnePantry}
-          
-          
 
-          
-
-         
-        
-          
           
           
           
           
           {/*   Recipes Available (List)    */}
-          <Route path="/recipes" render={ (props) => <Home {...props} 
-                  
+          <Route path="/recipes" render={ (props) => <ViewRecipes {...props} 
+                  current_user={ current_user }
           />}/>
-          
-  
-          
-    
+
          
          
          
@@ -220,6 +218,7 @@ export default class App extends React.Component {
           
         </Switch>
       </Router>
+      </PageSlot>
       </React.Fragment>
     );
   }

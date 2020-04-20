@@ -1,23 +1,28 @@
 
 
-//------------------------------------------
+//::::::::::::::::::::::::::::::::::::::::::
 //          Nessessary Imports
-//------------------------------------------
+//::::::::::::::::::::::::::::::::::::::::::
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 
-//------------------------------------------
+
+//::::::::::::::::::::::::::::::::::::::::::
 //              Components
-//------------------------------------------
+//::::::::::::::::::::::::::::::::::::::::::
 import CreateNewStorage from './components/CreateNewStorage'
 import AddItemToStorage from './pages/AddItemToPantry'
 import CreateNewRecipePost from './components/CreateNewRecipePost'
 import UserPageSlot from './pages/UserPageSlot'
-//------------------------------------------
+
+
+
+//::::::::::::::::::::::::::::::::::::::::::
 //                Pages
-//------------------------------------------
+//::::::::::::::::::::::::::::::::::::::::::
 import TestRoute from './components/TestRoute'
+
 
 
 //::::::::::::::::::::::::::::::::::::::::::
@@ -29,7 +34,7 @@ export default function(props){
     const { match } = props
     const { params } = match
     
-    console.log(props)
+    //console.log(props)
     //console.log(match)
    
     let pages = {
@@ -146,11 +151,7 @@ return(
         
     </Switch>
     }
-    {!props.logged_in &&
-    
-     <Redirect push to="/users/sign_up" />
-
-    }
+    {!props.logged_in && <Redirect push to="/users/sign_up" />/* TODO : actually make it redirect*/}
     </UserPageSlot>
     </React.Fragment>
 
