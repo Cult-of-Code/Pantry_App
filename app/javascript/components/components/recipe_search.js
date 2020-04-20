@@ -1,4 +1,6 @@
 import React from 'react'
+import { Card, CardTitle, CardText, Col, Row, Container } from 'reactstrap';
+
 
 /*
     <div className="result">
@@ -34,7 +36,7 @@ return searchResults ? ( <div className="recipeSearch">
             
             
             {/*    Details Column    */}
-            <div style={{ display:'flex', flexFlow:'column' }}>
+            <div style={{ display:'flex', flexFlow:'column'}}>
                 <div>{recipe.origin}</div>
                 <div>{recipe.category}</div>
             </div>

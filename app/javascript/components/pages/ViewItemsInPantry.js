@@ -36,7 +36,7 @@ class ViewItemsInPantry extends Component {
         
         if (this.state.items === [] || this.state.items[0] === undefined) {
         return (
-            <h1>Loading</h1>
+            <div className= 'loading'/>
             )
 
     }else {
