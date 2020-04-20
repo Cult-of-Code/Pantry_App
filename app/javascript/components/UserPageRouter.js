@@ -18,7 +18,8 @@ import UserPageSlot from './pages/UserPageSlot'
 //                Pages
 //------------------------------------------
 import TestRoute from './components/TestRoute'
-
+import ViewItemsInPantry from './pages/ViewItemsInPantry'
+import ViewOneItem from './pages/ViewOneItem'
 
 //::::::::::::::::::::::::::::::::::::::::::
 
@@ -29,7 +30,7 @@ export default function(props){
     const { match } = props
     const { params } = match
     
-    console.log(props)
+    // console.log(props)
     //console.log(match)
    
     let pages = {
@@ -67,13 +68,13 @@ return(
         
         
         {/*   All User Items    */}       {/*  TODO:  Replace 'TestRoute' with 'Posts' component*/}
-        { pages['collection'] && <Route path={match.url} render={ (props) => <TestRoute {...props} 
-                  
+        { pages['collection'] && <Route path={match.url} render={ (props) => <ViewItemsInPantry {...props}
+            user_id={ props.current_user }
         />}/>}
         
         {/*   Specific User Item    */}       {/*  TODO:  Replace 'TestRoute' with 'Posts' component*/}
-        { pages['collection'] && <Route path={`${match.url}/:id`} render={ (props) => <TestRoute {...props} 
-                  
+        { pages['collection'] && <Route path={`${match.url}/:id`} render={ (props) => <ViewOneItem {...props}
+            user_id={ props.current_user }
         />}/>}
         
         

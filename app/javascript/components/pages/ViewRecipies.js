@@ -11,7 +11,7 @@ export default class Recipies extends Component {
     
     componentDidMount(){
         
-        Pantry.retrieve({ pack: 'items', id: 107 })
+        Pantry.retrieve({ pack: 'items', id: 23 })
         .then( ({ results }) => {
             console.log( results.pantry_items )
             return Pantry.getAvailableRecipes( results.pantry_items )

@@ -9,7 +9,7 @@ const ViewOneItem = (props) => {
     
         const { id } = props.match.params
         
-        var items = props.items[0]
+        var items = ''
         
         const pantry_item = items.find((item) => item.id === parseInt(id))
         
