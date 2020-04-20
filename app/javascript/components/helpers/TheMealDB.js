@@ -10,7 +10,7 @@ import data from './_data/themealdb_data'
 
     //  access-control-allow-origin  :  CORS
 const   accessCORS  =   'https://cors-anywhere.herokuapp.com/'
-const   localhost   =   'https://369d7c08c6744cd4b13e4ae8a3e758ef.vfs.cloud9.us-west-2.amazonaws.com/' //'https://pantry-application.herokuapp.com/'
+const   localhost   =   'https://48f5f1653b9d4eb4bfd5e77896cc3cc6.vfs.cloud9.us-east-2.amazonaws.com/' //'https://pantry-application.herokuapp.com/'
 
 const   themealdb_key = 9973533 //process.env.REACT_APP__THE_MEAL_DB__KEY
 //console.log(themealdb_key)
