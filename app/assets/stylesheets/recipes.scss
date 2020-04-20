@@ -1,0 +1,245 @@
+.dude{
+    .pep{
+        color: white;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* __________ Loading Text __________ */
+
+.loading::before{
+    content: "Loading...";
+    font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: white;
+    text-shadow: 0 0 1em rgba(24,7,37,1), 0 0 0.1em white;
+    font-size: 3em;
+    font-style: italic;
+}
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    
+    background: radial-gradient(circle, rgba(24,7,37,1) 0%, rgba(79,19,19,0) 50%, rgba(24,7,37,1) 100%);
+    animation: 3.5s ease-in-out 0s infinite alternate loading_background;
+}
+
+
+@mixin loading-background-colors {
+  0%   { background-color: #873737; }
+  25%  { background-color: #3e4f13; }
+  50%  { background-color: #734414; }
+  75%  { background-color: #731458; }
+  100% { background-color: #147356; }
+}
+
+
+@keyframes loading_background          { @include loading-background-colors }
+@-webkit-keyframes loading_background  { @include loading-background-colors }
+@-moz-keyframes loading_background     { @include loading-background-colors }
+@-o-keyframes loading_background       { @include loading-background-colors }
+
+
+
+
+
+
+
+
+
+
+/* __________ Recipe Search Results __________ */
+
+.recipeSearch{
+    width: 100%;
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-flow: column;
+    
+    padding: 1.25em 0em;
+    
+    
+    .result{
+        display: flex;
+        flex-direction: row;
+        flex-flow: row;
+        
+        box-sizing: border-box;
+        width: 50vw;
+        padding: 1em 2em;
+        
+        border-top: 0.75em ridge #17A0CC;
+        border-radius: 1em;
+        
+        background: #d5e2d5;
+        
+        
+        .image{
+            width: 4em;
+            height: 4em;
+            
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        
+        .name{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 1.15vw;
+            font-weight: bold;
+            color: #222154;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* __________ User __________ */
+
+.user{
+    width: 100%;
+    height: 100%;
+    
+    display: flex; 
+    flex-flow: row;
+    
+    overflow: hidden;
+    
+    
+    .sidePanel{
+        width: 33%;
+        
+        display: flex; 
+        flex-flow: column;
+        
+        background-color: #f0e4d6;
+        
+        box-sizing: border-box;
+        border: 1em ridge #17A0CC;
+        
+        
+        .image{
+            width: 11vw;
+            height: 11vw;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            
+            img{
+                width: 75%; 
+                height: 75%;
+                
+                border: 0.5vw outset #CCE0FF; 
+                border-radius: 0.2em;
+            }
+        }
+        
+        
+        .name{
+            width: 13vw; 
+            height: 11vw;
+            
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            
+            line-height: 90%;
+            
+            font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 1.15vw;
+            font-weight: bold;
+            color: rgb(100,100,100);
+            
+            padding-right: 1.1vw;
+            
+            
+            .username{
+                font-size: 1.25vw;
+                color: #222154;
+                font-style: italic;
+                
+                line-height: 300%;
+            }
+            .username::before{content: '"';}
+            .username::after {content: '"';}
+        }
+        
+        
+        .pantryLink{
+            padding: 1vw 0px;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            background-color: grey;
+            
+            background-image: linear-gradient(77deg, #636363 25%, #616161 25%, #616161 50%, #636363 50%, #636363 75%, #616161 75%, #616161 100%);
+            background-size: 41.05px 177.82px;
+            
+            font-size: 1.5vw;
+            color: white;
+            font-style: italic;
+            
+            cursor: pointer;
+        }
+        .pantryLink::before{
+            content:'Go to Pantry';
+        }
+        .pantryLink::after{
+            content:'→';
+            padding-left: 1em;
+        }
+    }
+    
+    
+    
+    .contentPanel{
+        width: 100%;
+        
+        display: flex;
+        flex-flow: column;
+        
+        box-sizing: border-box;
+        border: 1em ridge grey;
+        
+        overflow: scroll;
+        
+        background-color: rgb(40,40,40);
+    }
+    .contentPanel::-webkit-scrollbar {
+      display: none;
+    }
+}
+//border: 0.1em solid black;

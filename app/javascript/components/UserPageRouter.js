@@ -1,25 +1,32 @@
 
 
-//------------------------------------------
+//::::::::::::::::::::::::::::::::::::::::::
 //          Nessessary Imports
-//------------------------------------------
+//::::::::::::::::::::::::::::::::::::::::::
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 
-//------------------------------------------
+
+//::::::::::::::::::::::::::::::::::::::::::
 //              Components
-//------------------------------------------
+//::::::::::::::::::::::::::::::::::::::::::
 import CreateNewStorage from './components/CreateNewStorage'
 import AddItemToStorage from './pages/AddItemToPantry'
 import CreateNewRecipePost from './components/CreateNewRecipePost'
 import UserPageSlot from './pages/UserPageSlot'
-//------------------------------------------
+
+import ViewRecipes from './pages/ViewRecipes'
+
+
+
+//::::::::::::::::::::::::::::::::::::::::::
 //                Pages
-//------------------------------------------
+//::::::::::::::::::::::::::::::::::::::::::
 import TestRoute from './components/TestRoute'
 import ViewItemsInPantry from './pages/ViewItemsInPantry'
 import ViewOneItem from './pages/ViewOneItem'
+
 
 //::::::::::::::::::::::::::::::::::::::::::
 
@@ -30,7 +37,11 @@ export default function(props){
     const { match } = props
     const { params } = match
     
+<<<<<<< HEAD
     // console.log(props)
+=======
+    //console.log(props)
+>>>>>>> ba9a5a576eabaad022fd6cd82b8bc694a767cf9e
     //console.log(match)
    
     let pages = {
@@ -42,13 +53,15 @@ export default function(props){
                     "container":   params.page ? params.page.startsWith('container') : false,
                     
                     "posts":       params.page === 'posts',
-                    "post":        params.page === 'post'
+                    "post":        params.page === 'post',
+                    
+                    "recipes":     params.page === 'recipes'
                 }
     
 return(
     
    <React.Fragment>
-   <UserPageSlot>
+   <UserPageSlot { ...props }>
     {props.logged_in &&
     <Switch>
     
@@ -142,16 +155,26 @@ return(
         
         
         
-        {/*   Default    */}
-        <Route>User Dashboard - Container list</Route>
+        {/*   Recipes Available (List)    */}
+        { pages['recipes']  && <Route path={match.url} render={ (props) => <ViewRecipes {...props} 
+                  current_user={ props.current_user }
+        />}/>}
+        
+        
+        
+        
+        {/*   ~   Default   ~   */}
+        
+        {/*   User Dashboard - Container list   */}
+        <Route render={ (p) => <TestRoute {...p} 
+            current_user={ props.current_user } 
+        />}/>
+        
+        
         
     </Switch>
     }
-    {!props.logged_in &&
-    
-     <Redirect push to="/users/sign_up" />
-
-    }
+    {!props.logged_in && <Redirect push to="/users/sign_up" />/* TODO : actually make it redirect*/}
     </UserPageSlot>
     </React.Fragment>
 
