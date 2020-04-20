@@ -51,11 +51,8 @@ export default class App extends React.Component {
     this.state = {
       recipePuppy: {},
       theMealDB: {},
-      usersPantryItems: [],
-      pantry_items: [],
-      user_recipes:[],
-      routeToViewAllPantry: null,
-      routeToViewOnePantry: null
+      usersPantryItems: []
+
     }
     
     
@@ -197,6 +194,7 @@ export default class App extends React.Component {
           <Route path="/julia" exact render={ (props) => <JuliasTest {...props} />} />
           <Route path="/connor" exact render={ (props) => <ConnorsTest {...props} 
           current_user={ current_user }/>} />
+
 
           
          

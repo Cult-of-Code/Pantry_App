@@ -24,7 +24,8 @@ import ViewRecipes from './pages/ViewRecipes'
 //                Pages
 //::::::::::::::::::::::::::::::::::::::::::
 import TestRoute from './components/TestRoute'
-
+import ViewItemsInPantry from './pages/ViewItemsInPantry'
+import ViewOneItem from './pages/ViewOneItem'
 
 
 //::::::::::::::::::::::::::::::::::::::::::
@@ -36,6 +37,7 @@ export default function(props){
     const { match } = props
     const { params } = match
     
+
     //console.log(props)
     //console.log(match)
    
@@ -76,13 +78,14 @@ return(
         
         
         {/*   All User Items    */}       {/*  TODO:  Replace 'TestRoute' with 'Posts' component*/}
-        { pages['collection'] && <Route path={match.url} render={ (p) => <TestRoute {...p} 
-                  
+        { pages['collection'] && <Route exact path={match.url} render={ (p) => <ViewItemsInPantry {...p}
+            user_id={ props.current_user }
         />}/>}
         
         {/*   Specific User Item    */}       {/*  TODO:  Replace 'TestRoute' with 'Posts' component*/}
-        { pages['collection'] && <Route path={`${match.url}/:id`} render={ (p) => <TestRoute {...p} 
-                  
+        { pages['collection'] && <Route path={`${match.url}/:id`} render={ (p) => <ViewOneItem {...p}
+            user_id={ props.current_user }
+
         />}/>}
         
         

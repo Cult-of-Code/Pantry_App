@@ -17,7 +17,7 @@ export default class ConnorsTest extends Component {
         Pantry.retrieve({ pack: 'items', id: this.props.current_user.id })
         .then( ({ results }) => {
             console.log( results.pantry_items )
-            return Pantry.getAvailableRecipes( ["Chicken","Basil"] )
+            return Pantry.getAvailableRecipes( results.pantry_items )
         })
         .then( ({ results }) => {
             this.setState({ searchResults: results }) 
@@ -27,6 +27,7 @@ export default class ConnorsTest extends Component {
     }
     
     render(){
+        console.log (this.state.searchResults)
 
         if (this.state.searchResults === null){
             return (
