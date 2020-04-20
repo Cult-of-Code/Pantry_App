@@ -18,7 +18,7 @@ export default class AddItemToStorage extends Component{
             exp_date: '',
             min_item: '',
             max_item: '',
-            user_id: this.props.current_user.id
+            user_id: ''
             
           }
         }

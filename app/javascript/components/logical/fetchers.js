@@ -168,7 +168,7 @@ function addPantryItemToUser(newItem) {
         error:    'no error'
     }
     
-    fetch("/user_recipes", 
+    fetch("/pantry_items", 
     { 
         body: JSON.stringify({ pantryItem: newItem }),
         headers: { 'Content-Type': 'application/json'},
@@ -180,7 +180,7 @@ function addPantryItemToUser(newItem) {
     .then((response)=>{
         console.log(response)
         if(response.ok)
-        { return getItemsFromUserPantry() }
+        { return response }
     })
     .catch((error) => output.error = error )
     

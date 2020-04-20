@@ -13,7 +13,7 @@ export default class ViewRecipes extends Component {
     
     componentDidMount(){
         
-        Pantry.retrieve({ pack: 'items', id: 150 })
+        Pantry.retrieve({ pack: 'items', id: 32 })
         .then( ({ results }) => {
             return Pantry.getAvailableRecipes( results.pantry_items )
         })
