@@ -146,6 +146,40 @@ function getItemsFromUserPantry( user_id ) {
 }
   
 
+/* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*/
+
+//                getItemsFromUserRecipe
+
+/* = - = - = - = - = - = - = - = - = - = - = - = - = - = - = -*//*
+
+*///
+
+
+function getItemsFromUserRecipe( user_id ) {
+    
+    
+    let output = { 
+        results:  undefined,
+        error:    'no error'
+    }
+    
+    
+    return fetch("/user_recipe", 
+      { 
+        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors'
+      })
+    .then((response)=>{
+        if(response.status === 200)
+        { return(response.json()) }
+    })
+    .then((resultsJSON)=>{
+        output.results = resultsJSON
+        return output
+    })
+    .catch((error) => output.error = error )
+
+}
 
 
 
@@ -323,6 +357,7 @@ export {
             getRecipePuppy,
             getTheMealDB,
             getItemsFromUserPantry,
+            getItemsFromUserRecipe,
             addPantryItemToUser,
             deletePantryItemFromUser,
             updatePantryItemToUser,
