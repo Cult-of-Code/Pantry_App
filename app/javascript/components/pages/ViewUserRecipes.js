@@ -9,7 +9,7 @@ class ViewUserRecipes extends Component {
          return (
                 <React.Fragment>
                 <Row>
-                    <Col> <h1> My Recipes</h1></Col>
+                    <Col> <h1 style= {{color: "#717574"}}> My Recipes</h1></Col>
                     <Col><Button href= "/user/post/create" >Add New Recipe</Button></Col>
                  </Row>
       

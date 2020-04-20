@@ -7,12 +7,6 @@
 
 
 
-
-
-
-
-
-
 /* __________ Loading Text __________ */
 
 .loading::before{
@@ -236,7 +230,7 @@
         
         overflow: scroll;
         
-        background-color: rgb(255, 212, 128);
+        background-color: #f0e4d6;
     }
     .contentPanel::-webkit-scrollbar {
       display: none;
