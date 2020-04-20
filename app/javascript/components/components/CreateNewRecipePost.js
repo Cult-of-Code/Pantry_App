@@ -74,8 +74,8 @@ export default class CreateNewRecipePost extends Component{
             <Button name="submit" id="submit" onClick={ this.handleSubmit }>
               Add New Recipe 
             </Button>
-            { this.state.success && <Redirect to="/"/> }
-              <Button id="home" href= "/" >Home</Button>
+            { this.state.success && <Redirect to="/user/posts"/> }
+              
         </Form>
       </React.Fragment>
     )

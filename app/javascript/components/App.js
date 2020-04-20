@@ -21,7 +21,7 @@ import ConnorsTest from './components/ConnorsTest'
 //              Components
 //------------------------------------------
 import { myTest, cool } from './logical/master'
-import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPantry } from './logical/fetchers'
+import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPantry, getUserRecipe } from './logical/fetchers'
 
 import PageSlot from './components/PageSlot'
 
@@ -37,7 +37,7 @@ import Home from './pages/Home'
 //import Frame from './pages/Frame'
 import ViewItemsInPantry from './pages/ViewItemsInPantry'
 import ViewOneItem from './pages/ViewOneItem'
-
+import ViewUserRecipes from './pages/ViewUserRecipes'
 import ViewRecipes from './pages/ViewRecipes'
 
 
@@ -80,6 +80,10 @@ export default class App extends React.Component {
       this.setState({ theMealDB: received.results }) 
     })
     
+    getUserRecipe()
+    .then( (received) => {
+      this.setState({ user_recipes: received.results }) 
+    })
     
     // TEST USER
     getItemsFromUserPantry( 6 )

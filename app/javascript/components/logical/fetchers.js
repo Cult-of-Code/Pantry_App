@@ -155,7 +155,7 @@ function getItemsFromUserPantry( user_id ) {
 *///
 
 
-function getItemsFromUserRecipe( user_id ) {
+function getUserRecipe(  ) {
     
     
     let output = { 
@@ -164,7 +164,7 @@ function getItemsFromUserRecipe( user_id ) {
     }
     
     
-    return fetch("/user_recipe", 
+    return fetch("/user_recipes", 
       { 
         headers: { 'Content-Type': 'application/json' },
         mode: 'no-cors'
@@ -342,7 +342,7 @@ function createRecipePostToUser( newItem ) {
     .then((response)=>{
         console.log(response)
         if(response.ok)
-        { return getItemsFromUserPantry() }
+        { return getUserRecipe() }
     })
     .catch((error) => output.error = error )
     
@@ -357,7 +357,7 @@ export {
             getRecipePuppy,
             getTheMealDB,
             getItemsFromUserPantry,
-            getItemsFromUserRecipe,
+            getUserRecipe,
             addPantryItemToUser,
             deletePantryItemFromUser,
             updatePantryItemToUser,
