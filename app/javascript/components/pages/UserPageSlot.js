@@ -1,41 +1,120 @@
 
 
-//------------------------------------------
-//          Nessessary Imports
-//------------------------------------------
+//::::::::::::::::::::::::::::::::::::::::::
+//           Nessessary Imports
+//::::::::::::::::::::::::::::::::::::::::::
 import React, { Component } from 'react';
-import { Nav, NavItem, NavLink, NavbarText, Toast, ToastBody, ToastHeader, Row, Col, Alert } from 'reactstrap';
+import { withRouter } from 'react-router-dom';
 
 
-//------------------------------------------
-//              Components
-//------------------------------------------
 
+//::::::::::::::::::::::::::::::::::::::::::
 
-//------------------------------------------
-//                Pages
-//------------------------------------------
-
-
-//------------------------------------------
-//                 Class
-//------------------------------------------
+//            User Page Slot
+//__________________________________________
 export default class Slot extends Component {
     constructor(props){
         super(props)
-        this.state = {
+
+        this.state = {}
+
+        this.routeChange = this.routeChange.bind(this);
+    }
+    
+    
+    
+    componentDidMount(){
+        if( this.props.current_user ){
+            this.setState({
+                username:   this.props.current_user.username,
+                name_first: this.props.current_user.name_first,
+                name_last:  this.props.current_user.name_last,
+                email:      this.props.current_user.email
+            })
+        }
+        else{
+            this.setState({
+                username:   '...',
+                name_first: '',
+                name_last:  '',
+                email:      ''
+            })
         }
     }
+    
+    
+    
+    
+    
+    routeChange() {
+        let path = `/`;
+        this.props.history.push(path);
+    }
+    
+    
+    
+    
     render(){
-       return(
-            <React.Fragment>
-            <Row>
+    return(<div className='user'>
+    
+        <div className='sidePanel'>
+        
+        
+        
+            {/*    First Row    */}
+            <div style={{ display:'flex', flexFlow:'row' }}>
+            
+                <div className='image'>
+                  <img src={'https://upload.wikimedia.org/wikipedia/commons/c/c6/Sierpinski_square.jpg'} alt="profile picture"/>
+                </div>
+                
+                <div className='name'>
+                    <div className='username'>{this.state.username}</div>
+                    {this.state.name_first} {this.state.name_last}
+                </div>
+                
+            </div>
+            
+            
+            
+            {/*    Second Row    */}
+            <div style={{ display:'flex', flexFlow:'column' }}>
+                <div className='pantryLink'onClick={this.routeChange}/>
+            </div>
+        
+        
+        
+        </div>
+        
+        
+        
+        
+        
+        {/*    User Content Panel    */}
+        <div className='contentPanel'>
+            {
+                this.props.children ? this.props.children
+                : <div className="loading"/>
+            }
+        </div>
+        
+    </div>)}
+
+}
+
+
+
+
+
+//  - - -  OLD  - - - 
+/*
+<Row>
                 <Col>
                 <div className="p-3 my-2 rounded bg-docs-transparent-grid">
                 {this.props.logged_in &&
                     <Toast>
                       <ToastHeader>
-                        User Name 
+                        User Name  
                       </ToastHeader>
                       <ToastBody>
                         Welcome! Lets get cooking!
@@ -68,8 +147,4 @@ export default class Slot extends Component {
                 </div>
                 </Col>
             </Row>
-            </React.Fragment>
-        )
-    }
-
-}
+*/

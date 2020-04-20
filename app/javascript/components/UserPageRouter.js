@@ -16,6 +16,8 @@ import AddItemToStorage from './pages/AddItemToPantry'
 import CreateNewRecipePost from './components/CreateNewRecipePost'
 import UserPageSlot from './pages/UserPageSlot'
 
+import ViewRecipes from './pages/ViewRecipes'
+
 
 
 //::::::::::::::::::::::::::::::::::::::::::
@@ -46,13 +48,15 @@ export default function(props){
                     "container":   params.page ? params.page.startsWith('container') : false,
                     
                     "posts":       params.page === 'posts',
-                    "post":        params.page === 'post'
+                    "post":        params.page === 'post',
+                    
+                    "recipes":     params.page === 'recipes'
                 }
     
 return(
     
    <React.Fragment>
-   <UserPageSlot>
+   <UserPageSlot { ...props }>
     {props.logged_in &&
     <Switch>
     
@@ -146,8 +150,22 @@ return(
         
         
         
-        {/*   Default    */}
-        <Route>User Dashboard - Container list</Route>
+        {/*   Recipes Available (List)    */}
+        { pages['recipes']  && <Route path={match.url} render={ (props) => <ViewRecipes {...props} 
+                  current_user={ props.current_user }
+        />}/>}
+        
+        
+        
+        
+        {/*   ~   Default   ~   */}
+        
+        {/*   User Dashboard - Container list   */}
+        <Route render={ (p) => <TestRoute {...p} 
+            current_user={ props.current_user } 
+        />}/>
+        
+        
         
     </Switch>
     }

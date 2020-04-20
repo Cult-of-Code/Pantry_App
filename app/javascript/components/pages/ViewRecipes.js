@@ -24,7 +24,5 @@ export default class ViewRecipes extends Component {
     }
     
     // this.state.searchResults
-    render(){
-    return(<RecipeSearchResultsDisplay searchResults={undefined} />)
-    }
+    render(){return(<RecipeSearchResultsDisplay searchResults={this.state.searchResults} />)}
 }

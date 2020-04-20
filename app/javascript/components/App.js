@@ -47,8 +47,8 @@ import ViewRecipes from './pages/ViewRecipes'
 //                 App
 //------------------------------------------
 export default class App extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     
     this.state = {
       recipePuppy: {},
@@ -58,8 +58,6 @@ export default class App extends React.Component {
       routeToViewAllPantry: null,
       routeToViewOnePantry: null
     }
-    
-    
     
     
     //        "tests"
@@ -177,7 +175,8 @@ export default class App extends React.Component {
           {/*   User Dashboard    */}
 
           <Route path="/user" exact render={ (props) => <UserPageRouter {...props}
-                    dude={4} logged_in={ logged_in }
+                    current_user={ current_user } 
+                    logged_in={ logged_in }
           />}/>
           
           {/*   User Pages    */}
@@ -199,15 +198,6 @@ export default class App extends React.Component {
           current_user={ current_user }/>} />
 
           
-          
-          
-          
-          {/*   Recipes Available (List)    */}
-          <Route path="/recipes" render={ (props) => <ViewRecipes {...props} 
-                  current_user={ current_user }
-          />}/>
-
-         
          
          
           {/*   Home Page    */}
