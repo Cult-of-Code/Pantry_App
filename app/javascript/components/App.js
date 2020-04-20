@@ -25,6 +25,8 @@ import ConnorsTest from './components/ConnorsTest'
 import { myTest, cool } from './logical/master'
 import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPantry } from './logical/fetchers'
 
+import PageSlot from './components/PageSlot'
+
 
 
 //------------------------------------------
@@ -32,21 +34,21 @@ import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPant
 //------------------------------------------
 import RecipieList from './pages/RecipieList'
 
-
 import Home from './pages/Home'
-import UserFrame from './pages/UserFrame'
-import Frame from './pages/Frame'
+//import UserFrame from './pages/UserFrame'
+//import Frame from './pages/Frame'
 import ViewItemsInPantry from './pages/ViewItemsInPantry'
 import ViewOneItem from './pages/ViewOneItem'
+
+import ViewRecipes from './pages/ViewRecipes'
+
 
 //------------------------------------------
 //                 App
 //------------------------------------------
 export default class App extends React.Component {
-  constructor(){
-    super()
-    
-    //this.accessCORS = 'https://cors-anywhere.herokuapp.com/'
+  constructor(props){
+    super(props)
     
     this.state = {
       recipePuppy: {},
@@ -56,8 +58,6 @@ export default class App extends React.Component {
       routeToViewAllPantry: null,
       routeToViewOnePantry: null
     }
-    
-    
     
     
     //        "tests"
@@ -84,26 +84,31 @@ export default class App extends React.Component {
       this.setState({ theMealDB: received.results }) 
     })
     
+    /*
     // TEST USER
     getItemsFromUserPantry( )
     .then( (received) => {
       this.setState({ usersPantryItems: received.results }) 
     })
+
     
-    // Pantry.retrieve({ pack: 'items', id: this.props.current_user.id })
-    //     .then( ({ results }) => {
-    //         this.state.pantry_items.push(results.pantry_items)
-    //     }).then( () => {
-    //         this.setState({routeToViewAllPantry: <Route path="/:user_id/pantry" exact render={ (props) => <ViewItemsInPantry {...props} 
-    //         user_id={ this.props.current_user.id }
-    //         items={ this.state.pantry_items }
-    //       />} />})
-    //         this.setState({routeToViewOnePantry: <Route path="/:user_id/pantry/:id" exact render={ (props) => <ViewOneItem {...props} 
-    //         user_id={ this.props.current_user.id }
-    //         items={ this.state.pantry_items }
-    //       />} />})
-    //     })
+    Pantry.retrieve({ pack: 'items', id: this.props.current_user.id })
+        .then( ({ results }) => {
+            this.state.pantry_items.push(results.pantry_items)
+        }).then( () => {
+            this.setState({routeToViewAllPantry: <Route path="/:user_id/pantry" exact render={ (props) => <ViewItemsInPantry {...props} 
+            user_id={ this.props.current_user.id }
+            items={ this.state.pantry_items }
+          />} />})
+            this.setState({routeToViewOnePantry: <Route path="/:user_id/pantry/:id" exact render={ (props) => <ViewOneItem {...props} 
+            user_id={ this.props.current_user.id }
+            items={ this.state.pantry_items }
+          />} />})
+        })
     
+
+
+>>>>>>> ba9a5a576eabaad022fd6cd82b8bc694a767cf9e
   }
 
 
@@ -121,6 +126,9 @@ export default class App extends React.Component {
       sign_out_route
     } = this.props
     
+    //const user_info = { ...this.props }
+    //console.log(user_info)
+    
     var user_id = 0
 
     if (current_user !== null){
@@ -133,26 +141,31 @@ export default class App extends React.Component {
     // console.log("current_user")
     // console.log(current_user)
   
-
-    return (
-      <React.Fragment>
-      
-        
-      
+  
+    /*
+    
         {logged_in &&
           <div>
             <a href={sign_out_route}>Sign Out</a>
-            <UserFrame current_user= {user_id}/>
+            <Navbar 
+              logged_in = {logged_in}/>
           </div>
         }
         {!logged_in &&
           <div>
             <a href={sign_in_route}>Sign In</a>
-            <Frame/>
+            <Navbar logged_in = {logged_in}/>
           </div>
         }
-     
-     
+    
+    */
+  
+  
+
+    return (
+      <React.Fragment>
+      
+      <PageSlot { ...this.props } >
       
       <Router>
         <Switch>
@@ -179,7 +192,8 @@ export default class App extends React.Component {
           {/*   User Dashboard    */}
 
           <Route path="/user" exact render={ (props) => <UserPageRouter {...props}
-                    dude={4} logged_in={ logged_in }
+                    current_user={ current_user } 
+                    logged_in={ logged_in }
           />}/>
           
           {/*   User Pages    */}
@@ -199,30 +213,8 @@ export default class App extends React.Component {
           <Route path="/julia" exact render={ (props) => <JuliasTest {...props} />} />
           <Route path="/connor" exact render={ (props) => <ConnorsTest {...props} 
           current_user={ current_user }/>} />
-          
-          {this.state.routeToViewAllPantry}
-          {this.state.routeToViewOnePantry}
-          
-          
 
           
-
-         
-        
-          
-          
-          
-          
-          
-          {/*   Recipes Available (List)    */}
-          <Route path="/recipes" render={ (props) => <Home {...props} 
-                  
-          />}/>
-          
-  
-          
-    
-         
          
          
           {/*   Home Page    */}
@@ -233,6 +225,7 @@ export default class App extends React.Component {
           
         </Switch>
       </Router>
+      </PageSlot>
       </React.Fragment>
     );
   }

@@ -7,7 +7,7 @@
 
 
 //const   accessCORS  =   'https://cors-anywhere.herokuapp.com/'
-const   localhost   =   'https://7742f0fa2a534226b6a53e03ed2dc239.vfs.cloud9.us-east-2.amazonaws.com/'//'https://pantry-application.herokuapp.com/'
+const   localhost   =   'https://369d7c08c6744cd4b13e4ae8a3e758ef.vfs.cloud9.us-west-2.amazonaws.com/'//'https://pantry-application.herokuapp.com/'
 
 
 
@@ -54,7 +54,9 @@ import TheMealDB from '../helpers/TheMealDB'
                 
                 thumbnail:      "",
                 source:         "",
-                video:          ""
+                video:          "",
+                
+                match:          0.0%
             }
             
     .   .   .   .   .   .   .   .   .   .   .   .   .   .
@@ -231,29 +233,98 @@ export default class Pantry{
     static _narrowDownSearch = function( ingredients, searchList ){
         
         return searchList.filter( recipe => {
-            // I want to see results were every recipe only includes ingredients from the list
-            /*
-                count the number of matches
-                if a recipe has more ingredients than the number of matches, throw out the recipe
+            
+            // recipe match %
+            recipe["match"] = 0.0
+            
+            // number of ingredients in a recipe that match our search terms
+            let matchingIngredients = recipe.ingredients.reduce( (runningTotal, recipeIngr) => {
                 
-                loop through the recipe's ingredients
-                every time I have some match, I add 1
-            */
-            
-            //          all ingredients cannot be more than what matches
-            return !(recipe.ingredients.length > recipe.ingredients.filter( ingr => {
-                return recipe.ingredients.some( ingr => 
-                    //ingr.toLowerCase().trim().includes(  )
-                    ingredients.indexOf(ingr.name.toLowerCase().trim()) < 0 ? false : true
+                // ingredient match %
+                recipeIngr["match"] = 0.0
+                let sterilizedIngr = recipeIngr.name.toLowerCase().trim() 
+                
+                
+                
+                // see if parts of your search words match ingredient names in a recipe
+                return runningTotal += ingredients.some( searchIngr => {
                     
-                    // TODO
-                    /*      Test if most of the characters in your words match well enough ( 75%? ),
-                            ( instead of strict comparison, as above )
-                    */
-                )
-            }).length)
+                    
+                    let lettersMatched = 0
+                    
+                    // set the bigger of the two strings 
+                    // to the variable 'A' as an array 
+                    let [A,B] = [ sterilizedIngr, searchIngr ]
+                    if ( B.length > A.length ){ [A,B]=[B,A] } //swap
+                    [A,B] = [ A.split(''), B.split('') ]
+                    
+                    
+                    // get the number of letters that match
+                    // between our search term and an ingredient's name
+                    lettersMatched += A.reduce( (total,letter) => {
+                        
+                        let indX = B.indexOf(letter)
+                        
+                        if (!(indX < 0)){
+                            total += 1
+                            B.splice(indX, 1)
+                        }
+                        
+                        return total
+                    },0)
+                    
+                    
+                    
+                    // set the bigger of the two strings to the variable 'A'
+                    let longestLength = searchIngr.length > sterilizedIngr.length ?
+                    searchIngr.length : sterilizedIngr.length
+                    
+                    // get % match 
+                    // for the all the letters in the search term and the ingredient name inside a recipe
+                    lettersMatched < longestLength ?
+                    recipeIngr.match = lettersMatched / longestLength
+                    :
+                    recipeIngr.match = longestLength / lettersMatched
+                    
+                    
+                    
+                    
+                    // return true if one word in the ingredient search term
+                    // matches part of the ingredient name in a recipe
+                    let partEqual = searchIngr.split(' ').some( 
+                        word => { return sterilizedIngr.includes(word) })
+                        // TODO : allow for spelling mistakes ^
+                        
+                    
+                    // partEqual ? 
+                    // console.log( "\n |~~~ "+ recipeIngr.match +" ~~~|"+
+                    //     "\n < " + lettersMatched + " > "+ "< " + longestLength + " > ") : false
+                    
+                    // partEqual ? 
+                    // console.log(" < " + searchIngr + " >< " + sterilizedIngr + " > \n") : false
+                    
+                    
+                    return partEqual
+                    
+                }) ? 1 : 0
+            }, 0)
             
-        })
+            
+            // average of matching ingredients for this recipe
+            recipe.match = recipe.ingredients.reduce(
+                (total, ingr) => total + ingr.match, 0) / recipe.ingredients.length
+            
+            // console.log( " === "+ingredients.length+" ==="+
+            //     "\n < " + recipe.ingredients.length + " >< " + matchingIngredients + " > "  )
+                
+            
+            
+            // if all ingredients in recipe use only items inside the user's pantry
+            return matchingIngredients === recipe.ingredients.length
+        
+        
+        // put the best matches toward the top of the list
+        }).sort((a, b) => b.match - a.match);
     }
     
     

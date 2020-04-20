@@ -125,7 +125,7 @@ names = [
 
 
 
-ingredients = [
+ingredients = [    #552
 	"Chicken",
 	"Salmon",
 	"Beef",
@@ -1068,15 +1068,18 @@ end
     
     
     # =>    Pantry Items
-    # up to 100 items, minimum 20
-    (rand(81) + 20).times do
+    temp_ingredients = ingredients[0..-1]
+    # up to 500 items, minimum 50
+    (rand(451) + 50).times do
         
         day = random_date()
         min = rand(5) + 1
         
+        rand_ingred_index = rand(temp_ingredients.length())
+        
         User.last.pantry_items.create!({ 
             
-            :name => ingredients[ rand(ingredients.length()) ],
+            :name => temp_ingredients[ rand_ingred_index ],
             :quantity => rand(20) + 1,
             :units => units[ rand(units.length()) ],
             :storage_bin => storage[ rand(storage.length()) ],
@@ -1085,6 +1088,8 @@ end
             :min_item => min,
             :max_item => min + rand(12) + (rand(3) + 1)
         })
+        
+        temp_ingredients.delete_at(rand_ingred_index)
     end
     
     
@@ -1093,6 +1098,7 @@ end
     rand(9).times do
         
         desc = ""
+        temp_ingredients = ingredients[0..-1]
         
         (rand(10) + 4).times do
             desc += desc_array[ rand(desc_array.length()) ]
@@ -1109,12 +1115,17 @@ end
 
         # max 20 ingredients
         (rand(18) + 3).times do
+        	
+        	rand_ingred_index = rand(temp_ingredients.length())
+        	
             User.last.user_recipes.last.ingredients.create!({
                 
-                :name => ingredients[ rand(ingredients.length()) ], 
+                :name => temp_ingredients[ rand_ingred_index ], 
                 :amount => rand(15) + 1,
                 :unit => units[ rand(units.length()) ]
             })
+            
+            temp_ingredients.delete_at(rand_ingred_index)
         end
         
         # max 20 instructions
