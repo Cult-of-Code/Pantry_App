@@ -161,18 +161,18 @@ function getItemsFromUserPantry( user_id ) {
 *///    `    `    `    `    `    `    `    `    `    `    `    `
 
 
-function addPantryItemToUser( newItem, user_id ) {
+function addPantryItemToUser(newItem) {
     
     let output = { 
         results:  undefined,
         error:    'no error'
     }
     
-    return fetch(`${localhost}pantry_items/${user_id}`, 
+    fetch("/user_recipes", 
     { 
-        body: JSON.stringify(newItem),
+        body: JSON.stringify({ pantryItem: newItem }),
         headers: { 'Content-Type': 'application/json'},
-        mode: 'no-cors',
+       
         
         method: "POST"
         
@@ -297,10 +297,10 @@ function createRecipePostToUser( newItem ) {
     }
     
     fetch("/user_recipes", 
-    { 
-        body: JSON.stringify(newItem),
+    {   
+        body: JSON.stringify( {userRecipe: newItem} ),
         headers: { 'Content-Type': 'application/json'},
-        mode: 'no-cors',
+        
         
         method: "POST"
         
