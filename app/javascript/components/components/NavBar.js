@@ -12,19 +12,30 @@ return(
         <Nav className="ml-auto" navbar>
         
                 <NavItem>
-                  <NavLink href="/recipes">
+                  <NavLink href="/user/recipes">
                   <span style={{ color: rgb }}>Get Recipes</span>
                   </NavLink>
                 </NavItem>
                 
                 <NavItem>{props.logged_in ? 
-                  <NavLink href="/users/posts">
+                  <NavLink href="/user/posts">
                   <span style={{ color: rgb }}>My Recipes</span>
                   </NavLink>
                   :
                   <NavLink href="/users/sign_up">
                   <span style={{ color: rgb }}>Create an Account</span>
                   </NavLink>
+                }</NavItem>
+                  
+                  <NavItem>{!props.logged_in ?
+                  <NavLink href="/users/sign_in">
+                  <span style={{ color: rgb }}>Sign In</span>
+                  </NavLink>
+                  :
+                  <NavLink href="/users/sign_out">
+                  <span style={{ color: rgb }}>Sign out</span>
+                  </NavLink>
+                  
                 }</NavItem>
                 
         </Nav>

@@ -37,7 +37,7 @@ class ShakersTest extends Component {
             exp_date: '',
             min_item: '',
             max_item: '',
-            user_id: 2
+            user_id: this.props.current_user.id
           }
         }
     }
@@ -56,7 +56,7 @@ class ShakersTest extends Component {
         console.log("updating")
         console.log(this.state.form)
         console.log(JSON.stringify(this.state.form))
-        updatePantryItemToUser( this.state.form, id )
+        updatePantryItemToUser( this.state.form )
         console.log("This item was successfully updated!")
     }
     

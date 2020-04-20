@@ -1,5 +1,3 @@
-
-
 //------------------------------------------
 //          Nessessary Imports
 //------------------------------------------
@@ -53,7 +51,15 @@ export default class App extends React.Component {
     this.state = {
       recipePuppy: {},
       theMealDB: {},
+<<<<<<< HEAD
       usersPantryItems: []
+=======
+      usersPantryItems: [],
+      pantry_items: [],
+      user_recipes:[],
+      routeToViewAllPantry: null,
+      routeToViewOnePantry: null
+>>>>>>> 75b7110c821edc986138716360ca4c1e0b506b69
     }
     
     
@@ -81,13 +87,14 @@ export default class App extends React.Component {
       this.setState({ theMealDB: received.results }) 
     })
     
-    /*
+    
     // TEST USER
     getItemsFromUserPantry( 6 )
     .then( (received) => {
       this.setState({ usersPantryItems: received.results }) 
     })
-    */
+    
+
 
   }
 
@@ -110,7 +117,7 @@ export default class App extends React.Component {
     //console.log(user_info)
     
     var user_id = 0
-
+ 
     if (current_user !== null){
       user_id = current_user.id
     } else {
@@ -122,23 +129,23 @@ export default class App extends React.Component {
     // console.log(current_user)
   
   
-    /*
     
-        {logged_in &&
-          <div>
-            <a href={sign_out_route}>Sign Out</a>
-            <Navbar 
-              logged_in = {logged_in}/>
-          </div>
-        }
-        {!logged_in &&
-          <div>
-            <a href={sign_in_route}>Sign In</a>
-            <Navbar logged_in = {logged_in}/>
-          </div>
-        }
     
-    */
+        // {logged_in &&
+        //   <div>
+        //     <a href={sign_out_route}>Sign Out</a>
+        //     <Navbar 
+        //       logged_in = {logged_in}/>
+        //   </div>
+        // }
+        // {!logged_in &&
+        //   <div>
+        //     <a href={sign_in_route}>Sign In</a>
+        //     <Navbar logged_in = {logged_in}/>
+        //   </div>
+        // }
+    
+    
   
   
 
@@ -181,6 +188,7 @@ export default class App extends React.Component {
                     handleSubmit={ addPantryItemToUser } 
                     current_user={ current_user }
                     logged_in={ logged_in }
+                    user_recipes = {this.state.user_recipes}
           />}/>
 
           
