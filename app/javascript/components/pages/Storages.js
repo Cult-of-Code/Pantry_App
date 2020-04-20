@@ -20,7 +20,7 @@ const Storages = (props) => {
                                             <Col xs="3" sm="12" md={{ size: 2 }} style={{padding: '2px'}}>
                                                 <Container  >
                                                     <Card body key={ index }>
-                                                        <Link to = { `/${props.user_id}/pantry/${pantry_item.id}` }><CardTitle>{ pantry_item.name }</CardTitle> </Link>
+                                                        <Link to = { `/user/collection/${pantry_item.id}` }><CardTitle>{ pantry_item.name }</CardTitle> </Link>
                                                         <CardText>{ pantry_item.quantity } { pantry_item.units }</CardText>
                                                     </Card>
                                                 </Container>

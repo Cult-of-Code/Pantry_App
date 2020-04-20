@@ -1,15 +1,46 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Card, CardTitle, CardText, Col, Row, Container } from 'reactstrap';
 import { Redirect } from "react-router-dom"
 import Pantry from '../helpers/PantryAPI'
 import pantry_item from '../Data/mockData'
 
 
-const ViewOneItem = (props) => {
+class ViewOneItem extends Component {
+    constructor(){
+        super()
+        this.state= {
+            items: []
+        }
+    }
     
-        const { id } = props.match.params
+    items = []
+    
+    componentDidMount(){
         
-        var items = ''
+        Pantry.retrieve({ pack: 'items', id: this.props.user_id.id })
+        .then( ({ results }) => {
+            this.items.push (results.pantry_items)
+        }).then( ( ) => {
+            this.setState({ items: this.items }) 
+        })
+        
+    }
+    
+    
+    
+    
+    render(){
+        
+        if (this.state.items === [] || this.state.items[0] === undefined) {
+        return (
+            <h1>Loading</h1>
+            )
+
+    }else {
+        
+        var items = this.items[0]
+        
+        const { id } = this.props.match.params
         
         const pantry_item = items.find((item) => item.id === parseInt(id))
         
@@ -21,7 +52,7 @@ const ViewOneItem = (props) => {
         
         var max_item = undefined
         
-        console.log(props.items)
+        console.log(this.props.items)
         
         if (pantry_item.when_bought !== '' && pantry_item.when_bought !== undefined){
              when_bought = <CardText>{ pantry_item.when_bought } </CardText>
@@ -55,6 +86,8 @@ const ViewOneItem = (props) => {
                 </Col>
             </React.Fragment>
         )
+    }
+    }
 }
 
 export default ViewOneItem

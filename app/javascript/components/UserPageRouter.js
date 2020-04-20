@@ -78,12 +78,12 @@ return(
         
         
         {/*   All User Items    */}       {/*  TODO:  Replace 'TestRoute' with 'Posts' component*/}
-        { pages['collection'] && <Route path={match.url} render={ (props) => <ViewItemsInPantry {...props}
+        { pages['collection'] && <Route exact path={match.url} render={ (p) => <ViewItemsInPantry {...p}
             user_id={ props.current_user }
         />}/>}
         
         {/*   Specific User Item    */}       {/*  TODO:  Replace 'TestRoute' with 'Posts' component*/}
-        { pages['collection'] && <Route path={`${match.url}/:id`} render={ (props) => <ViewOneItem {...props}
+        { pages['collection'] && <Route path={`${match.url}/:id`} render={ (p) => <ViewOneItem {...p}
             user_id={ props.current_user }
 
         />}/>}
