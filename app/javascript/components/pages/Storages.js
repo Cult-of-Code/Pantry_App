@@ -17,9 +17,9 @@ const Storages = (props) => {
                                 { items.map((pantry_item, index) => {
                                     if (pantry_item.storage_bin === single_bin && pantry_item.user_id === props.user_id) {
                                         return(
-                                            <Col xs="3" sm="12" md={{ size: 2 }} style={{padding: '2px'}}>
+                                            <Col xs="3" sm="12" md={{ size: 2 }} style={{padding: '2px'}} key={ index }>
                                                 <Container  >
-                                                    <Card body key={ index }>
+                                                    <Card body >
                                                         <Link to = { `/user/collection/${pantry_item.id}` }><CardTitle>{ pantry_item.name }</CardTitle> </Link>
                                                         <CardText>{ pantry_item.quantity } { pantry_item.units }</CardText>
                                                     </Card>
