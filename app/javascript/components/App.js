@@ -1,5 +1,3 @@
-
-
 //------------------------------------------
 //          Nessessary Imports
 //------------------------------------------
@@ -87,13 +85,13 @@ export default class App extends React.Component {
     
     
     // TEST USER
-    getItemsFromUserPantry( )
+    getItemsFromUserPantry( 6 )
     .then( (received) => {
       this.setState({ usersPantryItems: received.results }) 
     })
+    */
 
-    
-  
+
   }
 
 
