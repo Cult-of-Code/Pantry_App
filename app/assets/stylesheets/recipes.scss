@@ -1,0 +1,77 @@
+.dude{
+    .pep{
+        color: white;
+    }
+}
+
+
+
+// Loading Text
+.loading::before{
+    content: "Loading...";
+    font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: white;
+    text-shadow: 0 0 1em rgba(24,7,37,1), 0 0 0.1em white;
+    font-size: 3em;
+    font-style: italic;
+}
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    
+    background: radial-gradient(circle, rgba(24,7,37,1) 0%, rgba(79,19,19,0) 50%, rgba(24,7,37,1) 100%);
+    animation: 3s ease-in-out 0s infinite alternate loading_background;
+}
+
+
+@mixin loading-background-colors {
+  0%   { background-color: rgba(79,19,19,1); }
+  25%  { background-color: #3e4f13; }
+  50%  { background-color: #734414; }
+  75%  { background-color: #731458; }
+  100% { background-color: #147356; }
+}
+
+
+@keyframes loading_background          { @include loading-background-colors }
+@-webkit-keyframes loading_background  { @include loading-background-colors }
+@-moz-keyframes loading_background     { @include loading-background-colors }
+@-o-keyframes loading_background       { @include loading-background-colors }
+
+
+
+
+
+
+
+
+// Recipe Search Results
+.recipeSearch{
+    display: flex;
+    flex-direction: column;
+    
+    padding: 1em 15em;
+    
+    width: 100%;
+    height: 100%;
+    
+    box-sizing: border-box;
+    
+    .result{
+        box-sizing: border-box;
+        width: 100%;
+        padding: 1em 2em;
+        
+        margin: 0.2em 0em;
+        
+        border-top: 0.75em ridge #17A0CC;
+        border-radius: 1em;
+        
+        background: #d5e2d5;
+    }
+}

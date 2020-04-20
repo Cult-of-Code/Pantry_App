@@ -6,6 +6,7 @@
 import React, { Component } from 'react'
 //import { getRecipePuppy, getTheMealDB, addPantryItemToUser, getItemsFromUserPantry } from '../logical/fetchers'
 
+
 //------------------------------------------
 //                Helpers
 //------------------------------------------
@@ -17,6 +18,7 @@ import Pantry from '../helpers/PantryAPI'
 //               Components
 //------------------------------------------
 import Notification from './user_notifications/notification'
+import RecipeSearchResultsDisplay from './recipe_search'
 
 
 //------------------------------------------
@@ -69,7 +71,7 @@ export default class AustinsTest extends Component {
         ////      WORKING GREAT
         
         
-        Pantry.retrieve({ pack: 'items', id: 131 })
+        Pantry.retrieve({ pack: 'items', id: 150 })
         .then( ({ results }) => {
             let items = results.pantry_items
             //items = items.splice( 0, Math.floor(items.length*0.15) )
@@ -125,6 +127,27 @@ export default class AustinsTest extends Component {
             <h1>Austin</h1>
             <Notification.expire/>
             {/* this.state.searchResults && Notification.low(this.state.searchResults)*/}
+            
+            <div className="dude">
+                <div className="pep">
+                    HHH
+                </div>
+            </div>
+            <div className="pep">
+                    BBB
+            </div>
+            
+            
+            {/*     Break     */}
+            <br/><br/> <br/><br/>
+            {/*               */}
+            
+            
+            
+            
+            {/* results={this.state.searchResults} */}
+            <RecipeSearchResultsDisplay />
+            
             
         </React.Fragment>)
     }
