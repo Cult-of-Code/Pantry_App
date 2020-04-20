@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Card, CardTitle, CardText, Button, Row, Col } from 'reactstrap';
-import getItemsFromUserRecipe from '../logical/fetchers'
 
 
 
@@ -19,7 +18,10 @@ class ViewUserRecipes extends Component {
                         <Card body key={ index} >
                             <CardTitle>{ user_recipe.name }</CardTitle>
                             <CardText>
-                            { user_recipe.est_time } - { user_recipe.description }
+                                Estimated Time: { user_recipe.est_time } Minutes 
+                            </CardText>
+                            <CardText>
+                                Description: { user_recipe.description }
                             </CardText>
                             <Button href= "/user/post/:post_id" color="secondary" size="lg" block>See Recipe</Button>
                         </Card>
