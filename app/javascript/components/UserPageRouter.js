@@ -37,11 +37,8 @@ export default function(props){
     const { match } = props
     const { params } = match
     
-<<<<<<< HEAD
-    // console.log(props)
-=======
+
     //console.log(props)
->>>>>>> ba9a5a576eabaad022fd6cd82b8bc694a767cf9e
     //console.log(match)
    
     let pages = {

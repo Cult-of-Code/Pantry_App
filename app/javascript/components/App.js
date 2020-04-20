@@ -193,12 +193,7 @@ export default class App extends React.Component {
           <Route path="/julia" exact render={ (props) => <JuliasTest {...props} />} />
           <Route path="/connor" exact render={ (props) => <ConnorsTest {...props} 
           current_user={ current_user }/>} />
-<<<<<<< HEAD
-          
-          
-          
-=======
->>>>>>> ba9a5a576eabaad022fd6cd82b8bc694a767cf9e
+
 
           
          
