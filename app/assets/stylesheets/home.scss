@@ -1,6 +1,17 @@
-// body {
-//     background-image: url('basil-delicious.jpg');
-//     background-repeat: no-repeat;
-//     background-attachment: fixed;
-//     background-size: cover;
-// }
+body {
+    background-image: url('basil-delicious.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 2;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+h2 {
+    color: white;
+}

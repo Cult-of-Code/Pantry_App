@@ -89,7 +89,7 @@ export default class App extends React.Component {
     .then( (received) => {
       this.setState({ usersPantryItems: received.results }) 
     })
-    */
+    
 
 
   }
