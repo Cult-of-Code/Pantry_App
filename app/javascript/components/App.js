@@ -132,13 +132,14 @@ export default class App extends React.Component {
         {logged_in &&
           <div>
             <a href={sign_out_route}>Sign Out</a>
-            <UserFrame current_user= {user_id}/>
+            <Navbar 
+              logged_in = {logged_in}/>
           </div>
         }
         {!logged_in &&
           <div>
             <a href={sign_in_route}>Sign In</a>
-            <Frame/>
+            <Navbar logged_in = {logged_in}/>
           </div>
         }
     
