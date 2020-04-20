@@ -51,6 +51,7 @@ class ViewItemsInPantry extends Component {
                     single_bin = pantry_item.storage_bin
                     return(
                         <Storages 
+                        key= {index}
                         single_bin = {single_bin}
                         pantry_item = {items}
                         user_id = {this.props.user_id.id}

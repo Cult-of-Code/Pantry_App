@@ -19,6 +19,7 @@ export default class Slot extends Component {
         this.state = {}
 
         this.routeChange = this.routeChange.bind(this);
+        this.routeChange2 = this.routeChange2.bind(this);
     }
     
     
@@ -51,10 +52,23 @@ export default class Slot extends Component {
         this.props.history.push(path);
     }
     
+    routeChange2() {
+        let path = `/user/container/create`;
+        this.props.history.push(path);
+    }
     
     
     
     render(){
+        var createStorage= undefined 
+        
+        if(window.location.pathname === "/user/collection") {
+            createStorage= <div style={{ display:'flex', flexFlow:'column' }}>
+            <div className='storageLink'onClick={this.routeChange2}/>
+            </div>
+        }
+        
+        
     return(<div className='user'>
     
         <div className='sidePanel'>
@@ -81,6 +95,11 @@ export default class Slot extends Component {
             <div style={{ display:'flex', flexFlow:'column' }}>
                 <div className='pantryLink'onClick={this.routeChange}/>
             </div>
+            
+            <br/>
+            
+            {createStorage}
+        
         
         
         
